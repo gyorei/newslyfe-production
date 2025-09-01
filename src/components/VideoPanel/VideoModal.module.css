@@ -1,0 +1,324 @@
+/* src/components/VideoPanel/VideoModal/VideoModal.module.css */
+
+/*
+.modalBackdrop:
+  - A modális ablak hátterét adja (sötét, elmosott réteg)
+  - Teljes képernyőt lefedi (position: fixed, top/left/right/bottom: 0)
+  - Sötét háttér (rgba(0,0,0,0.7)) és blur effekt (backdrop-filter: blur(4px))
+  - Magas z-index (1000), hogy minden tartalom fölött legyen
+  - Áttűnés animációk: háttér, elmosás, átlátszóság
+*/
+.modalBackdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  opacity: 1;
+  transition: backdrop-filter 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
+}
+
+/*
+.modalBackdrop[style*="pointer-events: none"]:
+  - Ha a backdrop pointer-events: none, akkor teljesen átlátszó lesz
+  - Nincs háttér, nincs blur, nem lehet rá kattintani
+  - A kurzor is "default" lesz
+*/
+.modalBackdrop[style*="pointer-events: none"] {
+  background: transparent;
+  backdrop-filter: none;
+  cursor: default;
+  pointer-events: none;
+}
+
+.modalContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 672px;
+  padding: 16px;
+  padding-top: 56px;
+  background: rgba(28, 28, 30, 0.85);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1001;
+  transform-origin: center center;
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              padding 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s,
+              border-radius 0.3s ease 0.1s,
+              box-shadow 0.3s ease;
+}
+
+/* 🎯 ====================================================== */
+/* 🎯 KULCSFONTOSSÁGÚ JAVÍTÁS (1/3) - A RÉTEGZŐDÉS ALAPJA    */
+/* 🎯 ====================================================== */
+.playerContainer {
+  position: relative; /* Ettől részt vesz a z-index harcban */
+  z-index: 1;         /* Ő lesz a legalacsonyabb réteg a modalon belül */
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-radius 0.3s ease 0.1s;
+}
+
+.playerContainer iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* 🎯 ====================================================== */
+/* 🎯 KULCSFONTOSSÁGÚ JAVÍTÁS (2/3) - A KÖZÉPSŐ RÉTEG        */
+/* 🎯 ====================================================== */
+.dragHandle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  cursor: grab;
+  z-index: 2; /* A lejátszó felett, de a gombok alatt van */
+  transition: background-color 0.2s ease;
+  border-radius: 14px 14px 0 0;
+}
+
+.dragHandle:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.dragHandle:active {
+  background-color: rgba(255, 255, 255, 0.06);
+  cursor: grabbing;
+}
+
+/* 🎯 ====================================================== */
+/* 🎯 KULCSFONTOSSÁGÚ JAVÍTÁS (3/3) - A LEGFELSŐ RÉTEG       */
+/* 🎯 ====================================================== */
+.closeButton, .minimizeButton, .restoreButton {
+  position: absolute;
+  top: 14px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 3; /* A gombok vannak legfelül, minden mást lefednek */
+  line-height: 1;
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.closeButton:hover, .minimizeButton:hover, .restoreButton:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  transform: scale(1.08);
+  color: rgba(255, 255, 255, 1);
+}
+
+.closeButton:active, .minimizeButton:active, .restoreButton:active {
+  transform: scale(0.96);
+}
+
+.closeButton   { right: 14px; }
+.minimizeButton{ 
+  right: 54px; 
+  font-size: 1.4rem; 
+  padding-bottom: 12px;
+}
+.restoreButton { 
+  display: none;
+  right: 54px;
+}
+
+/* MINIMIZED STATE */
+.modalContent.minimized {
+  padding: 8px;
+  width: 350px;
+  height: auto;
+  top: 50%; left: 50%; bottom: auto; right: auto;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              padding 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.modalContent.minimized .playerContainer {
+  border-radius: 14px;
+}
+
+.modalContent.minimized .closeButton {
+  top: 8px; 
+  right: 8px; 
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modalContent.minimized .minimizeButton {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.8);
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+}
+
+.modalContent.minimized .restoreButton {
+  display: flex;
+  right: 48px;
+  top: 8px;
+  background-color: rgba(0,0,0,0.5);
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+  transition: opacity 0.3s ease 0.1s, visibility 0.3s ease 0.1s, transform 0.3s ease 0.1s;
+}
+
+.modalContent.minimized .dragHandle {
+  height: 32px; /* A magasság csökkentése megmarad */
+}
+
+/* 🚀 ====================================================== */
+/* 🚀 MOBILNÉZET JAVÍTÁSOK - TOUCH ESEMÉNYEK ENGEDÉLYEZÉSE   */
+/* 🚀 ====================================================== */
+@media (max-width: 700px) {
+  .modalBackdrop {
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(8px);
+  }
+  
+  .modalBackdrop[style*="pointer-events: none"] {
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(8px);
+    pointer-events: auto !important;
+    cursor: pointer;
+  }
+  
+  .modalContent {
+    width: 95vw;
+    height: auto;
+    padding: 16px;
+    padding-top: 60px;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) !important;
+    border-radius: 12px;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    
+    /* 🚀 KRITIKUS JAVÍTÁS: Touch események engedélyezése */
+    touch-action: auto;
+    -webkit-touch-callout: default;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .modalContent.minimized {
+    width: 95vw;
+    height: auto;
+    padding: 16px;
+    padding-top: 60px;
+    transform: translate(-50%, -50%) !important;
+    border-radius: 12px;
+  }
+  
+  /* 🚀 KRITIKUS: dragHandle teljes elrejtése mobilon */
+  .dragHandle {
+    display: none !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+  }
+  
+  /* 🚀 KRITIKUS: playerContainer mobilon optimalizált */
+  .playerContainer {
+    border-radius: 8px;
+    
+    /* TOUCH ESEMÉNYEK TELJES ENGEDÉLYEZÉSE */
+    pointer-events: auto !important;
+    touch-action: auto !important;
+    -webkit-touch-callout: default !important;
+    -webkit-user-select: auto !important;
+    user-select: auto !important;
+    
+    /* Biztosítjuk hogy semmi ne takarja el */
+    position: relative;
+    z-index: 10 !important;
+  }
+  
+  .modalContent.minimized .playerContainer {
+    border-radius: 8px;
+    
+    /* TOUCH ESEMÉNYEK TELJES ENGEDÉLYEZÉSE minimized módban is */
+    pointer-events: auto !important;
+    touch-action: auto !important;
+    -webkit-touch-callout: default !important;
+    z-index: 10 !important;
+  }
+  
+  /* 🚀 KRITIKUS: iframe mobilon teljes touch támogatással */
+  .playerContainer iframe {
+    /* TELJES TOUCH ÉS POINTER ESEMÉNYEK ENGEDÉLYEZÉSE */
+    pointer-events: auto !important;
+    touch-action: manipulation !important;
+    -webkit-touch-callout: default !important;
+    -webkit-user-select: auto !important;
+    user-select: auto !important;
+    
+    /* Magasabb z-index a biztonság kedvéért */
+    position: relative;
+    z-index: 15 !important;
+    
+    /* Webkit specifikus optimalizációk */
+    -webkit-tap-highlight-color: rgba(0,0,0,0.1);
+  }
+  
+  .closeButton {
+    top: 12px; right: 12px;
+    width: 40px; height: 40px;
+    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 20 !important; /* Még magasabb mint az iframe */
+  }
+  
+  .minimizeButton, .restoreButton,
+  .modalContent.minimized .minimizeButton,
+  .modalContent.minimized .restoreButton {
+    display: none !important;
+  }
+}
+
+/* ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+  .modalContent, .modalContent.minimized, .closeButton, .minimizeButton, .restoreButton, .dragHandle, .playerContainer, .modalBackdrop {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ANIMATION */
+@keyframes modalFadeIn {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.94); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.modalContent.appearing {
+  animation: modalFadeIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}

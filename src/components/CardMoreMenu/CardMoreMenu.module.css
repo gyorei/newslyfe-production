@@ -1,0 +1,117 @@
+.menu {
+  background-color: var(--color-surface, #fff);
+  border-radius: var(--border-radius-md, 8px);
+  box-shadow: var(--box-shadow-lg, 0 4px 12px rgba(0, 0, 0, 0.15));
+  min-width: 180px; /* Kicsit szélesebb alapértelmezett */
+  max-width: calc(100vw - 16px); /* Ne lógjon ki a képernyőből */
+  max-height: calc(100vh - 16px); /* Ne lógjon ki a képernyőből */
+  padding: var(--space-xs, 4px) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px; /* Kis térköz a gombok között */
+  border: 1px solid var(--color-border, #eee);
+  /* ✅ Javított animáció */
+  opacity: 0;
+  transform: scale(0.95) translateY(-5px);
+  animation: menuFadeIn 0.2s ease-out forwards;
+  /* ✅ Smooth pozícióváltás */
+  transition: transform 0.15s ease-out;
+  /* ✅ Overflow kezelés */
+  overflow: hidden;
+  overflow-y: auto; /* Ha nem fér ki, görgethető legyen */
+}
+
+@keyframes menuFadeIn {
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.menuItem {
+  background: none;
+  border: none;
+  color: var(--color-text-primary, #333);
+  text-align: left;
+  padding: var(--space-sm, 8px) var(--space-md, 16px);
+  font-size: var(--font-size-sm, 0.9rem);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+  border-radius: 0; /* Nincs külön rádiusz a gombokon */
+  width: 100%;
+  display: flex; /* Ikonokhoz hasznos lehet */
+  align-items: center; /* Ikonokhoz hasznos lehet */
+  gap: var(--space-sm, 8px); /* Térköz az ikon és a szöveg között */
+}
+
+.menuItem:hover,
+.menuItem:focus {
+  background-color: var(--color-primary-light, #eaf2ff);
+  color: var(--color-primary, #0057b7);
+  outline: none;
+}
+
+.menuItem:active {
+  background-color: var(--color-primary-dark, #004494); /* Sötétebb aktív állapot */
+  color: white;
+}
+
+/* Opcionális: elválasztó vonal */
+.menuItem + .menuItem {
+  /* border-top: 1px solid var(--color-border-light, #f0f0f0); */
+}
+
+/* Dark mode stílusok */
+:global(.app.dark) .menu {
+  background-color: var(--color-surface-dark, #2d3748);
+  border-color: var(--color-border-dark, #4a5568);
+  box-shadow: var(--box-shadow-lg-dark, 0 4px 12px rgba(0, 0, 0, 0.4));
+}
+
+:global(.app.dark) .menuItem {
+  color: var(--color-text-primary-dark, #e2e8f0);
+}
+
+:global(.app.dark) .menuItem:hover,
+:global(.app.dark) .menuItem:focus {
+  background-color: var(--color-primary-dark-hover, #4a5568);
+  color: var(--color-primary-light, #90cdf4);
+}
+
+:global(.app.dark) .menuItem:active {
+  background-color: var(--color-primary-dark-active, #2c5282);
+  color: white;
+}
+
+:global(.app.dark) .menuItem + .menuItem {
+  /* border-top-color: var(--color-border-dark-light, #4a5568); */
+}
+
+/* ✅ ÚJ: Mobil optimalizáció */
+@media (max-width: 768px) {
+  .menu {
+    min-width: 160px; /* Kisebb szélesség mobilon */
+    max-width: calc(100vw - 16px); /* Ne lógjon ki a képernyőből */
+    font-size: 0.9rem; /* Kisebb betűméret */
+  }
+  
+  .menuItem {
+    padding: var(--space-sm, 8px) var(--space-sm, 12px); /* Kisebb padding */
+    font-size: 0.85rem; /* Kisebb betűméret */
+  }
+}
+
+/* ✅ ÚJ: Nagyon kis képernyők */
+@media (max-width: 480px) {
+  .menu {
+    min-width: 140px;
+    max-width: calc(100vw - 8px);
+  }
+  
+  .menuItem {
+    padding: var(--space-xs, 6px) var(--space-sm, 10px);
+    font-size: 0.8rem;
+  }
+}

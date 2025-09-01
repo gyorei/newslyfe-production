@@ -1,0 +1,51 @@
+.container {
+    padding: 20px;
+    background: var(--color-surface);
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    
+    /* ✅ Görgetősáv elrejtése */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+  
+  .container::-webkit-scrollbar {
+    display: none !important;
+  }
+  
+  .electronNotice {
+    display: flex;
+    align-items: flex-start;
+    padding: 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 8px;
+    margin-bottom: 24px;
+    color: white;
+  }
+  
+  .noticeIcon {
+    font-size: 24px;
+    margin-right: 12px;
+    margin-top: 2px;
+  }
+  
+  .noticeContent h4 {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .noticeContent p {
+    margin: 0;
+    font-size: 14px;
+    opacity: 0.9;
+    line-height: 1.4;
+  }
+  
+  .settingsSection {
+    margin-bottom: 24px;
+  }
+  
+  .settingsSection:last-child {
+    margin-bottom: 0;
+  }

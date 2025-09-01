@@ -1,0 +1,220 @@
+.tabsContainer {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-tabs-bar);
+  padding: var(--space-xs) var(--space-md) 0;
+  padding-left: 0; /* Bal oldali padding eltávolítása */
+
+  /* Vízszintes görgetés engedélyezése */
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  /* Görgetősáv elrejtése, de a funkció megtartása */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE és Edge */
+
+  border-bottom: 1px solid var(--color-border);
+  min-height: var(--header-height); /* Módosítva --tabs-height helyett */
+  height: var(--header-height); /* Hozzáadva fix magasság */
+  box-sizing: border-box;
+  position: relative; /* Stabil pozicionálás */
+  z-index: 10; /* Rétegrend biztosítása */
+
+  /* Görgetés miatti ugrálás megakadályozása */
+  -webkit-overflow-scrolling: touch; /* iOS-en simább görgetés */
+  /*-------------------------------------*/
+  /* Mobilos görgetés javítása */
+  touch-action: pan-x; /* Csak vízszintes görgetés engedélyezése */
+  white-space: nowrap; /* Minden fül egy sorban maradjon */
+  flex-wrap: nowrap; /* Megakadályozza a sortörést */
+
+  /* Mobile Safari hibák javítása */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  scroll-behavior: smooth; /* Sima görgetés */
+}
+
+/* Webkit böngészőkben (Chrome, Safari) a görgetősáv elrejtése */
+.tabsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hiányzó tabsList osztály hozzáadása */
+.tabsList {
+  display: flex;
+  flex-direction: row; /* Explicit vízszintes elrendezés */
+  align-items: center;
+  flex: 0 0 auto; /* MÓDOSÍTVA: flex: 1 helyett flex: 0 0 auto */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  width: fit-content; /* HOZZÁADVA: csak annyi helyet foglal, amennyi szükséges */
+  gap: 0; /* HOZZÁADVA: nincs extra hely az elemek között */
+}
+
+.tabsList::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Optimalizált verzió nagy tab számokhoz */
+.tabsList.optimized {
+  contain: layout style paint; /* CSS containment a jobb teljesítményért */
+}
+
+/* Rögzített magasságú tabok a stabilitás érdekében */
+.tab {
+  height: calc(var(--header-height) - 8px); /* Állandó magasság */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Módosítva: center → flex-start (balra igazítás) */
+  padding: 0 calc(var(--space-md) + 4px) 0 var(--space-md); /* Csökkentett jobb padding */
+  margin-right: 2px;
+  margin-top: 0; /* Nincs felső margó */
+  margin-bottom: 0; /* Nincs alsó margó */
+  border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
+  background-color: var(--color-tab-inactive);
+  color: var(--color-tab-text-inactive);
+  cursor: grab;
+  user-select: none;
+  white-space: nowrap;
+  width: 140px;
+  max-width: 140px;
+  font-size: var(--font-size-sm);
+  transition: background-color var(--transition-speed);
+  position: relative;
+  /* Eltávolítottuk a top pozícionálást, ami ugrálást okozhatott */
+  border: 1px solid transparent;
+  flex: 0 0 auto; /* Megakadályozza a tabok zsugorodását mobil nézetben */
+}
+
+/* Első fül külön kezelése a lokális hírek fülhöz */
+.tab:first-child {
+  min-width: 160px; /* Extra szélesség a lokális hírek fülnek */
+}
+
+/* Rövidebb nevű kontinensek esetén */
+.tab[title*='Asia'],
+.tab[title*='Africa'],
+.tab[title*='Europe'] {
+  min-width: 130px; /* Kisebb szélesség a rövidebb nevű kontinensekhez */
+}
+
+/* Új: Tab címek ellipszisként való megjelenítése */
+.tab span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%; /* Fix szélességű tabhoz igazítva */
+  padding-right: 4px; /* Kisebb térköz a gomb előtt */
+}
+
+.tab.active {
+  background-color: var(--color-tab-active);
+  color: var(--color-tab-text-active);
+  font-weight: 500;
+  border: 1px solid var(--color-border);
+  border-bottom-width: 2px; /* Vastagabb alsó szegély */
+  border-bottom-color: var(--color-primary);
+  /* Eltávolítottuk a transform-ot, ami függőleges mozgást okozhatott */
+  box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.05); /* JAVÍTÁS: inset árnyék, nem befolyásolja a layout-ot */
+  z-index: 2; /* Az aktív fül legyen felül */
+  /* JAVÍTÁS: Fix magasság biztosítása a vastagabb border ellenére */
+  box-sizing: border-box; /* Border ne növelje a méretet */
+}
+
+/* ÚJ: Video típusú tab aktív állapotban piros alsó szegéllyel */
+.tab.video.active {
+  border-bottom-color: var(--color-video, #e53935) !important;
+}
+
+/* Aktív fül szövege */
+.tab.active span {
+  font-weight: 500; /* Félkövér szöveg */
+}
+
+.tab:hover:not(.active) {
+  background-color: var(--color-surface-secondary);
+}
+
+.addTab {
+  height: calc(var(--header-height) - 8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0; /* MÓDOSÍTVA: var(--space-sm) helyett 0 */
+  background: none;
+  border: none;
+  color: var(--color-tab-text-inactive);
+  font-size: 20px; /* MÓDOSÍTVA: 24px helyett 20px */
+  cursor: pointer;
+  padding: 0 var(--space-md);
+  border-radius: var(--border-radius-sm);
+  transition: background-color var(--transition-speed);
+  min-width: 40px; /* HOZZÁADVA: minimális szélesség */
+  flex: 0 0 auto; /* HOZZÁADVA: megakadályozza a zsugorodást */
+  margin-left: 0; /* MÓDOSÍTVA: közvetlenül a tab mellett */
+}
+
+.addTab:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--color-primary);
+}
+
+/* Sötét téma specifikus stílusok */
+:global(.app.dark) .tab.active {
+  background-color: var(--color-tab-active);
+  border-bottom-color: var(--color-primary);
+}
+
+:global(.app.dark) .tab:hover:not(.active) {
+  background-color: #3a3a3a; /* Sötét hover szín */
+}
+
+:global(.app.dark) .addTab:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-primary-light);
+}
+
+/* Vizuálisan rejtett elemek képernyőolvasókhoz */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Mobilos görgethetőség jelzése */
+@media (max-width: 768px) {
+  /* Aktív tab esetén a jelzés ne zavarjon */
+  .tab.active {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/* Asztali specifikus beállítások */
+@media (min-width: 769px) {
+  /* Nagyobb távolság a fülek között asztali nézetben */
+  .tab {
+    margin-right: 4px;
+  }
+
+  /* Hover effekt a görgetéshez - Módosítva: zárt kéz kurzor */
+  .tabsContainer:hover {
+    cursor: grab; /* Módosítva: ew-resize helyett grab kurzor */
+  }
+
+  /* A helyi menü megjelenítéséhez jobb kattintás kezelése */
+  .tab {
+    -webkit-context-menu-container: initial; /* Saját kontextus menü */
+  }
+}
+
+.video {}

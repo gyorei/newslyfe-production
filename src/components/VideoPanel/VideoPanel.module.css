@@ -1,0 +1,169 @@
+/* ========================================
+ * 🎥 VIDEO PANEL CSS MODULE
+ * ========================================
+ * Ez CSAK videó panel stílusokat tartalmaz!
+ * NEM keverjük a hír panel stílusokkal!
+ */
+
+.videoPanel {
+  position: relative;
+  padding: 0px;
+  padding-bottom: 100px; /* ✅ ÚJ: Hogy az utolsó kártyák is láthatóak legyenek */
+  width: 100%;
+  margin: 0 auto;
+  /* ✅ JAVÍTÁS: Nincs fix magasság vagy overflow, hogy a parent scrollozzon */
+  min-height: auto;
+  overflow: visible;
+}
+
+.videoPanelTitle {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.loadingContainer {
+  text-align: center;
+  padding: 20px;
+}
+
+.errorContainer {
+  color: red;
+  padding: 20px;
+  text-align: center;
+}
+
+.errorMessage {
+  margin-bottom: 10px;
+}
+
+.retryButton {
+  margin-top: 10px;
+  padding: 8px 16px;
+  backgroundColor: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.emptyContainer {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+.videoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+  padding: 16px 0;
+  width: 100%;
+}
+
+.smallSpinner {
+  position: absolute;
+  top: 12px;
+  right: 24px;
+  width: 24px;
+  height: 24px;
+  border: 3px solid #ccc;
+  border-top: 3px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 10;
+  background: transparent;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}
+
+/* ========================================
+ * 🎥 COMPLETE DARK MODE (OPTION A)
+ * ========================================
+ * Minden elem sötét - teljes dark mode
+ */
+
+:global(.app.dark) .videoPanel {
+  background-color: #121212 !important;
+}
+
+:global(.app.dark) .videoPanelTitle {
+  color: #e4e4e4 !important;
+}
+
+:global(.app.dark) .loadingContainer {
+  color: #e4e4e4 !important;
+}
+
+:global(.app.dark) .errorContainer {
+  color: #ff6b6b !important;
+}
+
+:global(.app.dark) .errorMessage {
+  color: #ff6b6b !important;
+}
+
+:global(.app.dark) .retryButton {
+  background-color: #0d6efd !important;
+  color: #ffffff !important;
+}
+
+:global(.app.dark) .retryButton:hover {
+  background-color: #0b5ed7 !important;
+}
+
+:global(.app.dark) .emptyContainer {
+  color: #a7a7a7 !important;
+}
+
+/* ========================================
+ * 🎥 RESPONZÍV DESIGN
+ * ========================================
+ */
+
+/* Mobile: 1 oszlop */
+@media (max-width: 768px) {
+  .videoGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 12px 0;
+  }
+  
+  .videoPanel {
+    padding: 12px;
+  }
+}
+
+/* Tablet: 2-3 oszlop */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .videoGrid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+  }
+}
+
+/* Desktop: 3-4 oszlop */
+@media (min-width: 1025px) {
+  .videoGrid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+  }
+}
+
+/* Nagy képernyő: 4 oszlop */
+@media (min-width: 1400px) {
+  .videoGrid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+}
+
+/* Extra nagy képernyő: 4 oszlop */
+@media (min-width: 1600px) {
+  .videoGrid {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 22px;
+  }
+}

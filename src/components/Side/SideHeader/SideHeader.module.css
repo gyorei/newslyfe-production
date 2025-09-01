@@ -1,0 +1,90 @@
+.sidebarHeader {
+  padding: 12px;
+  border-bottom: 1px solid var(--color-border);
+  padding-left: 10px;
+  min-height: 40px; /* Fix magasság biztosítása */
+  max-height: 40px; /* Maximális magasság korlátozása */
+}
+
+.headerTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%; /* Teljes magasság kihasználása */
+}
+
+/* ÚJ: Navigációs gombok konténer */
+.navigationButtons {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+/* ÚJ: Navigációs gombok stílusa - egyszerűsített, szögletes forma */
+.navButton {
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 0; /* Szögletes gombok */
+  background-color: transparent;
+  color: var(--text-color); /* Módosítva: kék helyett alapértelmezett szövegszín */
+  border: 1px solid transparent; /* Átlátszó keret alapállapotban */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  height: 28px; /* Fix magasság */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navButton:hover {
+  background-color: var(--color-surface-hover);
+}
+
+.navButton.active {
+  border-color: var(--color-primary); /* Kék keret az aktív állapotnál */
+  font-weight: 500;
+}
+
+.headerTop h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* LocalButton is illeszkedik a többi gomb megjelenéséhez */
+.localButton {
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 0; /* Szögletes gombok */
+  background-color: transparent;
+  color: var(--text-color); /* Módosítva: kék helyett alapértelmezett szövegszín */
+  border: 1px solid transparent; /* Átlátszó keret alapállapotban */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: 28px; /* Fix magasság, egyező a navButton-okkal */
+}
+
+.localButton:hover {
+  background-color: var(--color-surface-hover);
+}
+
+.localButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Sötét téma specifikus stílusok */
+:global(.app.dark) .navButton,
+:global(.app.dark) .localButton {
+  color: var(--text-color); /* Módosítva: kék helyett a téma alapértelmezett szövegszíne */
+}
+
+:global(.app.dark) .navButton:hover,
+:global(.app.dark) .localButton:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Sötét háttéren világosabb hover */
+}
+
+:global(.app.dark) .navButton.active,
+:global(.app.dark) .localButton.active {
+  border-color: var(--color-primary-light); /* Világosabb kék keret sötét témában */
+}

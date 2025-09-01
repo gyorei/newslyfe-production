@@ -1,0 +1,255 @@
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-md);
+  padding-left: 10px; /* Explicit felülírás a pontos 10px-re */
+  padding-right: 120px; /* helyet hagy a jobb felső sarokban a windowControls-nak */
+  background-color: var(--color-header-bg);
+  color: var(--color-header-text);
+  transition: all var(--transition-speed) var(--transition-function);
+  box-shadow: var(--box-shadow);
+  border-bottom: 1px solid var(--color-border);
+  -webkit-app-region: drag;
+}
+
+/* Mac-en több padding a bal oldalon */
+.header.macHeader {
+  padding-left: 80px; /* Mac gombok után */
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-left: 0px; /* Új beállítás, hogy a logó pontosan 10px-re legyen a bal széltől */
+  flex: 1; /* Kitölti a bal oldali területet */
+}
+
+/* Mac gombok után offset - abszolút pozicionálás */
+.headerLeft.macOffset {
+  position: absolute;
+  left: 80px; /* Pontosan 80px-re a bal széltől */
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.headerCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1; /* Középen helyezi el */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-left: 16px;
+  flex: 1; /* Kitölti a jobb oldali területet */
+  justify-content: flex-end; /* Jobbra igazítja a gombokat */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo h1 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  text-decoration: none;
+  color: var(--color-header-text);
+}
+
+.logoIcon {
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  color: white;
+  background-color: var(--color-primary);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  transition: transform var(--transition-speed) var(--transition-function);
+  flex-shrink: 0;
+}
+
+.logoContainer:hover .logoIcon {
+  transform: scale(1.1);
+}
+
+.logoContainer:hover .logoText {
+  color: var(--color-primary-light);
+}
+
+.logoText {
+  font-size: 1.1rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: color var(--transition-speed) var(--transition-function);
+}
+
+@media (max-width: 1024px) {
+  .logoText {
+    display: none;
+  }
+}
+
+.logoW {
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  color: white;
+  background-color: var(--color-primary);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  margin-left: 0;
+  transition: transform var(--transition-speed) var(--transition-function);
+}
+
+.logo:hover .logoW {
+  transform: scale(1.1);
+}
+
+/* Új gombok stílusa - csak a keretek és belső térköz finomítva */
+.iconButton {
+  -webkit-app-region: no-drag; /* Electron: kattintások engedélyezése */
+  background: transparent;
+  border: 1px solid var(--color-header-text);
+  color: var(--color-header-text);
+  font-size: var(--font-size-md);
+  cursor: pointer;
+  padding: var(--space-xs) var(--space-xs); /* Kisebb belső padding */
+  border-radius: 4px; /* Konkrét finomabb érték */
+  transition: all var(--transition-speed) var(--transition-function);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px; /* Kicsit kisebb szélesség */
+  height: 32px; /* Kicsit kisebb magasság */
+  border-width: 1px; /* Vékony keret */
+}
+
+.iconButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-primary-light);
+  border-color: var(--color-primary-light);
+}
+
+.iconButton.active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+.iconButton.inactive {
+  opacity: 0.8;
+}
+
+.themeToggler,
+.userButton {
+  -webkit-app-region: no-drag; /* Electron: kattintások engedélyezése */
+  background: none;
+  border: 1px solid var(--color-header-text);
+  color: var(--color-header-text);
+  font-size: var(--font-size-md);
+  cursor: pointer;
+  padding: var(--space-xs) var(--space-xs); /* Kisebb belső padding */
+  border-radius: 4px; /* Konkrét finomabb érték */
+  transition: all var(--transition-speed) var(--transition-function);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px; /* Kicsit kisebb szélesség */
+  height: 32px; /* Kicsit kisebb magasság */
+  border-width: 1px; /* Vékony keret */
+}
+
+.themeToggler:hover,
+.userButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-primary-light);
+  border-color: var(--color-primary-light);
+}
+
+/* Mobil eszközök - még kisebb gombokkal */
+@media (max-width: 768px) {
+  .headerRight {
+    gap: 6px; /* Kisebb távolság a gombok között */
+  }
+
+  .iconButton,
+  .themeToggler,
+  .userButton {
+    min-width: 28px; /* Még kisebb szélesség */
+    height: 28px; /* Még kisebb magasság */
+    padding: 2px; /* Minimális padding */
+    font-size: 12px; /* Kisebb betűméret */
+  }
+
+  /* Mobil nézetben logo elrejtése */
+  .headerCenter {
+    display: none;
+  }
+}
+
+/* Sötét téma specifikus stílusok */
+:global(.app.dark) .iconButton {
+  border-color: var(--color-text-primary);
+}
+
+:global(.app.dark) .iconButton:hover,
+:global(.app.dark) .themeToggler:hover,
+:global(.app.dark) .userButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-primary-light);
+  border-color: var(--color-primary-light);
+}
+
+.windowControls {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 10;
+}
+
+.controlBtn {
+  -webkit-app-region: no-drag;
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  color: #fff;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.controlBtn:hover {
+  background: rgba(255,255,255,0.15);
+}

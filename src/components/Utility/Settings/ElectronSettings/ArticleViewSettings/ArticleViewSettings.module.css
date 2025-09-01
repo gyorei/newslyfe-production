@@ -1,0 +1,215 @@
+/* ArticleViewSettings.module.css */
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 24px;
+    background: var(--color-surface);
+    border-radius: 12px;
+    box-shadow: var(--box-shadow);
+    
+    /* ✅ Görgetősáv elrejtése */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.container::-webkit-scrollbar {
+    display: none !important;
+}
+
+.header {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 8px 0;
+}
+
+.description {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid var(--color-border);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all var(--transition-speed) var(--transition-function);
+    background: var(--color-surface);
+}
+
+.option:hover {
+    border-color: var(--color-primary);
+    background: var(--color-surface-secondary);
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-hover);
+}
+
+.option.active {
+    border-color: var(--color-primary);
+    background: var(--color-surface-secondary);
+    box-shadow: 0 0 0 3px var(--color-primary-transparent);
+}
+
+.option.saving {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.optionIcon {
+    position: relative;
+    margin-right: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    font-size: 28px;
+    display: block;
+}
+
+.recommendedBadge {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background: var(--color-success);
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.optionContent {
+    flex: 1;
+}
+
+.optionTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 4px 0;
+}
+
+.optionDescription {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.optionIndicator {
+    margin-left: 16px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkmark {
+    width: 24px;
+    height: 24px;
+    background: var(--color-success);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    animation: checkmarkAppear 0.3s ease;
+}
+
+@keyframes checkmarkAppear {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: var(--color-text-secondary);
+}
+
+.savingIndicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 12px;
+    background: var(--color-surface-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    color: var(--color-text-primary);
+    font-size: 14px;
+}
+
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--color-border);
+    border-top: 2px solid var(--color-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding: 16px;
+        margin: 16px;
+    }
+    
+    .option {
+        flex-direction: column;
+        text-align: center;
+        padding: 16px;
+    }
+    
+    .optionIcon {
+        margin-right: 0;
+        margin-bottom: 12px;
+    }
+    
+    .optionIndicator {
+        margin-left: 0;
+        margin-top: 12px;
+    }
+}
+

@@ -1,0 +1,29 @@
+/* src\components\SplashScreen\SplashScreen.css */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.splash-video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .splash-video {
+    width: 100vw;
+    height: auto;
+    max-height: 60vh;
+    aspect-ratio: 16/9;
+    object-fit: contain;
+  }
+}

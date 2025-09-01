@@ -1,0 +1,727 @@
+/**
+ * Vivaldi-stílusú NavigationBar CSS
+ * 
+ * Kulcsfontosságú design elemek:
+ * - Lebegő "pirula" forma - lekerekített sarkú téglalap
+ * - Sötét téma alapértelmezett
+ * - Flat design - nincs árnyék, 3D hatás
+ * - Minimalista ikonok
+ * - Magas kontraszt
+ */
+
+/* ===== FŐ NAVIGÁCIÓS SÁV ===== */
+.navigationBar {
+  /* Vivaldi "lebegő pirula" forma */
+  display: flex;
+  align-items: center;
+  /*max-width: 900px;*/ /* Nem tölti ki a teljes szélességet */
+  width: 100%;
+  height: 40px; /* Kompakt 40px magasság */
+  margin: 0; /* Középre igazítás */
+  padding: 0 12px;
+  box-sizing: border-box; /* JAVÍTÁS: Padding ne növelje a méretet */
+  flex-shrink: 0; /* JAVÍTÁS: Ne zsugorodjon */
+
+  /* Vivaldi-stílusú színek - Pro Blue téma */
+  background-color: var(--color-surface);
+  color: var(--color-text-primary);
+
+  /* Lebegő pirula forma */
+  border-radius: 0px; /* Erős lekerekítés */
+  /*border: 1px solid #404040;*/ /* Finom sötét keret */
+  border-left: none; /* ← ÚJ: Bal oldali keret eltávolítása */
+  border-right: none; /* ← ÚJ: Jobb oldali keret eltávolítása */
+
+  /* Flat design - nincs árnyék */
+  box-shadow: none;
+
+  /* Smooth transitions */
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+
+  /* Pozicionálás */
+  position: relative;
+  z-index: 100;
+
+  /* Gapek a komponensek között */
+  gap: 8px;
+}
+
+/* Hover hatás - finoman világosabb */
+.navigationBar:hover {
+  background-color: var(--color-surface-secondary);
+  border-color: var(--color-border);
+}
+
+/* ===== SZEPARÁTOROK ===== */
+.separator {
+  width: 1px;
+  height: 20px;
+  background-color: var(--color-border); /* Finoman látható szeparátor */
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+/* ===== NAVIGÁCIÓS VEZÉRLŐK ===== */
+.navigationControls {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* Kompakt elrendezés */
+  flex-shrink: 0;
+}
+
+.navButton {
+  /* Vivaldi minimalista gombok */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+
+  /* Flat design - tiszta háttér */
+  background: none;
+  border: none;
+  border-radius: 6px; /* Finom lekerekítés */
+
+  /* Vivaldi színek */
+  color: var(--color-text-secondary); /* Világosszürke ikonok */
+
+  /* Smooth transitions */
+  transition: all 0.15s ease;
+  cursor: pointer;
+
+  /* Accessibility */
+  outline: none;
+  user-select: none;
+}
+
+/* Navigációs gomb hover */
+.navButton:hover:not(.disabled) {
+  background-color: rgba(255, 255, 255, 0.1); /* Finom világosítás */
+  color: #ffffff; /* Fehér ikon hover-nél */
+}
+
+/* Navigációs gomb aktív */
+.navButton:active:not(.disabled) {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: scale(0.95); /* Finom "benyomás" */
+}
+
+/* Letiltott gomb */
+.navButton.disabled {
+  color: #666666; /* Halvány szürke */
+  cursor: not-allowed;
+}
+
+/* Forgó animáció a frissítés gombnak */
+.navButton.loading .navIcon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Navigációs ikon stílusok */
+.navIcon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  pointer-events: none;
+}
+
+/* ===== KERESŐMEZŐ KONTÉNER ===== */
+.searchContainer {
+  display: flex;
+  align-items: center;
+  flex: 1; /* Kitölti a rendelkezésre álló helyet */
+  height: 28px;
+  position: relative;
+
+  /* Vivaldi keresőmező háttér */
+  background-color: var(--color-surface); /* ✅ CSS változó használata */
+  border: 1px solid var(--color-border); /* ✅ CSS változó használata */
+  border-radius: 14px; /* Oval forma */
+
+  /* Transitions */
+  transition: all 0.2s ease;
+  overflow: hidden;
+}
+
+/* Fókuszált keresőmező */
+.searchContainer.focused {
+  border-color: #007acc; /* Vivaldi kék fókusz szín */
+  background-color: #252525;
+  box-shadow: 0 0 0 1px rgba(0, 122, 204, 0.3); /* Finom glow */
+}
+
+/* ===== KERESÉSI IKON ===== */
+.searchIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: none;
+  color: #888888;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color 0.2s ease;
+}
+
+.searchIcon:hover {
+  color: #b8b8b8;
+}
+
+.searchIcon svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+/* ===== KERESŐMEZŐ INPUT ===== */
+.searchInput {
+  flex: 1;
+  height: 100%;
+  background: none;
+  border: none;
+  outline: none;
+
+  /* Vivaldi szöveg stílusok */
+  color: #e8e8e8;
+  font-size: 14px;
+  font-family: inherit;
+
+  /* Padding */
+  padding: 0 8px 0 0;
+}
+
+.searchInput::placeholder {
+  color: #777777; /* Halvány placeholder */
+}
+
+.searchInput:focus::placeholder {
+  color: #666666; /* Még halványabb fókuszban */
+}
+
+/* ===== TÖRLÉS GOMB ===== */
+.clearButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  color: #888888;
+  cursor: pointer;
+  border-radius: 50%;
+  margin-right: 2px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.clearButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #b8b8b8;
+}
+
+.clearButton svg {
+  width: 12px;
+  height: 12px;
+  fill: currentColor;
+}
+
+/* ===== JAVASLATOK DROPDOWN ===== */
+.suggestionsDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+
+  /* Vivaldi dropdown stílusok */
+  background-color: var(--color-surface-secondary); /* ✅ CSS változó használata */
+  border: 1px solid var(--color-border); /* ✅ CSS változó használata */
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* Finom árnyék */
+
+  /* Pozicionálás */
+  z-index: 1000;
+  max-height: 300px;
+  overflow-y: auto;
+
+  /* Scroll stílusok */
+  scrollbar-width: thin;
+  scrollbar-color: #505050 transparent;
+}
+
+.suggestionsDropdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.suggestionsDropdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.suggestionsDropdown::-webkit-scrollbar-thumb {
+  background: #505050;
+  border-radius: 3px;
+}
+
+/* ===== JAVASLAT ELEMEK ===== */
+.suggestionItem {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  /* Szöveg stílusok */
+  color: #e8e8e8;
+  font-size: 14px;
+}
+
+.suggestionItem:hover,
+.suggestionItem.selected {
+  background-color: var(--color-surface-secondary); /* ✅ CSS változó használata */
+}
+
+.suggestionItem:first-child {
+  border-radius: 8px 8px 0 0;
+}
+
+.suggestionItem:last-child {
+  border-radius: 0 0 8px 8px;
+}
+
+/* Javaslat ikon */
+.suggestionIcon {
+  margin-right: 8px;
+  font-size: 12px;
+  width: 16px;
+  text-align: center;
+  opacity: 0.7;
+}
+
+/* Javaslat szöveg */
+.suggestionText {
+  flex: 1;
+}
+
+/* Javaslat típus */
+.suggestionType {
+  font-size: 11px;
+  color: #888888;
+  margin-left: 8px;
+}
+
+/* Javaslat típus színek */
+.suggestionItem.history .suggestionIcon {
+  color: #ffa500; /* Narancssárga az előzményekhez */
+}
+
+.suggestionItem.bookmark .suggestionIcon {
+  color: #ffd700; /* Arany a könyvjelzőkhöz */
+}
+
+.suggestionItem.suggestion .suggestionIcon {
+  color: #87ceeb; /* Világoskék a javaslatokhoz */
+}
+
+/* ===== GYORS MŰVELETEK ===== */
+.quickActions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.quickActionButton {
+  /* Ugyanolyan stílus, mint a nav gombok */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+
+  background: none;
+  border: none;
+  border-radius: 6px;
+
+  color: #b8b8b8;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+
+  /* Relatív pozicionálás a badge-hez */
+  position: relative;
+}
+
+.quickActionButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.quickActionButton:active {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: scale(0.95);
+}
+
+.quickActionIcon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  pointer-events: none;
+}
+
+/* ===== BADGE/ÉRTESÍTÉS ===== */
+.iconContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notificationBadge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+
+  /* Vivaldi badge stílusok */
+  background-color: #ff4444; /* Piros értesítési szín */
+  color: #ffffff;
+
+  /* Méret és forma */
+  min-width: 16px;
+  height: 16px;
+  border-radius: 8px;
+
+  /* Szöveg */
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+
+  /* Padding kis számokhoz */
+  padding: 0 4px;
+  box-sizing: border-box;
+
+  /* Pozicionálás */
+  z-index: 1;
+
+  /* Animáció */
+  animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.hasNotification {
+  /* Vizuális jelzés, hogy van értesítés */
+}
+
+/* ===== RESZPONZÍV DESIGN ===== */
+
+/* Tablet méret */
+@media (max-width: 768px) {
+  .navigationBar {
+    width: 100%;
+    height: 36px;
+    padding: 0 12px;
+    gap: 6px;
+    border-radius: 0; /* ← JAVÍTVA: Nincs lekerekítés */
+  }
+
+  .navButton,
+  .quickActionButton {
+    width: 24px;
+    height: 24px;
+  }
+
+  .navIcon,
+  .quickActionIcon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .searchContainer {
+    height: 24px;
+    border-radius: 12px;
+  }
+
+  .searchInput {
+    font-size: 13px;
+  }
+}
+
+/* Mobil méret */
+@media (max-width: 480px) {
+  .navigationBar {
+    width: 100%;
+    height: 32px;
+    padding: 0 8px;
+    gap: 4px;
+    /*  border-radius: 16px;*/
+    border-radius: 0; /* ← JAVÍTVA: Nincs lekerekítés */
+  }
+
+  .navButton,
+  .quickActionButton {
+    width: 20px;
+    height: 20px;
+  }
+
+  .navIcon,
+  .quickActionIcon {
+    width: 12px;
+    height: 12px;
+  }
+
+  .searchContainer {
+    height: 20px;
+    border-radius: 10px;
+  }
+
+  .searchInput {
+    font-size: 12px;
+  }
+
+  .notificationBadge {
+    min-width: 12px;
+    height: 12px;
+    font-size: 8px;
+    line-height: 12px;
+  }
+}
+
+/* ===== SÖTÉT/VILÁGOS TÉMA TÁMOGATÁS ===== */
+
+/* Világos téma - JAVÍTOTT SZELEKTOROK */
+:global(.app.light) .navigationBar {
+  background-color: #ffffff;
+  color: #333333;
+  border-color: #e0e0e0;
+}
+
+:global(.app.light) .navigationBar:hover {
+  background-color: #f8f8f8;
+  border-color: #d0d0d0;
+}
+
+:global(.app.light) .separator {
+  background-color: #d0d0d0;
+}
+
+:global(.app.light) .navButton,
+:global(.app.light) .quickActionButton {
+  color: #666666;
+}
+
+:global(.app.light) .navButton:hover:not(.disabled),
+:global(.app.light) .quickActionButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #333333;
+}
+
+:global(.app.light) .searchContainer {
+  background-color: #f5f5f5;
+  border-color: #d0d0d0;
+}
+
+:global(.app.light) .searchContainer.focused {
+  border-color: #0078d4;
+  background-color: #ffffff;
+}
+
+:global(.app.light) .searchInput {
+  color: #333333;
+}
+
+:global(.app.light) .searchInput::placeholder {
+  color: #888888;
+}
+
+:global(.app.light) .suggestionsDropdown {
+  background-color: #ffffff;
+  border-color: #d0d0d0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+:global(.app.light) .suggestionItem {
+  color: #333333;
+}
+
+:global(.app.light) .suggestionItem:hover,
+:global(.app.light) .suggestionItem.selected {
+  background-color: #f0f0f0;
+}
+
+/* ===== PANEL GOMBOK (◧) ===== */
+.panelButton {
+  /* Vivaldi panel gomb stílusok */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+
+  /* Flat design - tiszta háttér */
+  background: none;
+  border: none;
+  border-radius: 6px; /* Finom lekerekítés */
+
+  /* Sötét téma alapértelmezett színek */
+  color: #b8b8b8; /* Világosszürke panel ikon */
+
+  /* Smooth transitions */
+  transition: all 0.15s ease;
+  cursor: pointer;
+
+  /* Accessibility */
+  outline: none;
+  user-select: none;
+
+  /* Pozicionálás */
+  flex-shrink: 0;
+}
+
+/* Panel gomb hover */
+.panelButton:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Finom világosítás */
+  color: #ffffff; /* Fehér ikon hover-nél */
+}
+
+/* Panel gomb aktív */
+.panelButton:active {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: scale(0.95); /* Finom "benyomás" */
+}
+
+/* Aktív panel állapot - amikor a panel nyitva van */
+.panelButton.active {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+/* Panel pozíció specifikus stílusok */
+.panelButton.left {
+  margin-right: 4px; /* Kis távolság a navigációs gombokhoz */
+}
+
+.panelButton.right {
+  margin-left: 4px; /* Kis távolság a gyors műveletektől */
+}
+
+/* Panel ikon stílusok */
+.panelIcon {
+  font-size: 16px;
+  font-weight: bold;
+  pointer-events: none;
+  transform: rotate(0deg);
+  transition: transform 0.2s ease;
+}
+
+/* Panel ikon forgatás aktív állapotban */
+.panelButton.active .panelIcon {
+  transform: rotate(45deg); /* Finom forgatás az aktív állapot jelzésére */
+}
+
+/* ===== PANEL GOMBOK VILÁGOS TÉMA TÁMOGATÁS ===== */
+
+/* Panel gombok világos témában */
+:global(.app.light) .panelButton {
+  color: #666666; /* Sötétebb szürke világos témában */
+}
+
+:global(.app.light) .panelButton:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* Fekete átlátszó háttér */
+  color: #333333; /* Sötétebb szín hover-nél */
+}
+
+:global(.app.light) .panelButton:active {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Aktív panel állapot világos témában */
+:global(.app.light) .panelButton.active {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #333333;
+}
+
+/* Navigációs vezérlők világos téma kiegészítése */
+:global(.app.light) .navButton:active:not(.disabled) {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(0.95);
+}
+
+:global(.app.light) .navButton.disabled {
+  color: #cccccc; /* Világosabb szürke a letiltott gombokhoz */
+}
+
+/* Keresőmező világos téma kiegészítések */
+:global(.app.light) .searchIcon,
+:global(.app.light) .clearButton {
+  color: #666666;
+}
+
+:global(.app.light) .searchIcon:hover,
+:global(.app.light) .clearButton:hover {
+  color: #333333;
+}
+
+:global(.app.light) .clearButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Gyors műveletek világos téma kiegészítések */
+:global(.app.light) .quickActionButton:active {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: scale(0.95);
+}
+
+/* Reszponzív kiegészítések panel gombokhoz */
+@media (max-width: 768px) {
+  .panelButton {
+    width: 24px;
+    height: 24px;
+  }
+
+  .panelIcon {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .panelButton {
+    width: 20px;
+    height: 20px;
+  }
+
+  .panelIcon {
+    font-size: 12px;
+  }
+
+  .panelButton.left {
+    margin-right: 2px;
+  }
+
+  .panelButton.right {
+    margin-left: 2px;
+  }
+}

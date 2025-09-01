@@ -1,0 +1,107 @@
+.savedNewsContainer {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.newsHeader {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  color: var(--color-text-primary, #333);
+  border-bottom: 1px solid var(--color-border, #eee);
+  padding-bottom: 0.5rem;
+}
+
+.newsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.savedCardWrapper {
+  position: relative;
+  border-radius: var(--border-radius-md, 8px);
+  overflow: hidden;
+  background-color: var(--color-surface, #fff);
+  box-shadow: var(--box-shadow, 0 2px 8px rgba(0, 0, 0, 0.1));
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.savedCardWrapper:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--hover-shadow, 0 5px 15px rgba(0, 0, 0, 0.15));
+}
+
+.savedMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary, #666);
+  background-color: var(--color-surface-secondary, #f8f8f8);
+  border-top: 1px solid var(--color-border, #eee);
+}
+
+.savedDate {
+  font-style: italic;
+}
+
+.removeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.removeButton:hover {
+  background-color: var(--color-error-light, rgba(220, 53, 69, 0.1));
+}
+
+.emptyState {
+  text-align: center;
+  padding: 3rem;
+  color: var(--color-text-secondary, #666);
+  background-color: var(--color-surface-secondary, #f9f9f9);
+  border-radius: var(--border-radius-md, 8px);
+  margin: 2rem auto;
+  max-width: 500px;
+}
+
+.emptyState p:first-child {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.loadingIndicator {
+  text-align: center;
+  padding: 2rem;
+  color: var(--color-text-secondary, #666);
+}
+
+/* Reszponzív töréspontok */
+@media (max-width: 768px) {
+  .newsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .newsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .savedNewsContainer {
+    padding: 0.5rem;
+  }
+}

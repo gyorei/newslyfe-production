@@ -1,0 +1,129 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem 0 4.5rem 0; /* növelt alsó margin: 3.5rem → 4.5rem */
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem 0 1rem 0; /* extra alsó padding */
+}
+
+.pageButton {
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0.25rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text, #333);
+  background-color: var(--color-surface, #f0f0f0);
+  border: 1px solid var(--color-border, #ddd);
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 0 0.15rem;
+}
+
+.pageButton:hover:not(:disabled) {
+  background-color: var(--color-primary-light, #e0f0ff);
+  border-color: var(--color-primary, #2c7ac9);
+}
+
+.pageButton:disabled {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.pageButton.active {
+  background-color: var(--color-primary, #2c7ac9);
+  color: white;
+  border-color: var(--color-primary, #2c7ac9);
+  font-weight: 500;
+}
+
+.navButton {
+  font-weight: bold;
+}
+
+.pageInfo {
+  margin-left: 1rem;
+  color: var(--color-text-secondary, #666);
+  font-size: 0.9rem;
+}
+
+.ellipsisText {
+  padding: 0.25rem 0.5rem; /* Igazítás a gombokhoz */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary, #666);
+  margin: 0 0.15rem; /* Igazítás a gombokhoz */
+  min-width: 2.5rem; /* Konzisztens méretezés */
+  height: 2.5rem; /* Konzisztens méretezés */
+}
+
+/* Reszponzív design */
+@media (max-width: 480px) {
+  .pagination {
+    gap: 0.25rem;
+    margin: 1rem 0 4rem 0; /* növelt alsó margin: 3rem → 4rem */
+    padding: 1rem 0 1.5rem 0; /* extra alsó padding */
+  }
+
+  .pageButton {
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0.25rem;
+    font-size: 0.9rem;
+    margin: 0 0.1rem;
+  }
+
+  .pageInfo {
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+    display: none; /* Elrejtjük mobilon */
+  }
+
+  .ellipsisText {
+    min-width: 2rem;
+    height: 2rem;
+    padding: 0.25rem;
+    margin: 0 0.1rem;
+  }
+}
+
+/* Sötét téma támogatás */
+:global(.app.dark) .pageButton {
+  background-color: var(--color-surface-dark, #2a2a2a);
+  color: var(--color-text-dark, #e0e0e0);
+  border-color: var(--color-border-dark, #444);
+}
+
+:global(.app.dark) .pageButton:hover:not(:disabled) {
+  background-color: var(--color-primary-dark, #1a5a99);
+  border-color: var(--color-primary-light, #5aa0e9);
+}
+
+:global(.app.dark) .pageButton.active {
+  background-color: var(--color-primary, #2c7ac9);
+  color: white;
+}
+
+:global(.app.dark) .pageInfo {
+  color: var(--color-text-secondary-dark, #aaa);
+}
+
+:global(.app.dark) .ellipsisText {
+  color: var(--color-text-secondary-dark, #aaa);
+}
+
+/* ✅ ÚJ: Pagination container stílus */
+.paginationContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 0 0 2.5rem 0; /* extra bottom padding for visibility */
+}

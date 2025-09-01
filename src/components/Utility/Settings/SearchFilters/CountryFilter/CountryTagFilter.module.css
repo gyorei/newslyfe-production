@@ -1,0 +1,198 @@
+.tagContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+  border-bottom: none !important;
+  border-top: none !important;
+  box-shadow: none !important;
+}
+
+.tagContainer::after,
+.tagContainer::before {
+  border: none !important;
+  border-bottom: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  height: 0 !important;
+  content: none !important;
+  display: none !important;
+}
+
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 8px 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s, opacity 0.2s;
+  opacity: 1;
+  border-bottom: none !important;
+  border-top: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.row:hover {
+  background-color: #f0f2f5;
+}
+
+.selected {
+  opacity: 0.6;
+}
+
+.selected .label {
+  /* text-decoration: line-through;  Eltávolítva, hogy ne legyen áthúzás */
+}
+
+.checkbox {
+  width: 22px;
+  height: 22px;
+  border: 2px solid #e53935; /* piros keret */
+  border-radius: 4px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: border-color 0.2s, background 0.2s;
+  margin-right: 2px;
+}
+
+.selected .checkbox {
+  border-color: #4CAF50;
+  background: #e8f5e9;
+}
+
+.checkmark {
+  color: #4CAF50;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.xmark {
+  color: #e53935;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.label {
+  color: #1a3a5d;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.tag {
+  background: none;
+  border: none;
+  color: #1a3a5d;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  cursor: pointer;
+  outline: none;
+  box-shadow: none;
+  border-radius: 0;
+  transition: color 0.15s, font-weight 0.15s;
+}
+
+.tag:hover, .selected {
+  color: #357ab8;
+  font-weight: bold;
+  text-decoration: underline;
+  background: none;
+}
+
+.count {
+  margin-left: 6px;
+  font-size: 13px;
+  color: #888;
+}
+
+.tagContainer {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+/*
+.row:last-child {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.row, .tagContainer, .row * {
+  border-bottom: none !important;
+  border-top: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.row::after, .row::before, .tagContainer::after, .tagContainer::before {
+  border: none !important;
+  border-bottom: none !important;
+  border-top: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.checkbox, .checkbox * {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background: none !important;
+}
+
+.label, .label * {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background: none !important;
+}
+
+.row, .row * {
+  border: none !important;
+  border-bottom: none !important;
+  border-top: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background: none !important;
+}
+
+.row::after, .row::before {
+  border: none !important;
+  background: none !important;
+  content: none !important;
+  display: none !important;
+  height: 0 !important;
+}
+.row,
+.row * {
+  border: none !important;
+  border-bottom: none !important;
+  border-top: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background: none !important;
+}
+
+.row::after,
+.row::before,
+.label::after,
+.label::before {
+  border: none !important;
+  border-bottom: none !important;
+  border-top: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  content: none !important;
+  display: none !important;
+  height: 0 !important;
+}
+  */

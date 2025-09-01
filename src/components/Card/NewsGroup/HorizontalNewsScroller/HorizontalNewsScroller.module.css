@@ -1,0 +1,258 @@
+.scrollerContainer {
+  width: 100%;
+  background-color: var(--color-background-secondary);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  margin: var(--space-sm) 0;
+  position: relative;
+  touch-action: pan-x; /* Csak vízszintes görgetés kezelése */
+  user-select: none; /* Szövegkijelölés megelőzése görgetés közben */
+  -webkit-user-select: none;
+  -webkit-touch-callout: none; /* iOS előugró menü megelőzése */
+  box-shadow: var(--box-shadow);
+  transition: box-shadow var(--transition-speed) var(--transition-function);
+}
+
+.scrollerContainer:hover {
+  box-shadow: var(--hover-shadow);
+}
+
+.scrollerItems {
+  display: flex;
+  overflow-x: auto;
+  padding: var(--space-sm) var(--space-xs);
+  gap: var(--space-sm);
+  scrollbar-width: none; /* Firefox */
+  -webkit-overflow-scrolling: touch; /* iOS-en simább görgetés */
+  cursor: grab;
+  scroll-snap-type: x proximity; /* Opcionális: kártyákhoz igazítás */
+  will-change: transform; /* Teljesítmény optimalizáció - szabványos forma */
+  overscroll-behavior-x: contain; /* Megelőzi a fő oldal görgetését */
+}
+
+/* Dinamikus smooth scroll JS-ből adott class alapján */
+.scrollerItems.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+.scrollerItems.grabbing {
+  cursor: grabbing;
+  scroll-behavior: auto !important; /* Felülírja a smooth-scroll class-t is */
+}
+
+.scrollerItems:active {
+  cursor: grabbing;
+}
+
+.scrollerItems::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.scrollerCard {
+  flex: 0 0 auto;
+  width: 280px; /* Optimalizált szélesség a kártyának */
+  height: 100px; /* Fix magasság a kártyának */
+  padding: var(--space-sm);
+  border: none; /* Eltávolítottuk a világos keretet */
+  border-radius: var(--border-radius-sm);
+  background-color: var(--color-surface-variant, #2c3032); /* Sötétebb háttér */
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+  transition:
+    transform var(--transition-speed) var(--transition-function),
+    box-shadow var(--transition-speed) var(--transition-function);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  scroll-snap-align: start; /* Opcionális: kártyákhoz igazítás */
+  position: relative; /* Szükséges a pozicionáláshoz */
+}
+
+.scrollerCard:hover {
+  transform: translateY(-2px) scale(1.02); /* Kis kiemelés */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Erősebb árnyék */
+  /* Háttérszín változás eltávolítva */
+}
+
+/* Grabbing állapotban kikapcsoljuk a hover effektet a jobb UX-ért */
+.grabbing .scrollerCard:hover {
+  transform: none;
+  box-shadow: var(--box-shadow);
+  background-color: var(--color-surface);
+}
+
+.scrollerCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: var(--space-xs);
+}
+
+.sourceFavicon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.source {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.title {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3; /* Szabványos tulajdonság hozzáadva */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--color-primary);
+  margin: 0;
+  margin-bottom: auto; /* Fontos: A tartalmat felülre tolja, helyet hagyva alul a metaadatoknak */
+}
+
+/* Új stílus a forrás és idő együttes megjelenítéséhez */
+.resultSource {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  position: absolute; /* Abszolút pozicionálás */
+  bottom: var(--space-sm); /* Alulra helyezés */
+  left: var(--space-sm);
+  right: var(--space-sm);
+}
+
+/* Menü gomb stílusa */
+.menuButton {
+  position: absolute;
+  bottom: var(--space-sm);
+  right: var(--space-xs);
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Görgetési indikátorok jobb és bal oldalon */
+.scrollerContainer::before,
+.scrollerContainer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0; /* Rugalmas magasság */
+  width: 30px;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.2s ease; /* Árnyék simább ki-be animáció */
+}
+
+.scrollerContainer::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-background-secondary), transparent);
+  opacity: 0.7;
+}
+
+.scrollerContainer::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-background-secondary), transparent);
+  opacity: 0.7;
+}
+
+/* Görgetőgombok */
+.scrollButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0.8;
+  transition:
+    opacity var(--transition-speed) var(--transition-function),
+    transform var(--transition-speed) var(--transition-function);
+  padding: 0; /* Gombstílusok visszaállítása */
+}
+
+.scrollButton:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.05);
+  background-color: var(--color-surface-hover);
+}
+
+.scrollButton:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.scrollButtonLeft {
+  left: 8px;
+}
+
+.scrollButtonRight {
+  right: 8px;
+}
+
+/* Badge stílus */
+.metaBadge {
+  display: inline-block;
+  padding: 0.2em 0.5em;
+  font-size: 0.8em;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: var(--border-radius-sm);
+}
+
+/* Kis képernyőre optimalizált méretezés */
+@media (max-width: 640px) {
+  .scrollerCard {
+    min-width: 160px;
+    max-width: 200px;
+    padding: calc(var(--space-xs) + 2px);
+  }
+
+  .title {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 2;
+    line-clamp: 2; /* Szabványos tulajdonság hozzáadva */
+  }
+
+  .scrollButton {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Dinamikus árnyék kezeléshez */
+.scrollerContainer.hide-left::before {
+  opacity: 0;
+}
+
+.scrollerContainer.hide-right::after {
+  opacity: 0;
+}

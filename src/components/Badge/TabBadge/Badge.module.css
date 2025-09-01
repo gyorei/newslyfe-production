@@ -1,0 +1,62 @@
+/**
+ * Badge komponens stílusok
+ * 
+ * A notification badge megjelenéséért felelős CSS
+ */
+
+/* ===== BADGE STÍLUSOK ===== */
+.notificationBadge {
+  position: absolute;
+  top: 6px;
+  right: 28px;
+  background-color: #ff4444;
+  color: white;
+  border-radius: 50%;
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 0 4px;
+  z-index: 10;
+  border: 2px solid white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+
+  /* ÚJ: Kattinthatóság jelzése */
+  cursor: pointer;
+  transition:
+    transform 0.1s ease,
+    background-color 0.1s ease;
+}
+
+/* ÚJ: Hover effekt */
+.notificationBadge:hover {
+  transform: scale(1.1);
+  background-color: #ff6666;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* ÚJ: Kattintás effekt */
+.notificationBadge:active {
+  transform: scale(0.95);
+  background-color: #dd2222;
+}
+
+.badgeAnimation {
+  animation: badgePulse 2s ease-in-out infinite;
+}
+
+/* ===== ANIMÁCIÓK ===== */
+@keyframes badgePulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}

@@ -1,0 +1,477 @@
+:root {
+  /* Alapszínek - módosítva Bootstrap színekre */
+  --color-primary: #0d6efd; /* Bootstrap primary blue */
+  --color-primary-light: #3d8bfd; /* Világosabb kék variáció */
+  --color-primary-dark: #0b5ed7; /* Bootstrap primary blue hover/active */
+
+  /* Funkcionális színek */
+  --color-success: #2ecc71;
+  --color-warning: #f39c12;
+  --color-error: #e74c3c;
+  --color-info: #3498db;
+
+  /* Világos téma alapértelmezett színei */
+  --color-background: #f5f5f5;
+  --color-surface: #ffffff;
+  --color-surface-secondary: #ecf0f1;
+  --color-text-primary: #333333;
+  --color-text-secondary: #7f8c8d;
+  --color-border: #dddddd;
+
+  /* Panel színek */
+  --color-panel-left: #ecf0f1;
+  --color-panel-right: #f8f9fa;
+  --color-panel-content: var(--color-surface);
+  /* --color-tab-active: var(--color-surface); */ /* Duplikált - kikommentezve */
+  /* --color-tab-inactive: #2c3e50; */ /* Duplikált - kikommentezve */
+  /* --color-tab-text-active: var(--color-text-primary); */ /* Duplikált - kikommentezve */
+  /* --color-tab-text-inactive: #bdc3c7; */ /* Duplikált - kikommentezve */
+  /* --color-header-bg: #2c3e50; */ /* Duplikált - kikommentezve */
+  --color-header-text: white;
+  /* --color-tabs-bar: #34495e; */ /* Duplikált - kikommentezve */
+
+  /* NavigationBar világos téma színei - ÚJ */
+  --nav-bar-bg-light: #ffffff;
+  --nav-bar-text-light: #333333;
+  --nav-bar-border-light: #e0e0e0;
+  --nav-bar-hover-light: #f8f8f8;
+  --nav-bar-button-light: #666666;
+  --nav-bar-button-hover-light: #333333;
+  --nav-bar-search-bg-light: #f5f5f5;
+  --nav-bar-search-border-light: #d0d0d0;
+  --nav-bar-search-focus-light: #0078d4;
+  --nav-bar-separator-light: #d0d0d0;
+
+  /* Keresési eredmények világos téma színei */
+  --color-search-results-bg: #f9f9f9;
+  --color-search-results-shadow: rgba(0, 0, 0, 0.1);
+  --color-search-result-item-bg: white;
+  --color-search-result-item-shadow: rgba(0, 0, 0, 0.05);
+  --color-search-result-border: #eaeaea;
+  --color-search-result-meta: #666;
+  --color-search-result-link: #1a73e8;
+  --color-search-pagination-bg: white;
+  --color-search-pagination-active: #1a73e8;
+
+  /* Átmenetek és animációk */
+  --transition-speed: 0.3s;
+  --transition-function: ease;
+  --hover-transform: translateY(-5px);
+  --hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+
+  /* Térközök */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+
+  /* Szövegméretek */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+
+  /* Egyéb UI változók */
+  --border-radius-sm: 4px;
+  --border-radius-md: 6px;
+  --border-radius-lg: 8px;
+  --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  /* Fix méretek */
+  --header-height: 40px;
+  --footer-height: 40px;
+  --tabs-height: 35px;
+
+  /* Badge színek frissítve Bootstrap árnyalatokra */
+  --color-badge-country: #0dcaf0; /* Bootstrap info */
+  --color-badge-language: #198754; /* Bootstrap success */
+  --color-badge-category: #6f42c1; /* Bootstrap purple */
+  --color-badge-source: #fd7e14; /* Bootstrap orange */
+
+  /* Header és fülek színei világos témához */
+  --color-header-bg: #ffffff; /* Fehér fejléc világos módban */
+  --color-header-text: #333333; /* Sötét szöveg a világos fejlécben */
+  --color-tabs-bar: #f1f3f5; /* Világos fülek sáv */
+  --color-tab-active: #ffffff; /* Aktív fül fehér háttérrel */
+  --color-tab-inactive: #e9ecef; /* Inaktív fül halvány szürke */
+  --color-tab-text-active: #333333; /* Aktív fül szöveg színe */
+  --color-tab-text-inactive: #6c757d; /* Inaktív fül szöveg színe */
+  --color-tab-border-active: var(--color-primary); /* Aktív fül szegély színe */
+
+  /* Görgetősáv színek */
+  --scrollbar-track: rgba(0, 0, 0, 0.05);
+  --scrollbar-thumb: rgba(0, 0, 0, 0.2);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.3);
+  --scrollbar-width: 8px;
+}
+
+/* Sötét téma -------------------------------------*/
+.app.dark {
+  /* Alapszínek - Bootstrap sötét */
+  --color-primary: #0d6efd;
+  --color-primary-light: #3d8bfd;
+  --color-primary-dark: #0b5ed7;
+
+  /* Funkcionális színek */
+  --color-success: #198754; /* Sötétebb zöld */
+  --color-warning: #ffc107;
+  --color-error: #dc3545;
+  --color-info: #0dcaf0;
+
+  /* Alap színek */
+  --color-background: #121212; /* Selyemfekete alap */
+  --color-surface: #1e1e1e; /* Panel háttér */
+  --color-surface-secondary: #2d2d2d; /* Kiemelés, hover */
+  --color-text-primary: #e4e4e4; /* Fő szöveg */
+  --color-text-secondary: #a7a7a7; /* Másodlagos szöveg */
+  --color-text-muted: #6e6e6e; /* Halványított */
+  --color-border: #2d2d2d; /* Elválasztó vonalak */
+
+  /* Panel színek */
+  --color-panel-left: #1e1e1e;
+  --color-panel-right: #1e1e1e;
+  --color-panel-content: #1e1e1e;
+  --color-panel-border: #2d2d2d;
+
+  /* NavigationBar sötét téma színei - már meglévő jó színek */
+  --nav-bar-bg-dark: #2d2d30;
+  --nav-bar-text-dark: #e8e8e8;
+  --nav-bar-border-dark: #404040;
+  --nav-bar-hover-dark: #353538;
+  --nav-bar-button-dark: #b8b8b8;
+  --nav-bar-button-hover-dark: #ffffff;
+  --nav-bar-search-bg-dark: #1e1e1e;
+  --nav-bar-search-border-dark: #404040;
+  --nav-bar-search-focus-dark: #007acc;
+  --nav-bar-separator-dark: #505050;
+
+  /* Keresőmező sötét téma színei */
+  --color-search-input-bg: #1e1e1e;
+  --color-search-input-border: #2d2d2d;
+  --color-search-button-bg: var(--color-primary);
+  --color-search-button-hover: var(--color-primary-dark);
+
+  /* Hover állapotok színei - új szekció */
+  --color-text-hover: #63a7ff; /* Világosabb kék árnyalat hover-hez */
+  --color-link-hover: #63a7ff; /* Ugyanaz a világos kék linkekhez */
+
+  /* Fülek és fejléc */
+  --color-header-bg: #1e1e1e;
+  --color-header-text: #e4e4e4;
+  --color-tabs-bar: #2d2d2d;
+  --color-tab-active: #1e1e1e;
+  --color-tab-inactive: #2d2d2d;
+  --color-tab-text-active: #e4e4e4;
+  --color-tab-text-inactive: #a7a7a7;
+  --color-tab-border-active: var(--color-primary);
+
+  /* Badge színek sötét témában */
+  --color-badge-country: #0dcaf0;
+  --color-badge-language: #198754;
+  --color-badge-category: #6f42c1;
+  --color-badge-source: #fd7e14;
+
+  /* Keresési eredmények sötét téma színei */
+  --color-search-results-bg: #1e1e1e;
+  --color-search-results-shadow: rgba(0, 0, 0, 0.4);
+  --color-search-result-item-bg: #2d2d2d;
+  --color-search-result-item-shadow: rgba(0, 0, 0, 0.2);
+  --color-search-result-border: #3d3d3d;
+  --color-search-result-meta: #a7a7a7;
+  --color-search-result-link: #63a7ff;
+  --color-search-pagination-bg: #2d2d2d;
+  --color-search-pagination-active: #63a7ff;
+
+  /* Átmenetek és animációk - ezek maradhatnak ugyanazok */
+  --transition-speed: 0.3s;
+  --transition-function: ease;
+  --hover-transform: translateY(-5px);
+  --hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); /* Sötétebb árnyék */
+
+  /* Fix méretek - ezek is maradnak ugyanazok */
+  --header-height: 40px;
+  --footer-height: 40px;
+  --tabs-height: 35px;
+
+  /* Egyéb UI változók */
+  --border-radius-sm: 4px;
+  --border-radius-md: 6px;
+  --border-radius-lg: 8px;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+
+  /* Görgetősáv */
+  --scrollbar-track: #1e1e1e;
+  --scrollbar-thumb: #2d2d2d;
+  --scrollbar-thumb-hover: #3d3d3d;
+  --scrollbar-width: 8px;
+
+  /* Térközök és betűméretek ugyanazok maradnak */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+}
+
+/* Új téma: Pro Blue — Crypto.com stílus színekkel */
+[data-theme="pro-blue"],
+.theme-pro-blue {
+  /* 🟦 Crypto.com színpaletta - Világos variáns */
+  --color-background: #0B1426;      /* Legsötétebb kék háttér */
+  --color-surface: #1E2A3B;         /* Sötétkék panel háttér */
+  --color-surface-secondary: #2A3F5B; /* Világosabb panel */
+  --color-primary: #00D4FF;         /* Fénykék (Crypto.com stílus) */
+  --color-primary-light: #33DDFF;   /* Világosabb fénykék */
+  --color-primary-dark: #00B8E6;    /* Sötétebb fénykék */
+  
+  /* 🎨 Szövegszínek */
+  --color-text-primary: #FFFFFF;    /* Fehér fő szöveg */
+  --color-text-secondary: #8A9CA9;  /* Szürke másodlagos szöveg */
+  --color-text-muted: #5A6B7A;     /* Halványított szöveg */
+  
+  /* 🔗 Linkek és hover */
+  --color-search-result-link: #00D4FF;
+  --color-link-hover: #33DDFF;
+  --color-text-hover: #33DDFF;
+  
+  /* 📱 UI elemek */
+  --color-border: #2A3F5B;          /* Panel szegélyek */
+  --color-tab-border-active: var(--color-primary);
+  --color-header-bg: #0B1426;       /* Fejléc háttér */
+  --color-header-text: #FFFFFF;     /* Fejléc szöveg */
+  --color-tabs-bar: #1E2A3B;       /* Fülek sáv */
+  --color-tab-active: #1E2A3B;     /* Aktív fül */
+  --color-tab-inactive: #0B1426;   /* Inaktív fül */
+
+  /* 🔍 NavigationBar fókusz */
+  --nav-bar-search-focus-light: #00D4FF;
+}
+
+/* Sötét variáns — Crypto.com stílus sötét módban (KIKOMMENTEZVE) */
+/*
+.app.dark[data-theme="pro-blue"],
+.app.dark.theme-pro-blue {
+  --color-background: #050B1A;
+  --color-surface: #0B1426;
+  --color-surface-secondary: #1E2A3B;
+  --color-primary: #00D4FF;
+  --color-primary-light: #33DDFF;
+  --color-primary-dark: #00B8E6;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #8A9CA9;
+  --color-text-muted: #5A6B7A;
+  --color-search-result-link: #00D4FF;
+  --color-link-hover: #33DDFF;
+  --color-text-hover: #33DDFF;
+  --color-border: #1E2A3B;
+  --color-tab-border-active: var(--color-primary);
+  --color-header-bg: #050B1A;
+  --color-header-text: #FFFFFF;
+  --color-tabs-bar: #0B1426;
+  --color-tab-active: #0B1426;
+  --color-tab-inactive: #050B1A;
+  --nav-bar-search-focus-dark: #00D4FF;
+}
+*/
+
+/* ===== 3 TÉMA RENDSZER ===== */
+
+/* 1. VILÁGOS TÉMA (alapértelmezett) */
+.app {
+  /* Alapértelmezett világos színek már definiálva vannak a :root-ban */
+}
+
+/* 2. SÖTÉT TÉMA (eredeti) */
+.app.dark {
+  /* Alapszínek - Bootstrap sötét */
+  --color-primary: #0d6efd;
+  --color-primary-light: #3d8bfd;
+  --color-primary-dark: #0b5ed7;
+
+  /* Funkcionális színek */
+  --color-success: #198754;
+  --color-warning: #ffc107;
+  --color-error: #dc3545;
+  --color-info: #0dcaf0;
+
+  /* Alap színek */
+  --color-background: #121212;
+  --color-surface: #1e1e1e;
+  --color-surface-secondary: #2d2d2d;
+  --color-text-primary: #e4e4e4;
+  --color-text-secondary: #a7a7a7;
+  --color-text-muted: #6e6e6e;
+  --color-border: #2d2d2d;
+
+  /* Panel színek */
+  --color-panel-left: #1e1e1e;
+  --color-panel-right: #1e1e1e;
+  --color-panel-content: #1e1e1e;
+  --color-panel-border: #2d2d2d;
+
+  /* NavigationBar sötét téma színei */
+  --nav-bar-bg-dark: #2d2d30;
+  --nav-bar-text-dark: #e8e8e8;
+  --nav-bar-border-dark: #404040;
+  --nav-bar-hover-dark: #353538;
+  --nav-bar-button-dark: #b8b8b8;
+  --nav-bar-button-hover-dark: #ffffff;
+  --nav-bar-search-bg-dark: #1e1e1e;
+  --nav-bar-search-border-dark: #404040;
+  --nav-bar-search-focus-dark: #007acc;
+  --nav-bar-separator-dark: #505050;
+
+  /* Keresőmező sötét téma színei */
+  --color-search-input-bg: #1e1e1e;
+  --color-search-input-border: #2d2d2d;
+  --color-search-button-bg: var(--color-primary);
+  --color-search-button-hover: var(--color-primary-dark);
+
+  /* Hover állapotok színei */
+  --color-text-hover: #63a7ff;
+  --color-link-hover: #63a7ff;
+
+  /* Fülek és fejléc */
+  --color-header-bg: #1e1e1e;
+  --color-header-text: #e4e4e4;
+  --color-tabs-bar: #2d2d2d;
+  --color-tab-active: #1e1e1e;
+  --color-tab-inactive: #2d2d2d;
+  --color-tab-text-active: #e4e4e4;
+  --color-tab-text-inactive: #a7a7a7;
+  --color-tab-border-active: var(--color-primary);
+
+  /* Badge színek sötét témában */
+  --color-badge-country: #0dcaf0;
+  --color-badge-language: #198754;
+  --color-badge-category: #6f42c1;
+  --color-badge-source: #fd7e14;
+
+  /* Keresési eredmények sötét téma színei */
+  --color-search-results-bg: #1e1e1e;
+  --color-search-results-shadow: rgba(0, 0, 0, 0.4);
+  --color-search-result-item-bg: #2d2d2d;
+  --color-search-result-item-shadow: rgba(0, 0, 0, 0.2);
+  --color-search-result-border: #3d3d3d;
+  --color-search-result-meta: #a7a7a7;
+  --color-search-result-link: #63a7ff;
+  --color-search-pagination-bg: #2d2d2d;
+  --color-search-pagination-active: #63a7ff;
+
+  /* Átmenetek és animációk */
+  --transition-speed: 0.3s;
+  --transition-function: ease;
+  --hover-transform: translateY(-5px);
+  --hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+
+  /* Fix méretek */
+  --header-height: 40px;
+  --footer-height: 40px;
+  --tabs-height: 35px;
+
+  /* Egyéb UI változók */
+  --border-radius-sm: 4px;
+  --border-radius-md: 6px;
+  --border-radius-lg: 8px;
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+
+  /* Görgetősáv */
+  --scrollbar-track: #1e1e1e;
+  --scrollbar-thumb: #2d2d2d;
+  --scrollbar-thumb-hover: #3d3d3d;
+  --scrollbar-width: 8px;
+
+  /* Térközök és betűméretek */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+}
+
+/* 3. PRO BLUE TÉMA (Crypto.com stílus) */
+.app[data-theme="pro-blue"] {
+  /* 🟦 Crypto.com színpaletta */
+  --color-background: #0B1426;
+  --color-surface: #1E2A3B;
+  --color-surface-secondary: #2A3F5B;
+  --color-primary: #00D4FF;
+  --color-primary-light: #33DDFF;
+  --color-primary-dark: #00B8E6;
+  
+  /* 🎨 Szövegszínek */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #8A9CA9;
+  --color-text-muted: #5A6B7A;
+  
+  /* 🔗 Linkek és hover */
+  --color-search-result-link: #00D4FF;
+  --color-link-hover: #33DDFF;
+  --color-text-hover: #33DDFF;
+  
+  /* 📱 UI elemek */
+  --color-border: #2A3F5B;
+  --color-tab-border-active: var(--color-primary);
+  --color-header-bg: #0B1426;
+  --color-header-text: #FFFFFF;
+  --color-tabs-bar: #1E2A3B;
+  --color-tab-active: #1E2A3B;
+  --color-tab-inactive: #0B1426;
+  
+  /* 🔍 NavigationBar fókusz */
+  --nav-bar-search-focus-light: #00D4FF;
+  --nav-bar-search-focus-dark: #00D4FF;
+  
+  /* Panel színek */
+  --color-panel-left: #1E2A3B;
+  --color-panel-right: #1E2A3B;
+  --color-panel-content: #1E2A3B;
+  --color-panel-border: #2A3F5B;
+  
+  /* NavigationBar Pro Blue színek */
+  --nav-bar-bg-dark: #1E2A3B;
+  --nav-bar-text-dark: #FFFFFF;
+  --nav-bar-border-dark: #2A3F5B;
+  --nav-bar-hover-dark: #2A3F5B;
+  --nav-bar-button-dark: #8A9CA9;
+  --nav-bar-button-hover-dark: #FFFFFF;
+  --nav-bar-search-bg-dark: #0B1426;
+  --nav-bar-search-border-dark: #2A3F5B;
+  --nav-bar-separator-dark: #2A3F5B;
+  
+  /* Keresési eredmények Pro Blue színei */
+  --color-search-results-bg: #0B1426;
+  --color-search-results-shadow: rgba(0, 0, 0, 0.4);
+  --color-search-result-item-bg: #1E2A3B;
+  --color-search-result-item-shadow: rgba(0, 0, 0, 0.2);
+  --color-search-result-border: #2A3F5B;
+  --color-search-result-meta: #8A9CA9;
+  --color-search-pagination-bg: #1E2A3B;
+  --color-search-pagination-active: #00D4FF;
+  
+  /* Görgetősáv Pro Blue */
+  --scrollbar-track: #0B1426;
+  --scrollbar-thumb: #1E2A3B;
+  --scrollbar-thumb-hover: #2A3F5B;
+  --scrollbar-width: 8px;
+  
+  /* Árnyékok Pro Blue */
+  --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --hover-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* További témák itt adhatók hozzá hasonló szerkezetben */

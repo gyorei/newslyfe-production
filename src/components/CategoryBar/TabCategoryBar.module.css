@@ -1,0 +1,220 @@
+/**
+ * TabCategoryBar stílusok
+ *
+ * A TabCategoryBar komponens stílusai - horizontálisan görgethető kategória gombsorral
+ * és az elrejtés/megjelenítés toggle gombbal
+ */
+
+.categoryBarContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition:
+    max-height 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+  overflow: hidden;
+  background-color: var(--color-surface, #fff);
+  border-bottom: 1px solid var(--color-border, #e0e0e0);
+  max-height: 50px;
+  margin-bottom: 1px;
+  padding: 0;
+}
+
+/* Elrejtett állapot */
+.categoryBarContainer.hidden {
+  max-height: 0;
+  opacity: 0;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Kategória konténer görgetéssel */
+.categoryScrollContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 8px 40px 8px 10px; /* Jobb oldalt több hely a toggle gombnak */
+  overflow: hidden;
+}
+
+/* Kategória lista */
+.categoryList {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  white-space: nowrap;
+  padding: 0 5px;
+  flex-grow: 1;
+}
+
+.categoryList::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Kategória chip dizájn */
+.categoryChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.85rem;
+  border: 1px solid var(--color-border, #e0e0e0);
+  background-color: var(--color-surface-secondary, #f8f9fa);
+  color: var(--color-text-secondary, #666);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+.categoryChip:hover {
+  background-color: rgba(var(--color-primary-rgb, 25, 118, 210), 0.1);
+  border-color: var(--color-primary, #1976d2);
+  color: var(--color-primary, #1976d2);
+}
+
+.categoryChip.active {
+  background-color: var(--color-primary, #1976d2);
+  border-color: var(--color-primary, #1976d2);
+  color: white;
+}
+
+/* Kategória találatszám jelölő */
+.categoryCount {
+  margin-left: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 1px 6px;
+  font-size: 0.75rem;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Aktív kategóriánál fehér számláló */
+.active .categoryCount {
+  background-color: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+/* Görgetőgombok */
+.scrollButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(var(--color-surface-rgb, 255, 255, 255), 0.8);
+  border: 1px solid var(--color-border, #e0e0e0);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.scrollButton:hover {
+  background-color: var(--color-surface, #fff);
+  color: var(--color-primary, #1976d2);
+}
+
+.scrollLeft {
+  left: 5px;
+}
+
+.scrollRight {
+  right: 30px; /* Helyet hagy a toggle gombnak */
+}
+
+/* Toggle gomb - Frissített láthatóbb verzió */
+.toggleButton {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  background: var(--color-surface-secondary, #f8f9fa); /* Világos háttér helyett láthatóbb háttér */
+  border: 1px solid var(--color-border, #e0e0e0); /* Keret hozzáadása */
+  border-radius: 50%; /* Kerek gomb */
+  font-size: 0.9rem;
+  color: var(--color-text-secondary, #666);
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 1; /* Teljes opacitás */
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Enyhe árnyék a kiemeléshez */
+}
+
+.toggleButton:hover {
+  background-color: var(--color-primary-light, #bbdefb);
+  color: var(--color-primary, #1976d2);
+  border-color: var(--color-primary, #1976d2);
+}
+
+/* Reszponzív beállítások */
+@media (max-width: 768px) {
+  .categoryBarContainer {
+    max-height: 45px;
+  }
+
+  .categoryChip {
+    padding: 3px 10px;
+    font-size: 0.75rem;
+  }
+
+  .scrollButton,
+  .toggleButton {
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .categoryScrollContainer {
+    padding: 6px 35px 6px 25px;
+  }
+
+  .categoryChip {
+    padding: 2px 8px;
+    font-size: 0.7rem;
+  }
+}
+
+/* Sötét mód támogatás */
+:global(.dark-theme) .categoryChip {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-text-primary-dark, #e0e0e0);
+}
+
+:global(.dark-theme) .categoryChip.active {
+  background-color: var(--color-primary, #1976d2);
+  border-color: var(--color-primary, #1976d2);
+  color: white;
+}
+
+:global(.dark-theme) .scrollButton,
+:global(.dark-theme) .toggleButton {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: var(--color-text-primary-dark, #e0e0e0);
+}
+
+:global(.dark-theme) .toggleButton:hover {
+  background-color: rgba(var(--color-primary-rgb, 25, 118, 210), 0.3);
+  color: var(--color-primary-light, #bbdefb);
+  border-color: var(--color-primary-light, #bbdefb);
+}

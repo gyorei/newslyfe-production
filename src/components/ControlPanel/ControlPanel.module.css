@@ -1,0 +1,240 @@
+.controlPanelButton {
+  height: calc(var(--header-height) - 8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: var(--border-radius-sm);
+  transition: background-color var(--transition-speed);
+  min-width: 40px;
+  flex: 0 0 auto;
+  margin-left: auto; /* MÓDOSÍTVA: auto - így a jobb sarokba kerül */
+}
+
+.line {
+  width: 16px;
+  height: 2px;
+  background-color: var(--color-tab-text-inactive);
+  border-radius: 1px;
+  transition: background-color var(--transition-speed);
+}
+
+.controlPanelButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.controlPanelButton:hover .line {
+  background-color: var(--color-primary);
+}
+
+/* Konténer a gombhoz és a legördülőhöz */
+.controlPanelContainer {
+  position: relative;
+  display: inline-block;
+  margin-left: auto; /* Jobb sarokba igazítás */
+}
+
+/* Legördülő menü konténer */
+.dropdownContainer {
+  position: absolute;
+  top: calc(var(--header-height) - 4px);
+  right: 0;
+  z-index: 1000;
+  min-width: 250px;
+  background-color: var(
+    --color-surface
+  ); /* ✅ JAVÍTVA: --color-background helyett --color-surface */
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  animation: fadeIn 0.2s ease-in-out;
+  height: auto !important;
+  max-height: none !important; /* Távolítsuk el az előző korlátozást */
+  overflow-y: visible !important; /* Engedélyezzük a teljes tartalom megjelenését */
+  overflow-x: hidden;
+}
+
+/* Legördülő menü animáció */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Legördülő menü fejléc */
+.dropdownHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px; /* ✅ CSÖKKENTVE: 12px 16px → 8px 12px */
+  border-bottom: 1px solid var(--color-border);
+}
+
+.dropdownHeader h3 {
+  margin: 0;
+  font-size: 14px; /* ✅ CSÖKKENTVE: 16px → 14px */
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-muted);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  transition: background-color var(--transition-speed);
+}
+
+.closeButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--color-text);
+}
+
+/* Legördülő menü tartalom */
+.dropdownContent {
+  padding: 8px 12px; /* ✅ CSÖKKENTVE: 12px 16px → 8px 12px */
+}
+
+/* Beállítás elem */
+.settingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0; /* ✅ CSÖKKENTVE: 10px 0 → 6px 0 */
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.settingItem:last-child {
+  border-bottom: none;
+}
+
+.settingLabel {
+  font-size: 13px; /* ✅ CSÖKKENTVE: 14px → 13px */
+  color: var(--color-text);
+}
+
+/* Toggle kapcsoló stílusok - JAVÍTOTT */
+.toggleWrapper {
+  position: relative;
+  width: 40px;
+  height: 20px;
+}
+
+.toggleCheckbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggleSlider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.toggleSliderBefore {
+  position: absolute;
+  content: '';
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.toggleCheckbox:checked + .toggleSlider {
+  background-color: var(--color-primary);
+}
+
+.toggleCheckbox:checked + .toggleSlider .toggleSliderBefore {
+  transform: translateX(20px);
+}
+
+/* Sötét téma támogatás */
+:global(.app.dark) .dropdownContainer {
+  background-color: var(--color-surface); /* Ennek kell felülírnia, de az alap is már surface */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  color: var(--color-text-primary); /* Szövegszín hozzáadása sötét témához */
+}
+
+:global(.app.dark) .dropdownHeader {
+  /* ✅ JAVÍTVA: helyes szelektor */
+  border-bottom: 1px solid var(--color-border); /* ✅ JAVÍTVA: létező változó */
+}
+
+:global(.app.dark) .settingItem {
+  /* ✅ JAVÍTVA: helyes szelektor */
+  border-bottom: 1px solid var(--color-border); /* ✅ JAVÍTVA: létező változó */
+}
+
+:global(.app.dark) .closeButton:hover {
+  /* ✅ JAVÍTVA: helyes szelektor */
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdownMenu {
+  width: 100%;
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  color: var(--color-text-primary); /* Szövegszín hozzáadása */
+}
+
+:global(.app.dark) .dropdownMenu {
+  color: var(--color-text-primary); /* Explicit szövegszín sötét témához */
+  /* A háttérszín már a .dropdownContainer-ből és a var(--color-surface)-ból jön */
+}
+
+/* Távolítsuk el a korábbi !important szabályokat innen, ha voltak */
+/* Például ezt a részt töröljük vagy kommenteljük ki, ha még létezik: */
+/* 
+:global(.app.dark) .dropdownMenu {
+  background-color: #1E1E1E !important; 
+  color: #E4E4E4 !important;
+}
+:global(.app.dark) .dropdownContainer {
+  background-color: #1E1E1E !important; 
+}
+*/
+
+/* Override for dark theme when classes are applied to the element itself */
+.dropdownContainer.dark {
+  background-color: var(--color-surface);
+}
+
+.dropdownMenu.dark {
+  background-color: var(--color-surface);
+}
+
+/* Global override a dropdown panel magasságának korlátozásához */
+:global(#control-panel-dropdown) {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}

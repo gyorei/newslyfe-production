@@ -1,0 +1,281 @@
+/* Keresési alap stílusok - átemelés a Side.module.css-ből */
+
+/* Új keresési komponensekhez tartozó stílusok */
+.searchContainer {
+  width: 100%;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.searchForm {
+  display: flex;
+  position: relative;
+  padding-top: var(--space-sm);
+  padding-right: var(--space-sm);
+  padding-bottom: 0;
+  padding-left: 0px;
+  align-items: center;
+}
+
+.searchInput {
+  flex: 1;
+  padding-top: var(--space-sm);
+  padding-bottom: var(--space-sm);
+  padding-left: var(--space-md);
+  padding-right: var(--space-sm); /* MÓDOSÍTVA: Jelentősen csökkentett padding-right */
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm) 0 0 var(--border-radius-sm);
+  font-size: var(--font-size-sm);
+  background-color: var(--color-search-input-bg);
+  border-color: var(--color-search-input-border);
+  color: var(--color-text-primary);
+  height: 32px;
+  line-height: normal;
+  transition:
+    border-color var(--transition-speed),
+    background-color var(--transition-speed),
+    box-shadow var(--transition-speed);
+  min-width: 40px; /* ÚJ: Minimális szélesség, hogy ne tűnjön el */
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(0, 87, 183, 0.2);
+}
+
+/* Keresés törlés gomb */
+.clearSearch {
+  position: absolute;
+  right: calc(28px + var(--space-xs)); /* MÓDOSÍTVA: A searchButton új 28px-es méretéhez igazítva */
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  background: none;
+  border: none;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  border-radius: 50%;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+  z-index: 1; /* Biztosítja, hogy az input felett legyen */
+}
+
+.clearSearch:hover {
+  color: var(--color-primary);
+  background-color: var(--color-surface-hover); /* ÚJ: Enyhe háttér hoverre */
+}
+
+.searchButton {
+  padding: 0; /* MÓDOSÍTVA: Nincs belső padding, az ikon középre kerül */
+  background-color: var(--color-search-button-bg);
+  color: white;
+  border: none;
+  height: 32px;
+  min-width: 28px; /* MÓDOSÍTVA: Kisebb minimális szélesség */
+  width: 28px; /* MÓDOSÍTVA: Fix szélesség */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+  font-size: 1rem; /* Az ikon méretének finomhangolása, ha szükséges */
+}
+
+.searchButton:hover {
+  background-color: var(--color-search-button-hover);
+}
+
+/* Keresési eredmények konténer - javított görgetés */
+.searchResultsContainer {
+  margin-top: 1rem;
+  /* max-height: törölve a korlátozás */
+  /* overflow-y: törölve - a Side komponens fogja kezelni a görgetést */
+  background-color: var(--color-search-results-bg, #f9f9f9);
+  border-radius: 4px;
+  box-shadow: 0 2px 5px var(--color-search-results-shadow, rgba(0, 0, 0, 0.1));
+  padding: 1rem;
+}
+
+/* Eredmény fejléc */
+.resultsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-search-result-border, #eaeaea);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.resultsHeader h3 {
+  font-size: var(--font-size-sm, 0.875rem);
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+/* Részletes nézet gomb */
+.detailedSearchButton {
+  font-size: var(--font-size-xs, 0.75rem);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm, 4px);
+  padding: 2px 8px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.detailedSearchButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: var(--color-primary);
+}
+
+/* Eredmény lista */
+.resultsList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Egyedi eredmény elem */
+.resultItem {
+  padding: 0.75rem;
+  border-radius: 4px;
+  background-color: var(--color-search-result-item-bg, white);
+  box-shadow: 0 1px 3px var(--color-search-result-item-shadow, rgba(0, 0, 0, 0.05));
+}
+
+.resultItem h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.resultItem a {
+  color: var(--color-search-result-link, #1a73e8);
+  text-decoration: none;
+}
+
+.resultItem a:hover {
+  text-decoration: underline;
+}
+
+/* Eredmény metaadatok */
+.resultMeta {
+  display: flex;
+  font-size: 0.8rem;
+  color: var(--color-search-result-meta, #666);
+  gap: 0.25rem; /* Csökkentve 1rem-ről 0.25rem-re */
+  align-items: center; /* Középre igazítás a forrás ikon és szöveg között */
+}
+
+/* Forrás ikon méretezése */
+.sourceIcon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  margin-right: 0px; /* Csökkentve 4px-ről 2px-re */
+  vertical-align: middle;
+}
+
+/* Forrás információ stílusa */
+.resultSource {
+  font-size: 0.8rem;
+  color: var(--color-search-result-meta, #666);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; /* Hosszú forrásnév esetén sortörés engedélyezése */
+}
+
+/* Lapozás */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-search-result-border, #eaeaea);
+}
+
+.pageNumbers {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.pagination button {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-search-pagination-bg, white);
+  color: var(--color-text-primary);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination button.activePage {
+  background-color: var(--color-search-pagination-active, #1a73e8);
+  color: white;
+  border-color: var(--color-search-pagination-active, #1a73e8);
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Betöltési és hibaállapotok */
+.loading,
+.error,
+.noResults {
+  padding: 1rem;
+  text-align: center;
+  color: var(--color-text-primary);
+}
+
+.error {
+  color: var(--color-error, #d32f2f);
+}
+
+/* További funkciók gomb stílusok - az egységes megjelenésért */
+.moreButtonContainer {
+  margin-left: auto; /* Jobb oldalra igazítja a gombot */
+}
+
+.moreButton {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-md);
+  padding: 0 4px;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-sm);
+  width: 20px;
+  height: 20px;
+}
+
+.moreButton:hover {
+  color: var(--color-primary);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode támogatás a további funkciók gomb számára */
+:global(.app.dark) .moreButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}

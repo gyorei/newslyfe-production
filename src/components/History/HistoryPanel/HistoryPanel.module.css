@@ -1,0 +1,98 @@
+.panel {
+  background: #18181a;
+  width: 100vw;
+  max-width: none;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: hidden;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  color: #e0e0e0;
+  padding-bottom: 16px;
+}
+
+.tableHeader {
+  display: flex;
+  align-items: center;
+  background: #23232a;
+  padding: 0 24px;
+  height: 44px;
+  font-size: 0.89em;
+  font-weight: 500;
+  color: #bdbdbd;
+  border-bottom: 1.5px solid #23232a;
+  position: relative;
+}
+.headerDivider {
+  width: 1px;
+  height: 100%;
+  background: #444;
+  margin: 0 8px;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 1px;
+}
+.colDate {
+  flex: 0.7;
+}
+.colCenter {
+  flex: 2.7;
+  font-size: 0.95em;
+  padding-left: 30px;
+}
+.colRight {
+  flex: 2.3;
+  font-size: 0.95em;
+}
+.colLeft {
+  flex: 0.7;
+  font-size: 0.95em;
+  padding-left: 12px;
+}
+.row {
+  display: flex;
+  font-size: 0.95em;
+}
+.title {
+  font-weight: 500;
+  color: #f1f1f1;
+  font-size: 0.93em;
+}
+.url {
+  font-size: 0.85em;
+  color: #4fa3ff;
+  word-break: break-all;
+  text-decoration: underline dotted;
+  margin-left: 2px;
+}
+.dayHeader {
+  background: #23232a;
+  color: #f1f1f1;
+  font-size: 0.98em;
+  font-weight: 600;
+  padding: 10px 24px 6px 24px;
+  border-bottom: 1px solid #23232a;
+  letter-spacing: 0.1px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+.dayArrow {
+  font-size: 1em;
+  margin-right: 10px;
+  user-select: none;
+}
+.sourceIcon {
+  font-size: 1em;
+  color: #bdbdbd;
+  margin-right: 6px;
+}
+.row:hover {
+  background: #202024;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.titleHeader {
+  text-align: left;
+}

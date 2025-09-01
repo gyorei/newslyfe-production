@@ -1,0 +1,18 @@
+/* CardBadge - Minimális stílusok */
+.cardBadge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #ff4444;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.cardBadge:hover {
+  background: #dd3333;
+}

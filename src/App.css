@@ -1,0 +1,160 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  transition:
+    background-color var(--transition-speed) var(--transition-function),
+    color var(--transition-speed) var(--transition-function);
+}
+
+.app.light {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.app.dark {
+  background-color: #333;
+  color: #f5f5f5;
+}
+
+.app.dark .panel {
+  background-color: #444;
+}
+
+.app.dark .tab.active {
+  background-color: #444;
+  color: #f5f5f5;
+}
+
+.app.dark .panelHeader {
+  border-bottom: 1px solid #555;
+}
+
+.app.dark .sidebar {
+  background-color: #2c3e50;
+  border-right: 1px solid #555;
+}
+
+.main-container {
+  display: flex;
+  flex: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Scroll-to-top gomb */
+.scroll-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition:
+    background-color var(--transition-speed) var(--transition-function),
+    transform var(--transition-speed) var(--transition-function);
+}
+
+.scroll-top:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-3px);
+}
+
+.scroll-top-hidden {
+  display: none;
+}
+
+/* Általános Badge stílusok */
+.badge {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  margin-right: 0.25rem;
+}
+
+.badge-country {
+  background-color: var(--color-badge-country);
+}
+
+.badge-language {
+  background-color: var(--color-badge-language);
+}
+
+.badge-category {
+  background-color: var(--color-badge-category);
+}
+
+.badge-source {
+  background-color: var(--color-badge-source);
+}
+
+/* Favicon konténer */
+.favicon-container {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-surface-secondary);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-right: 8px;
+}
+
+.favicon-container img {
+  max-width: 16px;
+  max-height: 16px;
+}
+
+/* Reszponzív viselkedés */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+}
+
+/* Görgetősáv elrejtése a teljes alkalmazásban */
+.hide-scrollbars * {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.hide-scrollbars *::-webkit-scrollbar {
+  display: none !important;
+}
+
+:root {
+  --scrollbar-bg: #f0f0f0;
+  --scrollbar-thumb: #b0b0b0;
+}
+
+.app.dark {
+  --scrollbar-bg: #23272e;
+  --scrollbar-thumb: #4a566e;
+}

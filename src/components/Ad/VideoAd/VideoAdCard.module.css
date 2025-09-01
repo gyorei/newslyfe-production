@@ -1,0 +1,121 @@
+/* ========================================
+ * 🎥 VIDEO AD CARD CSS MODULE
+ * ========================================
+ * Videó-specifikus reklám kártya stílusok
+ */
+
+.videoAdCard {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.videoAdCard:hover {
+  transform: translateY(-2px);
+}
+
+.videoAdBadge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 6px;
+  z-index: 2;
+}
+
+/* ========================================
+ * 🎥 AD SENSE UNIT CONTAINER - GOOGLE SZABÁLYOK!
+ * ======================================== */
+.videoAdSenseContainer {
+  width: 100%;
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border-radius: 8px;
+  margin: 8px;
+}
+
+/* ========================================
+ * 🎥 FALLBACK CONTENT - FEJLESZTŐI MÓD
+ * ======================================== */
+.videoAdImage {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.videoAdContent {
+  padding: 12px;
+}
+
+.videoAdTitle {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+  color: #333;
+}
+
+.videoAdDescription {
+  font-size: 12px;
+  color: #666;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.videoAdAdvertiser {
+  font-size: 11px;
+  color: #999;
+  font-style: italic;
+}
+
+/* ========================================
+ * 🎥 DEBUG STYLES - FEJLESZTŐI MÓD
+ * ======================================== */
+.videoAdDebug {
+  margin-top: 8px;
+  padding: 8px;
+  background: #f0f0f0;
+  border-radius: 4px;
+  font-size: 10px;
+  color: #666;
+}
+
+.videoAdDebug p {
+  margin: 2px 0;
+}
+
+/* Dark mode támogatás */
+:global(.app.dark) .videoAdCard {
+  background: #2a2a2a;
+}
+
+:global(.app.dark) .videoAdTitle {
+  color: #e4e4e4;
+}
+
+:global(.app.dark) .videoAdDescription {
+  color: #b0b0b0;
+}
+
+:global(.app.dark) .videoAdAdvertiser {
+  color: #888;
+}
+
+:global(.app.dark) .videoAdSenseContainer {
+  background: #3a3a3a;
+}
+
+:global(.app.dark) .videoAdDebug {
+  background: #444;
+  color: #ccc;
+}

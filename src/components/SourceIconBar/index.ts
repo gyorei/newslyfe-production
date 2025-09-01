@@ -1,0 +1,1 @@
+export { SourceIconBar } from './SourceIconBar';

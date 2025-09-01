@@ -1,0 +1,182 @@
+/* LocationSelector.css - Ország kiválasztó komponens stílusai */
+
+.location-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: var(--bg-primary, #ffffff);
+  border: 1px solid var(--border-color, #e1e5e9);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+}
+
+.selector-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.country-select {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--border-color, #d1d5db);
+  border-radius: 6px;
+  background: var(--bg-secondary, #f9fafb);
+  font-size: 14px;
+  color: var(--text-primary, #1f2937);
+  transition: border-color 0.2s ease;
+}
+
+.country-select:focus {
+  outline: none;
+  border-color: var(--accent-color, #3b82f6);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.country-select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.loading-indicator {
+  font-size: 16px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Geolokációs gomb */
+.geo-location-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--accent-color, #3b82f6);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.geo-location-button:hover {
+  background: var(--accent-hover, #2563eb);
+}
+
+.geo-location-button:active {
+  transform: translateY(1px);
+}
+
+.geo-icon {
+  font-size: 14px;
+}
+
+/* Geolokációs prompt overlay */
+.geo-prompt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Előzmények konténer */
+.history-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-color, #e5e7eb);
+}
+
+.history-container small {
+  color: var(--text-secondary, #6b7280);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.history-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.history-item {
+  padding: 4px 8px;
+  background: var(--bg-tertiary, #f3f4f6);
+  color: var(--text-secondary, #6b7280);
+  border: 1px solid var(--border-color, #d1d5db);
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.history-item:hover:not(:disabled) {
+  background: var(--bg-secondary, #e5e7eb);
+  color: var(--text-primary, #374151);
+}
+
+.history-item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: var(--accent-color, #3b82f6);
+  color: white;
+}
+
+/* Reszponzív design */
+@media (max-width: 480px) {
+  .location-selector {
+    padding: 12px;
+    max-width: 100%;
+  }
+
+  .selector-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .geo-location-button {
+    justify-content: center;
+  }
+}
+
+/* Sötét téma támogatás */
+@media (prefers-color-scheme: dark) {
+  .location-selector {
+    background: var(--bg-primary-dark, #1f2937);
+    border-color: var(--border-color-dark, #374151);
+  }
+
+  .country-select {
+    background: var(--bg-secondary-dark, #374151);
+    border-color: var(--border-color-dark, #4b5563);
+    color: var(--text-primary-dark, #f9fafb);
+  }
+
+  .history-item {
+    background: var(--bg-tertiary-dark, #374151);
+    color: var(--text-secondary-dark, #d1d5db);
+    border-color: var(--border-color-dark, #4b5563);
+  }
+
+  .history-item:hover:not(:disabled) {
+    background: var(--bg-secondary-dark, #4b5563);
+    color: var(--text-primary-dark, #f3f4f6);
+  }
+}

@@ -1,0 +1,50 @@
+.footer {
+  padding: var(--space-sm) var(--space-md);
+  text-align: center;
+  background-color: var(--color-header-bg);
+  color: var(--color-header-text);
+  font-size: var(--font-size-sm);
+  height: var(--footer-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: background-color var(--transition-speed);
+}
+
+/* ========================================
+ * 🎥 PRIVACY POLICY LINKS - GOOGLE SZABÁLYOK!
+ * ======================================== */
+.privacyLinks {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.privacyLink {
+  color: var(--color-header-text);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.privacyLink:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.separator {
+  color: var(--color-header-text);
+  opacity: 0.6;
+}
+
+/* Dark mode támogatás */
+:global(.app.dark) .privacyLink {
+  color: var(--color-header-text);
+}
+
+:global(.app.dark) .separator {
+  color: var(--color-header-text);
+}

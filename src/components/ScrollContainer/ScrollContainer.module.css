@@ -1,0 +1,53 @@
+.scrollContainer {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+  scroll-behavior: smooth;
+  height: 100%;
+  min-height: 0; /* Kritikus flex konténerekben! */
+  padding: 0rem;
+  transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.tabTransition {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Görgető sáv stílusai */
+.scrollContainer::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+
+.scrollContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb {
+ 
+  background: rgba(80, 80, 80, 0.3); /* félig átlátszó */
+  border-radius: 4px;
+  transition: background 0.2s;
+
+}
+
+
+
+
+
+.scrollContainer::-webkit-scrollbar-thumb:hover {
+  background: rgba(80, 80, 80, 0.5);
+}
+.scrollContainer::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Firefox támogatás */
+.scrollContainer {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(80,80,80,0.3) transparent;
+}

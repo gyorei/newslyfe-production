@@ -1,0 +1,113 @@
+/* UtilityHeader stílusok */
+.utilityHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-header-bg); /* Módosítva: egységes header szín */
+  height: var(--header-height);
+  min-height: var(--header-height);
+  box-sizing: border-box;
+}
+
+.utilityHeader h3 {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-header-text); /* Módosítva: egységes header szöveg szín */
+  white-space: nowrap;
+}
+
+.utilityControls {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.utilityButton {
+  background: none;
+  border: 1px solid var(--color-text-secondary);
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  padding: var(--space-xs) var(--space-xs);
+  border-radius: 4px;
+  transition: all var(--transition-speed) var(--transition-function);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  border-width: 1px;
+}
+
+.utilityButton:hover {
+  background-color: var(--color-surface-secondary);
+  color: var(--color-primary);
+}
+
+/* Sötét téma támogatás */
+:global(.app.dark) .utilityButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Utility navigáció stílusok */
+.utilityNavigation {
+  display: flex;
+  gap: var(--space-sm);
+  margin: 0 auto;
+}
+
+.utilityNavButton {
+  background: transparent;
+  border: 1px solid var(--color-text-secondary);
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  cursor: pointer;
+  padding: var(--space-xs) var(--space-xs);
+  border-radius: 4px;
+  transition: all var(--transition-speed) var(--transition-function);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+  border-width: 1px;
+}
+
+.utilityNavButton:hover {
+  background-color: var(--color-surface-secondary);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.utilityNavButton.active {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+/* Reszponzív igazítások */
+@media (max-width: 600px) {
+  .utilityNavButton,
+  .utilityButton {
+    min-width: 28px;
+    height: 28px;
+    padding: 2px;
+    font-size: 12px;
+  }
+
+  .utilityHeader h3 {
+    font-size: var(--font-size-md);
+  }
+}
+
+/* Sötét téma specifikus stílusok */
+:global(.app.dark) .utilityNavButton {
+  border-color: var(--color-text-secondary);
+}
+
+:global(.app.dark) .utilityNavButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-primary-light);
+  border-color: var(--color-primary-light);
+}

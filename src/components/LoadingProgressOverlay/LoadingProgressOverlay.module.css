@@ -1,0 +1,276 @@
+/* Alap terminál overlay stílus MVP-hez */
+/*src\components\LoadingProgressOverlay\LoadingProgressOverlay.module.css*/
+.overlay {
+  position: absolute;  /* ← Fixed helyett absolute! */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;  /* ← Alacsonyabb z-index */
+  font-family: 'Courier New', monospace;
+}
+
+.terminalBox {
+  background: #0a0a0a;
+  border: 2px solid #00ff00;
+  border-radius: 8px;
+  padding: 24px;
+  /* ✅ FIX MÉRET - nem változik a tartalomtól függően */
+  width: 600px;
+  height: 400px;
+  /* ✅ ELTÁVOLÍTVA: min-width, max-width, max-height */
+  overflow: hidden;
+  box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+  /* ✅ ÚJ: Fix layout a konzisztens megjelenésért */
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #333;
+}
+
+.country {
+  color: #00ff00;
+  font-weight: bold;
+  font-size: 1.1rem;
+  min-width: 120px;
+}
+
+.progressBar {
+  flex: 1;
+  height: 12px;
+  background: #1a1d21;
+  border: 1px solid #333;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar {
+  height: 100%;
+  background: linear-gradient(90deg, #00ff00 0%, #00cc00 100%);
+  transition: width 0.3s ease;
+  border-radius: 4px;
+}
+
+.progressText {
+  color: #a3e635;
+  font-size: 0.9rem;
+  min-width: 60px;
+  text-align: right;
+}
+
+/* ✅ ÚJ: Források progress bar stílusa */
+.sourceProgress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  color: #a3e635;
+}
+
+.sourceProgress .progressBar {
+  height: 8px;
+  background: #1a1d21;
+  border: 1px solid #444;
+}
+
+.sourceProgress .bar {
+  background: linear-gradient(90deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+.logArea {
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 12px;
+  /* ✅ FIX MAGASSÁG - kitölti a maradék helyet */
+  flex: 1;
+  /* ✅ AUTO-SCROLL: Manuális scroll letiltása */
+  overflow: hidden; /* ← CSAK EZ VÁLTOZIK */
+  /* overflow-y: auto; ← KIKOMMENTÁLVA */
+  font-size: 0.85rem;
+  line-height: 1.4;
+  /* ✅ ÚJ: Scroll styling a terminál hangulathoz */
+  scrollbar-width: thin;
+  scrollbar-color: #00ff00 #111;
+}
+
+/* ✅ ÚJ: Webkit scroll styling */
+.logArea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.logArea::-webkit-scrollbar-track {
+  background: #111;
+}
+
+.logArea::-webkit-scrollbar-thumb {
+  background: #00ff00;
+  border-radius: 4px;
+}
+
+.logArea::-webkit-scrollbar-thumb:hover {
+  background: #00cc00;
+}
+
+.logLine {
+  color: #00ff88; /* alapértelmezett zöld */
+  margin-bottom: 2px;
+  white-space: pre-wrap;
+}
+
+.logLine:last-child {
+  margin-bottom: 0;
+}
+
+/* ✅ ÚJ: Animáció stílusok */
+.cursor {
+  color: #00ff88;
+  font-weight: bold;
+  /* Nincs animation itt - a BlinkingCursor kezeli JS-ben */
+}
+
+.typingCursor {
+  color: #00ff88;
+  font-weight: bold;
+}
+
+.bootSequence {
+  padding: 20px;
+  font-family: 'Courier New', monospace;
+}
+
+
+.terminalContent {
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  font-family: 'Courier New', monospace;
+  color: #00ff88; /* <<< EZ KELL! */
+}
+
+.phaseContainer {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* ✅ ÚJ: Színkódolás a terminál üzenetekhez */
+.systemMessage {
+  color: #00ff88; /* világos zöld - rendszerüzenetek */
+}
+
+.sourceMessage {
+  color: #00ff88; /* ugyanaz a zöld - források */
+}
+
+.successMessage {
+  color: #00ff88; /* ugyanaz a zöld - sikeres műveletek */
+}
+
+.newsTitle {
+  color: #88ff88; /* enyhén világosabb zöld - hírcímek */
+  margin-left: 20px;
+  font-style: italic;
+}
+
+/* ✅ ÚJ: Hibakezelés stílusok */
+.errorBox {
+  border-color: #ff0000;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.3);
+}
+
+.errorHeader {
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ff0000;
+}
+
+.errorCountry {
+  color: #ff0000;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.errorMessage {
+  color: #ff6b6b;
+  text-align: center;
+  padding: 20px;
+  font-size: 1rem;
+}
+
+/* ✅ ÚJ: Responsivitás javítása */
+@media (max-width: 768px) {
+  .terminalBox {
+    min-width: 300px;
+    max-width: 90vw;
+    padding: 20px;
+  }
+  
+  .header {
+    font-size: 1rem;
+    gap: 8px;
+  }
+  
+  .country {
+    font-size: 1rem;
+    min-width: 100px;
+  }
+  
+  .logArea {
+    height: 150px;
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .terminalBox {
+    min-width: 280px;
+    padding: 16px;
+  }
+  
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  .progressText {
+    text-align: center;
+  }
+  
+  .sourceProgress {
+    font-size: 0.8rem;
+  }
+}
+
+/* ✅ ÚJ: Folyamatos stream stílusok */
+.terminalStream {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.streamContent {
+  font-family: 'Courier New', monospace;
+  color: #00ff88;
+  margin: 0;
+  padding: 0;
+  white-space: pre-wrap; /* ✅ Megtartja a \n-öket és töréseket */
+  word-wrap: break-word;
+  line-height: 1.4;
+}

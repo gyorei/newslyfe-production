@@ -1,0 +1,509 @@
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--box-shadow);
+  /* overflow: hidden; - eltávolítva, hogy a menü látszódjon */
+  margin-bottom: var(--space-md);
+  border: none; /* Nincs keret - tisztább kinézet */
+  transition: transform var(--transition-speed) var(--transition-function);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+  height: 100%; /* Egységes magasság */
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: var(--hover-shadow);
+  opacity: 0;
+  border-radius: var(--border-radius-md);
+  transition: opacity var(--transition-speed) var(--transition-function);
+  z-index: -1;
+}
+
+.card:hover {
+  transform: var(--hover-transform);
+  /* box-shadow törölve! */
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+.cardMedia {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-speed) var(--transition-function);
+  will-change: transform;
+}
+
+.card:hover .cardImage {
+  transform: scale(1.05);
+}
+
+.cardContent {
+  padding: var(--space-md);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* Ez a kritikus hiányzó elem! */
+}
+
+.cardTitle {
+  margin-top: 0;
+  margin-bottom: var(--space-sm);
+  font-size: calc(var(--font-size-md) * 1.1); /* Egységesített méret */
+  font-weight: 600;
+  color: var(--color-primary);
+  line-height: 1.3;
+
+  /* Tördelés beállítása - egyszer és világosan */
+  white-space: normal; /* Többsoros megjelenítés */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; /* Maximum 2 sor */
+  line-clamp: 2; /* Standard tulajdonság hozzáadva */
+  overflow: hidden;
+
+  /* A text-overflow: ellipsis törlendő! */
+  max-width: 100%;
+  max-height: calc(1.3em * 2); /* Pontosan 2 sor magas */
+}
+
+.cardExcerpt {
+  margin-bottom: var(--space-sm);
+  color: var(--color-text-secondary);
+  font-size: 0.9em; /* Csak egy betűméret-definíció */
+  line-height: 1.6; /* Kicsit nagyobb a lenyúló betűknek */
+
+  /* Tördelés beállítása - egyszer és világosan */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* 3 soros megjelenítés */
+  line-clamp: 3; /* Standard tulajdonság hozzáadva */
+  overflow: hidden;
+
+  /* A text-overflow: ellipsis törlendő! */
+  flex-grow: 1;
+  max-height: calc(1.6em * 3); /* Pontosan 3 sor */
+  padding-bottom: 3px; /* A lenyúló betűknek */
+}
+
+.cardMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  margin-top: auto;
+  line-height: 1.4;
+  position: relative; /* Szükséges a további funkciók gomb pozicionálásához */
+}
+
+/* Forrás információ stílusa - új */
+.resultSource {
+  font-size: 0.9em;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; /* Hosszú forrásnév esetén sortörés engedélyezése */
+  flex: 1; /* Kitölti a rendelkezésre álló helyet */
+}
+
+/* Forrás ikon stílusa - új */
+.sourceFavicon {
+  width: 16px;
+  height: 16px;
+  margin-right: 3px; /* Csökkentve 8px-ről 3px-re */
+  object-fit: contain;
+  vertical-align: middle;
+}
+/*
+.metaItem {
+  padding: 2px 0;
+}
+
+.metaSeparator {
+  color: var(--color-text-secondary);
+  margin: 0 var(--space-xs);
+  user-select: none;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+.metaIcon {
+  font-size: var(--font-size-sm);
+  margin-right: var(--space-xs);
+}
+*/
+.cardSource,
+.cardDate,
+.cardCategory,
+.cardRegion {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Forrás ikon és forrás megjelenítés */
+.sourceWithIcon {
+  display: flex;
+  align-items: center;
+}
+
+.sourceFavicon {
+  width: 16px;
+  height: 16px;
+  margin-right: 3px; /* Csökkentve 8px-ről 3px-re */
+  object-fit: contain;
+}
+
+/* További funkciók gomb stílusok */
+.moreButtonContainer {
+  margin-left: auto; /* Jobb oldalra igazítja a gombot */
+}
+
+.moreButton {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-md);
+  padding: 0 4px;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-sm);
+  width: 20px;
+  height: 20px;
+}
+
+.moreButton:hover {
+  color: var(--color-primary);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode támogatás a további funkciók gomb számára */
+:global(.app.dark) .moreButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.cardActions {
+  padding: var(--space-sm) var(--space-md);
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid var(--color-border);
+  background-color: var(--color-surface-secondary);
+}
+
+/* CardLarge specifikus stílusok */ /*
+.cardLargeWrapper {
+  margin-bottom: var(--space-lg);
+  width: 48%; 
+  display: inline-block;
+  vertical-align: top;
+}
+*/
+/* Ha kettő egymás mellett van, akkor a bal oldalit jobbra kell igazítani */
+.cardLargeWrapper:nth-child(odd) {
+  margin-right: 4%;
+}
+/*
+.cardLarge .cardMedia {
+  height: 200px; 
+}
+*/
+/*
+.cardLarge .cardTitle {
+  font-size: var(--font-size-xl);
+}
+*/
+.cardFullContent {
+  padding: var(--space-md);
+  background-color: var(--color-surface);
+  border-radius: 0 0 var(--border-radius-md) var(--border-radius-md);
+  margin-top: -5px;
+  box-shadow: var(--box-shadow);
+  line-height: 1.6;
+  font-size: var(--font-size-md);
+}
+/*
+.cardLargeActions {
+  display: flex;
+  gap: var(--space-sm);
+}
+  */
+/*
+.actionButton {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-xs);
+  border-radius: var(--border-radius-sm);
+  transition: background-color var(--transition-speed) var(--transition-function);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.actionButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+*/
+.buttonIcon {
+  font-size: var(--font-size-md);
+}
+
+.cardTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  font-size: 0.75em;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  margin-right: 0.25rem;
+  background-color: var(--color-primary-light);
+}
+
+.read {
+  opacity: 0.75;
+}
+
+/* Kép nélküli kártya specifikus stílusok */
+.noImageCard {
+  max-height: 120px; /* Jelentősen kisebb magasság */
+  height: auto;
+}
+
+.noImageCard .cardContent {
+  padding: var(--space-sm) var(--space-md); /* Kisebb belső térköz */
+}
+
+.noImageCard .cardTitle {
+  font-size: 0.95em; /* Kisebb betűméret */
+  margin-bottom: var(--space-xs);
+}
+
+.noImageCard .cardExcerpt {
+  -webkit-line-clamp: 2; /* Kevesebb szövegsor */
+  line-clamp: 2; /* Standard tulajdonság hozzáadva */
+  margin-bottom: var(--space-xs);
+  font-size: 0.9em;
+}
+
+.noImageCard .cardMeta {
+  font-size: 0.85em; /* Kisebb meta információk */
+}
+
+.extendedExcerpt {
+  flex-grow: 1;
+  margin-bottom: var(--space-sm); /* Kisebb térköz */
+}
+
+.noImageCard .cardMeta {
+  margin-top: auto; /* A metaadatok a kártya aljára kerülnek */
+}
+
+/* Reszponzív viselkedés a kiemelt hírekhez */
+@media (max-width: 992px) {
+  .cardLargeWrapper {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+/* Dark mode support */
+:global(.app.dark) .card {
+  background-color: var(--color-surface);
+}
+
+:global(.app.dark) .actionButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Forrás ikon és favicon megjelenítés */
+.cardSource {
+  display: flex;
+  align-items: center;
+}
+
+.faviconContainer {
+  width: 16px;
+  height: 16px;
+  margin-right: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Különböző kártyaméretek és elrendezések implementálása */
+.cardLarge {
+  grid-column: span 2;
+}
+
+.cardFeatured {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.cardFeatured .cardImage {
+  height: 250px;
+}
+
+/* Minimális videó stílusok */
+.videoCard {
+  border-left: 3px solid #dc3545;
+}
+
+.videoContainer {
+  position: relative;
+}
+
+.videoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.videoContainer:hover .videoOverlay {
+  opacity: 1;
+}
+
+.playButton {
+  font-size: 48px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.videoIcon {
+  font-size: 14px;
+}
+
+/* ✅ ÚJ: Keresési eredmény stílusok */
+.searchResult {
+  border: 2px solid var(--accent-color, #007bff);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+  position: relative;
+}
+
+.searchResult:hover {
+  box-shadow: 0 6px 16px rgba(0, 123, 255, 0.25);
+}
+
+/* Keresési eredmény badge */
+.searchResultBadge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  background: var(--accent-color, #007bff);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 0 0 0 8px;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Sötét téma támogatás a keresési eredményekhez */
+@media (prefers-color-scheme: dark) {
+  .searchResult {
+    border-color: var(--accent-color-dark, #4299e1);
+    box-shadow: 0 4px 12px rgba(66, 153, 225, 0.15);
+  }
+
+  .searchResult:hover {
+    box-shadow: 0 6px 16px rgba(66, 153, 225, 0.25);
+  }
+
+  .searchResultBadge {
+    background: var(--accent-color-dark, #4299e1);
+  }
+
+  @media (max-width: 768px) {
+    .cardContent {
+      padding: var(--space-xs) var(--space-sm); /* Vékonyabb padding mobilon */
+    }
+  }
+}
+
+/* ✅ ÚJ: Kattintható terület - kép és szöveg */
+.clickableArea {
+  cursor: pointer;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ✅ ÚJ: Nem kattintható meta információk terület */
+.metaArea {
+  cursor: default;
+  padding: 0 var(--space-md) var(--space-md);
+}
+
+.sourceIconButton {
+  background: transparent; /* Átlátszó háttér */
+  border: none;
+  color: var(--color-primary);
+  font-size: 15px;
+  padding: 2px 3px;
+  margin-right: 3px;
+  margin-left: 2px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+  vertical-align: middle;
+  box-shadow: none; /* Nincs keret vagy árnyék */
+}
+
+.sourceIconButton:hover,
+.sourceIconButton:focus {
+  background: rgba(0, 123, 255, 0.10); /* Világoskék hover */
+  color: var(--color-primary-dark, #0056b3);
+  outline: none;
+}
+
+:global(.app.dark) .sourceIconButton:hover,
+:global(.app.dark) .sourceIconButton:focus {
+  background: rgba(66, 153, 225, 0.18); /* Világosabb kék sötétben */
+  color: var(--color-primary-light, #90cdf4);
+}

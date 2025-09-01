@@ -1,0 +1,258 @@
+/* Új tab panel stílusok */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #1e1e1e; /* Sötétebb háttér mint NavigationBar (#2d2d30) */
+  color: #e8e8e8;
+  padding: 0;
+}
+
+/* Felső gombok sáv - NavigationBar stílusban */
+.topButtonsBar {
+  display: flex;
+  gap: 16px;
+  padding: 12px 32px; /* Csökkentett padding: 20px → 12px */
+  background-color: #1e1e1e; /* Sötétebb háttér */
+  border-bottom: 1px solid #404040;
+}
+
+.topButton {
+  background: none;
+  border: none;
+  color: #b8b8b8; /* NavigationBar szín */
+  padding: 4px 12px; /* Csökkentett padding: 8px 16px → 4px 12px */
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-bottom: 2px solid transparent; /* Aláhúzás hely */
+  font-size: 14px;
+  font-weight: 500;
+  height: 24px; /* Kisebb magasság */
+}
+
+.topButton:hover {
+  color: #ffffff; /* Fehér hover */
+}
+
+.topButton.active {
+  color: #ffffff;
+  border-bottom-color: #007acc; /* Kék aláhúzás */
+}
+
+/* Központi keresős terület */
+.centerSection {
+  flex: 1;
+  display: flex;
+  align-items: flex-start; /* Feljebb: center → flex-start */
+  justify-content: center;
+  padding: 0px 0px 20px; /* Feljebb: több felső padding */
+}
+
+.searchArea {
+  width: 100%;
+  max-width: 400px; /* Kisebb keresős */
+  text-align: center;
+}
+
+.searchContainer {
+  display: flex;
+  background-color: #2d2d30; /* Világosabb háttér mint NavigationBar keresős (#1e1e1e) */
+  border: 1px solid #404040;
+  border-radius: 24px; /* Szép lekerekítés az oldalakon: 14px → 24px */
+  padding: 6px 20px; /* Frissített padding - gomb nélkül */
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Finoman elegáns árnyék */
+}
+
+.searchContainer:focus-within {
+  border-color: #007acc;
+  background-color: #353538; /* Világosabb focus háttér */
+  box-shadow: 0 4px 12px rgba(0, 122, 204, 0.2); /* Kék glow focus-nál */
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 12px 0; /* Frissített padding - gomb nélkül */
+  font-size: 14px; /* Kisebb mint előtte */
+  color: #e8e8e8;
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: #777777;
+}
+
+/* Kártya szekció */
+.cardSection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  justify-content: center;
+}
+
+.card {
+  background-color: var(--color-card-background);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-lg);
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  cursor: pointer;
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.cardIcon {
+  font-size: 48px;
+  margin-bottom: var(--space-md);
+}
+
+.cardTitle {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-sm);
+  font-weight: 500;
+}
+
+.cardDescription {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.cardButton {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+  margin-top: auto;
+}
+
+.cardButton:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* Elválasztó */
+.divider {
+  height: 1px;
+  background-color: var(--color-border);
+  margin: var(--space-md) 0;
+  width: 100%;
+}
+
+/* Gyorshivatkozás szekció */
+.linkSection {
+  margin-top: var(--space-xl);
+}
+
+.linkSectionTitle {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-md);
+  text-align: center;
+}
+
+.linkGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  justify-content: center;
+}
+
+.linkItem {
+  background-color: var(--color-surface-secondary);
+  border-radius: var(--border-radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border: 1px solid var(--color-border);
+}
+
+.linkItem:hover {
+  background-color: var(--color-surface-tertiary);
+}
+
+/* Sötét téma támogatás */
+:global(.app.dark) .card {
+  background-color: var(--color-card-dark);
+  border-color: var(--color-border-dark);
+}
+
+:global(.app.dark) .cardButton {
+  background-color: var(--color-primary-light);
+}
+
+:global(.app.dark) .cardButton:hover {
+  background-color: var(--color-primary);
+}
+
+:global(.app.dark) .linkItem {
+  background-color: var(--color-surface-secondary-dark);
+  border-color: var(--color-border-dark);
+}
+
+:global(.app.dark) .linkItem:hover {
+  background-color: var(--color-card-dark);
+}
+
+/* Világos téma támogatás */
+:global(.app.light) .container {
+  background-color: #f0f0f0; /* Sötétebb mint NavigationBar világos (#ffffff) */
+  color: #333333;
+}
+
+:global(.app.light) .topButtonsBar {
+  background-color: #f0f0f0; /* Sötétebb háttér */
+  border-bottom-color: #d0d0d0;
+}
+
+:global(.app.light) .topButton {
+  color: #666666;
+}
+
+:global(.app.light) .topButton:hover,
+:global(.app.light) .topButton.active {
+  color: #333333;
+}
+
+:global(.app.light) .searchContainer {
+  background-color: #ffffff; /* Világosabb mint NewTabPanel háttér (#f0f0f0) */
+  border-color: #d0d0d0;
+}
+
+:global(.app.light) .searchContainer:focus-within {
+  border-color: #0078d4;
+  background-color: #ffffff; /* Marad világos */
+}
+
+:global(.app.light) .searchInput {
+  color: #333333;
+}
+
+:global(.app.light) .searchInput::placeholder {
+  color: #888888;
+}
+
+@media (max-width: 600px) {
+  .searchArea {
+    max-width: 80vw;
+    padding: 0 4px;
+    margin-top: 46px;
+  }
+  .searchContainer {
+    padding: 6px 6px;
+  }
+}

@@ -1,0 +1,36 @@
+.favoritesList {
+  padding: var(--space-md);
+}
+
+.favoritesList h2 {
+  margin-bottom: var(--space-md);
+  color: var(--color-text-primary);
+}
+
+.emptyMessage {
+  text-align: center;
+  padding: var(--space-xl);
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface-secondary);
+  border-radius: var(--border-radius-md);
+  margin: var(--space-lg) 0;
+}
+
+.favoriteItem {
+  display: flex;
+  margin-bottom: var(--space-sm);
+  padding: var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-sm);
+  transition: all var(--transition-speed) var(--transition-function);
+}
+
+.favoriteItem:hover {
+  background-color: var(--color-surface-secondary);
+}
+
+.favoriteActions {
+  display: flex;
+  gap: var(--space-sm);
+  margin-left: auto;
+}

@@ -1,0 +1,202 @@
+.settingGroup {
+  margin-bottom: 1.5rem;
+}
+
+.settingGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* Rádió gombok konténere */
+.settingGroup > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Rádió gomb címkék */
+.settingGroup div label {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.settingGroup label input[type='radio'] {
+  margin-right: 0.5rem;
+}
+
+.select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Select és option elemek sötét témában */
+:global(.app.dark) .select {
+  background-color: #1e1e1e;
+  color: #e4e4e4;
+  border-color: #2d2d2d;
+}
+
+:global(.app.dark) .select option {
+  background-color: #1e1e1e;
+  color: #e4e4e4;
+}
+
+/* Limit gombok stílusa */
+.limitButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.limitButton {
+  padding: 6px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.limitButton:hover {
+  background-color: var(--color-hover-bg);
+}
+
+.limitButton.active {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary-dark);
+}
+
+.settingHint {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+  margin-top: 0.5rem;
+}
+
+/* Egyéni hírlimit beviteli mező és gomb stílusok */
+.customLimitContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* Egyéni beállítás magyarázó szöveg */
+.customValueHint {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary, #888);
+  margin-left: 5px;
+  white-space: nowrap;
+}
+
+.customLimitInput {
+  flex: 1;
+  min-width: 80px;
+  max-width: 100px;
+  padding: 6px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Hibajelzés a beviteli mezőnél */
+.errorInput {
+  border-color: #ff4d4f !important;
+}
+
+/* Validációs hibaüzenet teljes szélességű */
+.validationError {
+  color: #ff4d4f;
+  font-size: 0.8rem;
+  margin: 4px 0;
+  width: 100%;
+}
+
+/* Letiltott gomb */
+.disabledButton {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #999 !important;
+}
+
+.applyButton {
+  padding: 6px 12px;
+  background-color: var(--color-primary, #2196f3);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.applyButton:hover {
+  background-color: var(--color-primary-dark, #1976d2);
+}
+
+/* Switch kapcsoló stílusok */
+.switchLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 24px;
+  margin-left: 10px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-border, #ccc);
+  transition: 0.4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--color-primary, #2196f3);
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+/* MEGJEGYZÉS: A cleanup és diagnostics button stílusok 
+   átkerültek a DataManagement.module.css fájlba */

@@ -1,0 +1,39 @@
+/* Panel fejléc - EGYSZERŰSÍTETT VERZIÓ */
+.panelHeader {
+  display: flex;
+  justify-content: space-between; /* Cím balra, frissítés gomb jobbra */
+  align-items: center;
+  padding: var(--space-xs) var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  height: 48px; /* Fix magasság */
+  box-sizing: border-box;
+}
+
+.panelTitle {
+  font-size: var(--font-size-md);
+  margin: 0;
+  opacity: 0.85;
+}
+
+/* Frissítés gomb */
+.refreshButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  padding: var(--space-xs);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-speed) var(--transition-function);
+}
+
+.refreshButton:hover {
+  background-color: var(--color-surface-secondary);
+  color: var(--color-primary);
+  transform: rotate(180deg);
+}

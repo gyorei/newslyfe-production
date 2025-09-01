@@ -1,0 +1,29 @@
+.localButton {
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 0; /* Szögletes gombok */
+  background-color: transparent;
+  color: var(--text-color); /* Módosítva: kék helyett alapértelmezett szövegszín */
+  border: 1px solid transparent; /* Átlátszó keret alapállapotban */
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: 28px;
+}
+
+.localButton:hover {
+  background-color: var(--color-surface-hover);
+}
+
+.localButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Sötét téma specifikus stílusok */
+:global(.app.dark) .localButton {
+  color: var(--text-color); /* Sötét témában fehér/világos szövegszín */
+}
+
+:global(.app.dark) .localButton:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Sötét háttéren világosabb hover */
+}

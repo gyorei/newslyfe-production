@@ -1,0 +1,80 @@
+.performanceWarning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  border-radius: var(--border-radius-md, 8px);
+  margin: var(--space-md, 16px) 0;
+  padding: var(--space-md, 16px);
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.warningIcon {
+  font-size: 1.5rem;
+  margin-right: var(--space-md, 16px);
+  flex-shrink: 0;
+}
+
+.warningContent {
+  flex-grow: 1;
+}
+
+.warningContent h4 {
+  margin-top: 0;
+  margin-bottom: var(--space-xs, 8px);
+  color: #856404;
+}
+
+.warningContent p {
+  margin: 0;
+  color: #856404;
+  font-size: 0.95rem;
+}
+
+.closeWarning {
+  background-color: #ffc107;
+  color: #212529;
+  border: none;
+  padding: var(--space-sm, 8px) var(--space-md, 16px);
+  border-radius: var(--border-radius-sm, 4px);
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: var(--space-md, 16px);
+  transition: background-color 0.2s;
+}
+
+.closeWarning:hover {
+  background-color: #e0a800;
+}
+
+/* Sötét témához */
+:global(.app.dark) .performanceWarning {
+  background-color: #2d3748;
+  border-color: #4a5568;
+}
+
+:global(.app.dark) .warningContent h4,
+:global(.app.dark) .warningContent p {
+  color: #ffc107;
+}
+
+:global(.app.dark) .closeWarning {
+  background-color: #4a5568;
+  color: #ffc107;
+}
+
+:global(.app.dark) .closeWarning:hover {
+  background-color: #2d3748;
+}

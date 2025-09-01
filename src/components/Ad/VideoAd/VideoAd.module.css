@@ -1,0 +1,39 @@
+/* ========================================
+ * 🎥 VIDEO AD CSS MODULE
+ * ========================================
+ * Videó-specifikus reklám stílusok
+ */
+
+.videoAdContainer {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin: 8px 0;
+  min-height: 200px;
+}
+
+.videoAdBadge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 6px;
+  z-index: 2;
+}
+
+.videoAdContent {
+  padding: 16px;
+  text-align: center;
+}
+
+/* Dark mode támogatás */
+:global(.app.dark) .videoAdContainer {
+  background: #2a2a2a;
+  color: #e4e4e4;
+}

@@ -1,0 +1,85 @@
+/* DragTab komponens specifikus stílusok */
+
+/* Javított Drag-and-drop specifikus stílusok */
+.dragging {
+  cursor: grabbing !important; /* Fontos felülbírálás */
+  background-color: var(--color-surface-secondary) !important;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15) !important;
+  border: 1px dashed var(--color-border) !important;
+  opacity: 0.9 !important; /* Átlátszóbb mintsem halvány */
+  z-index: 100 !important;
+  pointer-events: none; /* Engedi, hogy az elem alatt lévőkkel interakcióba lépjünk */
+}
+
+/* X gomb stílusának javítása */
+.closeTab {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  border-radius: 50%;
+  opacity: 0.7;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+  z-index: 10; /* Biztosítja, hogy az X gomb mindig elérhető legyen */
+}
+
+.tab:hover .closeTab {
+  opacity: 1; /* Teljes átlátszatlanság hover-nál */
+}
+
+.closeTab:hover {
+  background-color: rgba(255, 68, 68, 0.1); /* Piros háttér halvány árnyalattal */
+  color: #ff4444; /* Piros szín az X-nek */
+  transform: translateY(-50%) scale(1.15); /* Kicsit nagyobb méret (15%-kal) */
+}
+
+/* Vizuálisan rejtett elemek képernyőolvasókhoz */
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Sötét téma specifikus stílusok a DragTab komponens számára */
+:global(.app.dark) .closeTab:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+:global(.app.dark) .dragging {
+  background-color: #3a3a3a;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Mobilos görgethetőség jelzése */
+@media (max-width: 768px) {
+  /* Kompaktabb zárógomb */
+  .closeTab {
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+  }
+}
+
+/* Asztali specifikus beállítások */
+@media (min-width: 769px) {
+  /* Nagyobb bezáró gomb */
+  .closeTab {
+    width: 26px;
+    height: 26px;
+  }
+}

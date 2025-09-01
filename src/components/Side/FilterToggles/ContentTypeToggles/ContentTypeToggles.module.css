@@ -1,0 +1,20 @@
+/* Csak a nem-gombos, egyedi szabályokat hagyom meg. A gombokra vonatkozó összes szabály törölve. */
+/* src\components\Side\FilterToggles\ContentTypeToggles\ContentTypeToggles.module.css*/
+.contentTypeContainer {
+  margin: 8px 0;
+  padding: 0 12px;
+}
+
+.sectionTitle {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  margin: 0 0 6px 0 !important;
+  color: var(--color-text-primary) !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  white-space: nowrap;
+  overflow: hidden;
+  min-width: min-content;
+  text-overflow: clip;
+}

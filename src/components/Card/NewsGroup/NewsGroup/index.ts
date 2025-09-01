@@ -1,0 +1,1 @@
+// export { NewsGroup } from './NewsGroup';

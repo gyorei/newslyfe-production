@@ -1,0 +1,68 @@
+.categoryBar {
+  padding: 8px;
+  background-color: var(--panel-bg);
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.categoryTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: var(--text-primary);
+}
+
+.categoryList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.categoryItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+  color: var(--text-secondary);
+}
+
+.categoryItem:hover {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.categoryItem.active {
+  background-color: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.categoryCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--badge-bg);
+  color: var(--badge-text);
+  border-radius: 12px;
+  padding: 0 8px;
+  font-size: 12px;
+  min-width: 20px;
+  height: 20px;
+}
+
+/* A CategoryBar aktív elemének színezése témák szerint */
+:global(.light) .categoryItem.active {
+  background-color: rgba(25, 118, 210, 0.1);
+  color: rgb(25, 118, 210);
+}
+
+:global(.dark) .categoryItem.active {
+  background-color: rgba(66, 165, 245, 0.15);
+  color: rgb(66, 165, 245);
+}

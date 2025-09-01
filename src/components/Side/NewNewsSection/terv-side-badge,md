@@ -1,0 +1,51 @@
+Megértem a prioritásokat! A tervezett TabNotifications rendszer átalakítását két napon belül meg kell valósítani és hibátlanul kell működnie. Ez egy reális cél, ha jól fókuszálunk a lényegi funkcionalitásra.
+
+Stratégiailag az lenne a legjobb, ha az MVP (Minimum Viable Product) megközelítést alkalmaznánk:Értem, hogy a TabNotifications rendszert két napon belül hibátlanul működő állapotba kell hoznunk. Ilyen szoros határidő mellett célszerű MVP (Minimum Viable Product) megközelítést alkalmazni, és a legfontosabb funkcionalitásra koncentrálni.
+
+# 🚀 TabNotifications Implementációs Terv (2 nap)
+
+## 📋 1. NAP: Alap Funkcionalitás
+
+1. **Badge kattinthatóvá tétele**:
+   - TabBadge komponens továbbfejlesztése
+   - onClick eseménykezelő implementálása
+
+2. **Side Panel "Új hírek" oldal alapstruktúrája**:
+   - NewNewsPanel komponens létrehozása
+   - Side panelbe integrálás
+
+3. **Kontextuális tartalom megjelenítése**:
+   - Badge kattintásra a megfelelő hírek betöltése
+   - Context-alapú filterezés megvalósítása
+
+4. **Badge állapotkezelés**:
+   - Megtekintett hírek nyilvántartása
+   - Badge eltüntetése olvasáskor
+
+## 📋 2. NAP: Navigáció és Finomhangolás
+
+1. **SideHeader bővítése**:
+   - "Új hírek" gomb hozzáadása
+   - Aktív állapot kezelése
+
+2. **Általános nézet megvalósítása**:
+   - Összesítő lista a különböző új hírekről
+   - Kategóriánkénti csoportosítás
+
+3. **Navigációs gombok funkcionalitása**:
+   - "Mind olvasott" gomb implementálása
+   - "Vissza" és "Bezár" gombok
+   
+4. **Tesztelés és hibajavítás**:
+   - Különböző felhasználói útvonalak tesztelése
+   - Edge case-ek kezelése
+
+Ezzel a fókuszált megközelítéssel a két napos határidőn belül meg tudjuk valósítani a rendszer alapfunkcionalitását, amely kielégíti a főbb felhasználói igényeket:
+- A badge-ek klikkelhető indikátorok lesznek
+- Az új hírek megtekinthetők lesznek a side panelben
+- A badge-ek megfelelően frissülnek olvasáskor
+- Az alapvető navigáció működni fog
+
+Az olyan extra finomítások, mint animációk, persistent state kezelés vagy komplex átmenetek későbbi fejlesztési fázisban is megvalósíthatók.
+
+Kezdhetjük az implementációt a Badge komponens továbbfejlesztésével?

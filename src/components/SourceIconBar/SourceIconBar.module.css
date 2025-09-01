@@ -1,0 +1,153 @@
+/**
+ * SourceIconBar stílusok
+ *
+ * A SourceIconBar komponens stílusai - horizontálisan görgethető forrás ikonokkal
+ * és az elrejtés/megjelenítés funkcióval
+ */
+
+.sourceIconBarContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition:
+    max-height 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
+  overflow: hidden;
+  background-color: var(--color-surface, #fff);
+  border-bottom: 1px solid var(--color-border, #e0e0e0);
+  max-height: 60px;
+  margin-bottom: 1px;
+  padding: 0;
+}
+
+/* Elrejtett állapot */
+.sourceIconBarContainer.hidden {
+  max-height: 0;
+  opacity: 0;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Forrás ikonok görgetési konténere - mobilbarát görgetéssel */
+.sourceIconsScroll {
+  flex-grow: 1;
+  overflow-x: auto;
+  scrollbar-width: none; /* Görgetősáv elrejtése Firefox-ban */
+  -ms-overflow-style: none; /* Görgetősáv elrejtése IE/Edge-ben */
+  -webkit-overflow-scrolling: touch; /* Sima görgetés iOS eszközökön */
+  overscroll-behavior-x: contain; /* Megakadályozza az oldal görgetését */
+  touch-action: pan-x; /* Kifejezetten vízszintes érintéses görgetést engedélyez */
+  cursor: grab; /* Jelzi a felhasználónak, hogy az elem húzható */
+  padding: var(--space-xs) var(--space-md);
+}
+
+.sourceIconsScroll:active {
+  cursor: grabbing; /* Amikor éppen húzzuk az elemet */
+}
+
+.sourceIconsScroll::-webkit-scrollbar {
+  display: none; /* Görgetősáv elrejtése WebKit böngészőkben */
+}
+
+/* A grabbing osztály az aktív görgetéshez */
+.grabbing {
+  cursor: grabbing;
+  user-select: none;
+}
+
+/* Forrás ikonok belső konténere */
+.sourceIconsContainer {
+  display: inline-flex; /* Vízszintes elrendezés, görgetéssel */
+  gap: var(--space-md); /* Távolság az ikonok között */
+  padding: var(--space-xs) 0; /* Függőleges belső margó */
+  /* Elegendő padding a jobb oldalon, hogy a görgetés teljes legyen */
+  padding-right: calc(var(--space-md) * 2);
+}
+
+/* Forrás ikon link stílusok */
+.sourceIconLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: var(--color-surface-secondary);
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
+  overflow: hidden; /* Az icon ne lógjon ki */
+  /* Növeljük az érintési területet mobilon */
+  min-width: 40px;
+  min-height: 40px;
+  user-select: none; /* Kijelölés megakadályozása */
+  -webkit-tap-highlight-color: transparent; /* Kiküszöböli a tap highlight színt mobilon */
+}
+
+.sourceIconLink:hover {
+  transform: translateY(-2px);
+  background-color: var(--color-hover);
+}
+
+.sourceIconLink:active {
+  transform: translateY(0px);
+}
+
+/* Forrás ikon kép stílusok */
+.sourceIcon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+/* Reszponzív beállítások */
+@media (max-width: 768px) {
+  .sourceIconBarContainer {
+    max-height: 55px;
+  }
+
+  .sourceIconLink {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .sourceIcon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sourceIconsScroll {
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  .sourceIconLink {
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    min-height: 32px;
+  }
+
+  .sourceIcon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Sötét mód támogatás */
+:global(.dark-theme) .sourceIconBarContainer {
+  background-color: var(--color-surface-dark, #1e1e1e);
+  border-color: var(--color-border-dark, #333);
+}
+
+:global(.dark-theme) .sourceIconLink {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+:global(.dark-theme) .sourceIconLink:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}

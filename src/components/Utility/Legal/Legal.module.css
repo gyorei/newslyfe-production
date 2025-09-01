@@ -1,0 +1,174 @@
+/* ========================================
+ * 🎥 LEGAL CSS MODULE - GOOGLE SZABÁLYOK!
+ * ========================================
+ * Adatvédelmi tájékoztató és szolgáltatási feltételek stílusok
+ */
+
+.legalContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-panel-right);
+  color: var(--color-text);
+}
+
+/* ========================================
+ * 🎥 LEGAL TABS - NAVIGÁCIÓ
+ * ======================================== */
+.legalTabs {
+  display: flex;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-panel-right);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tab {
+  flex: 1;
+  padding: 12px 16px;
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+}
+
+.tab:hover {
+  background: var(--color-hover);
+  color: var(--color-text);
+}
+
+.tab.active {
+  border-bottom-color: var(--color-primary);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* ========================================
+ * 🎥 LEGAL CONTENT - TARTALOM
+ * ======================================== */
+.legalContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+/* ========================================
+ * 🎥 PRIVACY POLICY STYLES
+ * ======================================== */
+.privacyPolicy h2,
+.termsOfService h2 {
+  color: var(--color-primary);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 10px;
+}
+
+.privacyPolicy h3,
+.termsOfService h3 {
+  color: var(--color-text);
+  font-size: 18px;
+  font-weight: 600;
+  margin: 24px 0 12px 0;
+}
+
+.privacyPolicy p,
+.termsOfService p {
+  margin: 12px 0;
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+.privacyPolicy ul,
+.termsOfService ul {
+  margin: 12px 0;
+  padding-left: 20px;
+}
+
+.privacyPolicy li,
+.termsOfService li {
+  margin: 8px 0;
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+.privacyPolicy strong,
+.termsOfService strong {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.privacyPolicy section,
+.termsOfService section {
+  margin: 20px 0;
+  padding: 16px;
+  background: var(--color-surface);
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+}
+
+/* ========================================
+ * 🎥 RESPONSIVE DESIGN
+ * ======================================== */
+@media (max-width: 768px) {
+  .legalTabs {
+    flex-direction: column;
+  }
+  
+  .tab {
+    padding: 16px;
+    text-align: center;
+  }
+  
+  .legalContent {
+    padding: 16px;
+  }
+  
+  .privacyPolicy h2,
+  .termsOfService h2 {
+    font-size: 20px;
+  }
+  
+  .privacyPolicy h3,
+  .termsOfService h3 {
+    font-size: 16px;
+  }
+}
+
+/* ========================================
+ * 🎥 DARK MODE TÁMOGATÁS
+ * ======================================== */
+:global(.app.dark) .legalContainer {
+  background: var(--color-panel-right-dark);
+}
+
+:global(.app.dark) .legalTabs {
+  background: var(--color-panel-right-dark);
+  border-bottom-color: var(--color-border-dark);
+}
+
+:global(.app.dark) .tab {
+  color: var(--color-text-dark);
+}
+
+:global(.app.dark) .tab:hover {
+  background: var(--color-hover-dark);
+}
+
+:global(.app.dark) .tab.active {
+  color: var(--color-primary-dark);
+  border-bottom-color: var(--color-primary-dark);
+}
+
+:global(.app.dark) .privacyPolicy section,
+:global(.app.dark) .termsOfService section {
+  background: var(--color-surface-dark);
+  border-color: var(--color-border-dark);
+}

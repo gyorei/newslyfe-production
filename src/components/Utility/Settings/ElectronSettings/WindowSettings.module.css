@@ -1,0 +1,110 @@
+.container {
+    padding: 20px;
+    background: var(--color-surface);
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    
+    /* ✅ Görgetősáv elrejtése */
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+  
+  .container::-webkit-scrollbar {
+    display: none !important;
+  }
+  
+  .header {
+    margin-bottom: 24px;
+  }
+  
+  .header h3 {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+  
+  .header p {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 14px;
+  }
+  
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .option {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border: 2px solid var(--color-border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all var(--transition-speed) var(--transition-function);
+    background: var(--color-surface);
+  }
+  
+  .option:hover {
+    border-color: var(--color-primary);
+    background: var(--color-surface-secondary);
+  }
+  
+  .option.active {
+    border-color: var(--color-primary);
+    background: var(--color-surface-secondary);
+  }
+  
+  .optionIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: var(--color-surface-secondary);
+    border-radius: 8px;
+    margin-right: 16px;
+    font-size: 24px;
+  }
+  
+  .optionContent {
+    flex: 1;
+  }
+  
+  .optionContent h4 {
+    margin: 0 0 4px 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+  
+  .optionContent p {
+    margin: 0;
+    color: var(--color-text-secondary);
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .checkmark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    color: var(--color-text-secondary);
+    font-size: 14px;
+  }

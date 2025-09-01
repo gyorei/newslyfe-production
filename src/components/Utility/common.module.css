@@ -1,0 +1,71 @@
+/* Közös stílusok a Utility komponensekhez */
+
+/* Clickable elemek stílusa */
+.clickable {
+  cursor: pointer;
+  transition: all var(--transition-speed) var(--transition-function);
+}
+
+.clickable:hover {
+  color: var(--color-primary);
+  background-color: var(--color-surface-secondary);
+}
+
+/* Üres állapot stílusok */
+.placeholderContent {
+  text-align: center;
+  padding: var(--space-lg);
+}
+
+.placeholderContent h3 {
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+  font-size: var(--font-size-xl);
+  color: var(--color-text-primary);
+}
+
+.placeholderContent p {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.emptyState {
+  background-color: var(--color-surface-secondary);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.emptyState p:first-child {
+  font-weight: 500;
+  margin-bottom: var(--space-md);
+}
+
+/* Lista elemek stílusa */
+.utilityList {
+  list-style: none;
+  margin: var(--space-md) 0;
+  padding: 0;
+}
+
+.utilityList li {
+  padding: var(--space-sm) var(--space-md);
+  margin-bottom: var(--space-xs);
+  border-radius: var(--border-radius-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-speed) var(--transition-function);
+}
+
+.utilityList li:hover {
+  background-color: var(--color-surface-secondary);
+}
+
+.utilityItem {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Sötét téma támogatás */
+:global(.app.dark) .utilityList li:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
