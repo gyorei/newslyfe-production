@@ -1,0 +1,570 @@
+PS C:\news3> Test-Path C:\news3\dist\backend\server\index.js
+False
+PS C:\news3> Get-ChildItem C:\news3\dist\backend -Recurse
+
+
+    Directory: C:\news3\dist\backend
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----     2025. 09. 01.      1:38                backend
+
+
+    Directory: C:\news3\dist\backend\backend
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----     2025. 08. 31.      1:06                api
+d-----     2025. 09. 01.      1:38                auth
+d-----     2025. 09. 01.      1:38                common
+d-----     2025. 09. 01.      1:38                config
+d-----     2025. 09. 01.      1:38                license
+d-----     2025. 09. 01.      1:38                search
+d-----     2025. 09. 01.      1:38                server
+d-----     2025. 09. 01.      1:38                tests
+d-----     2025. 09. 01.      1:38                types
+
+
+    Directory: C:\news3\dist\backend\backend\api
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----     2025. 09. 01.      1:38                common
+d-----     2025. 08. 31.      1:06                config
+d-----     2025. 09. 01.      1:38                routes
+d-----     2025. 09. 01.      1:38                utils
+
+
+    Directory: C:\news3\dist\backend\backend\api\common
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----     2025. 08. 31.      1:06                ErrorHandler
+d-----     2025. 09. 01.      1:38                imageExtractor
+d-----     2025. 09. 01.      1:38                safeRssXmlParser
+-a----     2025. 07. 02.      1:31             47 index.js
+-a----     2025. 07. 02.      1:31            133 index.js.map
+-a----     2025. 09. 01.      1:38           1680 problematicSourcesFilter.js  
+-a----     2025. 09. 01.      1:38           1418 problematicSourcesFilter.js. 
+                                                  map
+
+
+    Directory: C:\news3\dist\backend\backend\api\common\ErrorHandler
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38             54 ErrorHandler.js
+-a----     2025. 09. 01.      1:38            163 ErrorHandler.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\api\common\imageExtractor
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38          28619 imageExtractor.js
+-a----     2025. 09. 01.      1:38          17062 imageExtractor.js.map        
+-a----     2025. 09. 01.      1:38          10285 imageExtractorBatch.js      
+-a----     2025. 09. 01.      1:38           8636 imageExtractorBatch.js.map   
+-a----     2025. 09. 01.      1:38           7083 imageExtractorDOM.js
+-a----     2025. 09. 01.      1:38           4232 imageExtractorDOM.js.map    
+-a----     2025. 09. 01.      1:38           7933 imageExtractorDynamicConfide 
+                                                  nce.js
+-a----     2025. 09. 01.      1:38           6016 imageExtractorDynamicConfide
+                                                  nce.js.map
+-a----     2025. 09. 01.      1:38           8178 imageExtractorQuality.js     
+-a----     2025. 09. 01.      1:38           7109 imageExtractorQuality.js.map
+-a----     2025. 09. 01.      1:38           9539 imageExtractorStrategies.js  
+-a----     2025. 09. 01.      1:38           7237 imageExtractorStrategies.js.
+                                                  map
+-a----     2025. 09. 01.      1:38          12626 imageExtractorUtils.js       
+-a----     2025. 09. 01.      1:38           9224 imageExtractorUtils.js.map  
+-a----     2025. 09. 01.      1:38           4605 imageExtractorWebScraping.js 
+-a----     2025. 09. 01.      1:38           3115 imageExtractorWebScraping.js 
+                                                  .map
+-a----     2025. 09. 01.      1:38          10307 index.js
+-a----     2025. 09. 01.      1:38           1526 index.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\api\common\safeRssXmlParser       
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           6152 régisafeRssXmlParser.js     
+-a----     2025. 09. 01.      1:38           3611 régisafeRssXmlParser.js.map  
+-a----     2025. 09. 01.      1:38           6143 safeRssXmlParser.js
+-a----     2025. 09. 01.      1:38           3601 safeRssXmlParser.js.map      
+
+
+    Directory: C:\news3\dist\backend\backend\api\config
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 07. 02.      1:31             51 rssConfig.js
+-a----     2025. 07. 02.      1:31            141 rssConfig.js.map
+-a----     2025. 09. 01.      1:38           1712 timeConfig.js
+-a----     2025. 09. 01.      1:38            902 timeConfig.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\api\routes
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----     2025. 08. 31.      1:06                Continent
+d-----     2025. 08. 31.      1:06                Country
+d-----     2025. 08. 31.      1:06                Local
+d-----     2025. 08. 31.      1:06                UniversalImage
+d-----     2025. 09. 01.      1:38                video
+d-----     2025. 09. 01.      1:38                videoData
+d-----     2025. 08. 31.      1:06                webScraper
+-a----     2025. 09. 01.      1:38           4508 index.js
+-a----     2025. 09. 01.      1:38           2601 index.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\api\routes\Continent
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38          19834 Continent.js
+-a----     2025. 09. 01.      1:38          13340 Continent.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\api\routes\Country
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38          31051 Country.js
+-a----     2025. 09. 01.      1:38          20477 Country.js.map
+-a----     2025. 06. 26.      1:03           3963 CountryService.js
+-a----     2025. 06. 16.     21:13           3267 CountryService.js.map        
+
+
+    Directory: C:\news3\dist\backend\backend\api\routes\Local
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----     2025. 08. 31.      1:06                config
+-a----     2025. 07. 02.      1:31             56 imageExtractor.js
+-a----     2025. 07. 02.      1:31            160 imageExtractor.js.map       
+-a----     2025. 09. 01.      1:38          25968 Local.js
+-a----     2025. 09. 01.      1:38          17088 Local.js.map
+-a----     2025. 09. 01.      1:38           6053 problematicSourcesFilter.js  
+-a----     2025. 09. 01.      1:38           3842 problematicSourcesFilter.js. 
+                                                  map
+-a----     2025. 06. 26.      1:03           5268 safeRssXmlParser.js
+-a----     2025. 06. 16.     21:13           3115 safeRssXmlParser.js.map      
+
+
+    Directory: C:\news3\dist\backend\backend\api\routes\Local\config
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           3587 localConfig.js
+-a----     2025. 09. 01.      1:38           1937 localConfig.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\api\routes\UniversalImage
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 06. 26.      1:03             48 index.js
+-a----     2025. 06. 16.     21:13            151 index.js.map
+-a----     2025. 06. 26.      1:03          27400 UniversalImageExtractor.js   
+-a----     2025. 06. 16.     21:13          21363 UniversalImageExtractor.js.m
+                                                  ap
+
+
+    Directory: C:\news3\dist\backend\backend\api\routes\video
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----     2025. 09. 01.      1:38                videoAggregator
+d-----     2025. 09. 01.      1:38                videoCountries
+
+
+    Directory: C:\news3\dist\backend\backend\api\routes\video\videoAggregator  
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           6804 news.js
+-a----     2025. 09. 01.      1:38           4614 news.js.map
+-a----     2025. 09. 01.      1:38           2651 test.js
+-a----     2025. 09. 01.      1:38           2368 test.js.map
+-a----     2025. 09. 01.      1:38          15659 videoAggregator.js
+-a----     2025. 09. 01.      1:38          10535 videoAggregator.js.map      
+
+
+    Directory: C:\news3\dist\backend\backend\api\routes\video\videoCountries   
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38            634 videoCountries.js
+-a----     2025. 09. 01.      1:38            459 videoCountries.js.map        
+
+
+    Directory: C:\news3\dist\backend\backend\api\routes\videoData
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           2586 videoData.js
+-a----     2025. 09. 01.      1:38           1787 videoData.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\api\routes\webScraper
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38             58 alJazeeraScraper.js
+-a----     2025. 09. 01.      1:38            169 alJazeeraScraper.js.map     
+-a----     2025. 09. 01.      1:38           7869 apNewsScraper.js
+-a----     2025. 09. 01.      1:38           3835 apNewsScraper.js.map
+-a----     2025. 09. 01.      1:38           1966 rateLimiter.js
+-a----     2025. 09. 01.      1:38           1333 rateLimiter.js.map
+-a----     2025. 09. 01.      1:38           9053 webScraper.js
+-a----     2025. 09. 01.      1:38           6562 webScraper.js.map
+-a----     2025. 09. 01.      1:38           4082 webScrapingCache.js
+-a----     2025. 09. 01.      1:38           2792 webScrapingCache.js.map      
+
+
+    Directory: C:\news3\dist\backend\backend\api\utils
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           5236 cacheUtils.js
+-a----     2025. 09. 01.      1:38           2941 cacheUtils.js.map
+-a----     2025. 09. 01.      1:38           1095 newsDeduplication.js        
+-a----     2025. 09. 01.      1:38            222 newsDeduplication.js.map     
+-a----     2025. 09. 01.      1:38           5443 timeUtils.js
+-a----     2025. 09. 01.      1:38           3104 timeUtils.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\auth
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----     2025. 09. 01.      1:38                controllers
+d-----     2025. 09. 01.      1:38                middleware
+d-----     2025. 09. 01.      1:38                models
+d-----     2025. 09. 01.      1:38                routes
+d-----     2025. 09. 01.      1:38                utils
+-a----     2025. 09. 01.      1:38            533 index.js
+-a----     2025. 09. 01.      1:38            176 index.js.map
+-a----     2025. 09. 01.      1:38           2218 passport-setup.js
+-a----     2025. 09. 01.      1:38           1476 passport-setup.js.map       
+
+
+    Directory: C:\news3\dist\backend\backend\auth\controllers
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           5589 auth.controller.js
+-a----     2025. 09. 01.      1:38           5209 auth.controller.js.map       
+
+
+    Directory: C:\news3\dist\backend\backend\auth\middleware
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38            922 auth.middleware.js
+-a----     2025. 09. 01.      1:38            813 auth.middleware.js.map      
+
+
+    Directory: C:\news3\dist\backend\backend\auth\models
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           2336 user.model.js
+-a----     2025. 09. 01.      1:38           1592 user.model.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\auth\routes
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           1916 auth.routes.js
+-a----     2025. 09. 01.      1:38           1410 auth.routes.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\auth\utils
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           3524 emailService.js
+-a----     2025. 09. 01.      1:38           2394 emailService.js.map
+-a----     2025. 09. 01.      1:38           1992 emailTemplates.js
+-a----     2025. 09. 01.      1:38            432 emailTemplates.js.map        
+-a----     2025. 09. 01.      1:38            956 hash.js
+-a----     2025. 09. 01.      1:38            450 hash.js.map
+-a----     2025. 09. 01.      1:38           2880 token.js
+-a----     2025. 09. 01.      1:38           1041 token.js.map
+-a----     2025. 09. 01.      1:38           1899 tokenService.js
+-a----     2025. 09. 01.      1:38           1050 tokenService.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\common
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----     2025. 09. 01.      1:38                db
+
+
+    Directory: C:\news3\dist\backend\backend\common\db
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           2235 newsStorage.js
+-a----     2025. 09. 01.      1:38           1567 newsStorage.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\config
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           1058 database.js
+-a----     2025. 09. 01.      1:38            960 database.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\license
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----     2025. 09. 01.      1:38                controllers
+d-----     2025. 09. 01.      1:38                middlewares
+d-----     2025. 09. 01.      1:38                models
+d-----     2025. 09. 01.      1:38                routes
+d-----     2025. 09. 01.      1:38                script
+d-----     2025. 09. 01.      1:38                services
+d-----     2025. 09. 01.      1:38                tests
+d-----     2025. 09. 01.      1:38                utils
+-a----     2025. 09. 01.      1:38           2236 index.js
+-a----     2025. 09. 01.      1:38            214 index.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\license\controllers
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38          11648 adminController.js
+-a----     2025. 09. 01.      1:38           3418 adminController.js.map       
+-a----     2025. 09. 01.      1:38           4273 recoveryController.js        
+-a----     2025. 09. 01.      1:38           1434 recoveryController.js.map   
+
+
+    Directory: C:\news3\dist\backend\backend\license\middlewares
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38            770 authMiddleware.js
+-a----     2025. 09. 01.      1:38            703 authMiddleware.js.map       
+
+
+    Directory: C:\news3\dist\backend\backend\license\models
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           2028 licenseModel.js
+-a----     2025. 09. 01.      1:38           1523 licenseModel.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\license\routes
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38            838 adminRoutes.js
+-a----     2025. 09. 01.      1:38            655 adminRoutes.js.map
+-a----     2025. 09. 01.      1:38            493 recoveryRoutes.js
+-a----     2025. 09. 01.      1:38            370 recoveryRoutes.js.map        
+
+
+    Directory: C:\news3\dist\backend\backend\license\script
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           2126 generate-keys.js
+-a----     2025. 09. 01.      1:38           1759 generate-keys.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\license\services
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           1240 cryptoService.js
+-a----     2025. 09. 01.      1:38           1042 cryptoService.js.map
+-a----     2025. 09. 01.      1:38           2727 keyService.js
+-a----     2025. 09. 01.      1:38           2129 keyService.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\license\tests
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           7921 license.integration.test.js  
+-a----     2025. 09. 01.      1:38           5671 license.integration.test.js.
+                                                  map
+-a----     2025. 09. 01.      1:38            187 licenseApi.test.js
+-a----     2025. 09. 01.      1:38            328 licenseApi.test.js.map      
+
+
+    Directory: C:\news3\dist\backend\backend\license\utils
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           1022 db.js
+-a----     2025. 09. 01.      1:38            579 db.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\search
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 07. 02.      1:31           4296 index.js
+-a----     2025. 07. 02.      1:31           2198 index.js.map
+-a----     2025. 09. 01.      1:38           6227 régiSearch.js
+-a----     2025. 09. 01.      1:38           4168 régiSearch.js.map
+-a----     2025. 09. 01.      1:38           6188 Search.js
+-a----     2025. 09. 01.      1:38           4158 Search.js.map
+-a----     2025. 09. 01.      1:38           1169 searchConfig.js
+-a----     2025. 09. 01.      1:38            567 searchConfig.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\server
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----     2025. 09. 01.      1:38                config
+d-----     2025. 09. 01.      1:38                data
+d-----     2025. 09. 01.      1:38                jobs
+d-----     2025. 08. 31.      1:06                middleware
+d-----     2025. 09. 01.      1:38                utils
+-a----     2025. 09. 01.      1:38          17452 app.js
+-a----     2025. 09. 01.      1:38           8333 app.js.map
+-a----     2025. 09. 01.      1:38           3934 index.js
+-a----     2025. 09. 01.      1:38           1104 index.js.map
+-a----     2025. 09. 01.      1:38           2916 logger.js
+-a----     2025. 09. 01.      1:38           2085 logger.js.map
+-a----     2025. 06. 26.      1:03             60 PostgreSQLcontact.js
+-a----     2025. 06. 16.     21:13            150 PostgreSQLcontact.js.map     
+-a----     2025. 09. 01.      1:38           3302 PostgreSQLManager.js
+-a----     2025. 09. 01.      1:38           2053 PostgreSQLManager.js.map    
+-a----     2025. 09. 01.      1:38           4521 server.js
+-a----     2025. 09. 01.      1:38           2498 server.js.map
+-a----     2025. 09. 01.      1:38           3469 test-app.js
+-a----     2025. 09. 01.      1:38           1987 test-app.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\server\config
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           2305 environment.js
+-a----     2025. 09. 01.      1:38           1669 environment.js.map
+-a----     2025. 09. 01.      1:38           2314 régienvironment.js
+-a----     2025. 09. 01.      1:38           1679 régienvironment.js.map      
+
+
+    Directory: C:\news3\dist\backend\backend\server\data
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38          12408 PostgreSQLDataAccess.js      
+-a----     2025. 09. 01.      1:38           5618 PostgreSQLDataAccess.js.map 
+-a----     2025. 09. 01.      1:38          12487 régiPostgreSQLDataAccess.js  
+-a----     2025. 09. 01.      1:38           5628 régiPostgreSQLDataAccess.js. 
+                                                  map
+
+
+    Directory: C:\news3\dist\backend\backend\server\jobs
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           2416 cleanupScheduler.js
+-a----     2025. 09. 01.      1:38           1164 cleanupScheduler.js.map      
+
+
+    Directory: C:\news3\dist\backend\backend\server\middleware
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           2091 error-handler.js
+-a----     2025. 09. 01.      1:38           1759 error-handler.js.map        
+
+
+    Directory: C:\news3\dist\backend\backend\server\utils
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           3635 startupProfiler.js
+-a----     2025. 09. 01.      1:38           2333 startupProfiler.js.map       
+
+
+    Directory: C:\news3\dist\backend\backend\tests
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----     2025. 09. 01.      1:38                __tests__
+
+
+    Directory: C:\news3\dist\backend\backend\tests\__tests__
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38           9633 caching.test.js
+-a----     2025. 09. 01.      1:38           8381 caching.test.js.map
+
+
+    Directory: C:\news3\dist\backend\backend\types
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----     2025. 09. 01.      1:38             52 news.types.js
+-a----     2025. 09. 01.      1:38            135 news.types.js.map
+
+
+PS C:\news3>

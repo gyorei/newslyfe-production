@@ -1,0 +1,22 @@
+# npm run lint:check
+
+
+# Komponensek, amelyeket később javítunk (vagy fejlesztési eszközök)
+src/components/Test/*
+src/components/debug/*
+# src/components/Auth/*  <- Próbáld meg kivenni
+# src/components/Card/*  <- Próbáld meg kivenni
+# src/components/Layout/* <- Próbáld meg kivenni
+# src/components/Tabs/*  <- Próbáld meg kivenni
+
+# Adatkezelés és szolgáltatások
+# src/data/**/*        <- Próbáld meg kivenni
+# src/utils/**/*       <- Próbáld meg kivenni
+
+# Konfigurációs fájlok
+# vite.config.ts       <- Próbáld meg kivenni
+
+# Egyéb kizárások (pl. build mappa, node_modules - bár ezeket az ESLint alapból is kihagyhatja)
+node_modules
+build
+dist
