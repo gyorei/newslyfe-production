@@ -9,14 +9,10 @@ analysis-results/
 # Test secrets
 
 assets/
-config/
 docs/
 /test-secrets/
 electron/
-migrations/
-models/
-nginx/
-src/
+
 build/
 dist/
 .env*
