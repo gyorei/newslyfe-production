@@ -1,0 +1,69 @@
+//  A useVideoData.ts fájlban a 67. sorban 
+// a supportedVideoCountries listában 
+// hozzá kell adni az országot pl. "United Kingdom"!
+
+{
+  "Africa": {},
+
+  "Asia": {
+    "Qatar (QA)": [
+      { "imp": 1, "country": "Qatar", "title": "Al Jazeera", "youtubeUrl": "https://www.youtube.com/@aljazeera", "channelId": "UCJ0uqCI0Vqr2Rrt1HseGirg", "language": "en", "description": "Al Jazeera - News, analysis from the Middle East & worldwide.", "category": "News", "sections": ["news", "world politics", "middle east", "international news"] },
+      { "imp": 1, "country": "Qatar", "title": "Al Jazeera Arabic", "youtubeUrl": "https://www.youtube.com/@aljazeera", "channelId": "UCfiwzLy-8yKzIbsmZTzxDgw", "language": "ar", "description": "Al Jazeera Arabic - Arabic news and analysis from the Middle East.", "category": "News", "sections": ["news", "world politics", "middle east", "arabic news"] }
+    ],
+    "India (IN)": [
+      { "imp": 1, "country": "India", "title": "Firstpost", "youtubeUrl": "https://www.youtube.com/@Firstpost", "channelId": "UCz8QaiQxApLq8sLNcszYyJw", "language": "en", "description": "Firstpost - Indian news and analysis.", "category": "News", "sections": ["news", "indian politics", "world politics"] },
+      { "imp": 1, "country": "India", "title": "WION", "youtubeUrl": "https://www.youtube.com/@WION", "channelId": "UC_gUM8rL-Lrg6O3adPW9K1g", "language": "en", "description": "WION - World is One News, Indian international news channel.", "category": "News", "sections": ["news", "world politics", "international news"] },
+      { "imp": 1, "country": "India", "title": "Mirror Now", "youtubeUrl": "https://www.youtube.com/c/mirrornow", "channelId": "UCWCEYVwSqr7Epo6sSCfUgiw", "language": "en", "description": "Mirror Now - Indian news and current affairs.", "category": "News", "sections": ["news", "indian politics", "current affairs"] }
+    ]
+  },
+  "Europe": {
+    "Germany (DE)": [
+      { "imp": 1, "country": "Germany", "title": "DW News", "youtubeUrl": "https://www.youtube.com/@dwnews", "channelId": "UCknLrEdhRCp1aegoMqRaCZg", "language": "de", "description": "DW News - German and international news.", "category": "News", "sections": ["news", "world politics", "german politics"] },
+      { "imp": 1, "country": "Germany", "title": "WDR Aktuell", "youtubeUrl": "https://www.youtube.com/@WDRaktuell", "channelId": "UCsFtUYhrGmOck_UeVPD-AJQ", "language": "de", "description": "WDR Aktuell - West German Broadcasting's news channel.", "category": "News", "sections": ["news", "german politics", "regional news", "domestic news"] },
+      { "imp": 1, "country": "Germany", "title": "DW Deutsch", "youtubeUrl": "https://www.youtube.com/@dwdeutsch", "channelId": "UCMIgOXM2JEQ2Pv2d0_PVfcg", "language": "de", "description": "DW Deutsch - Deutsche Welle's German language news channel.", "category": "News", "sections": ["news", "world politics", "german politics", "german news"] },
+      { "imp": 1, "country": "Germany", "title": "Euronews Deutsch", "youtubeUrl": "https://www.youtube.com/@euronewsde", "channelId": "UCACdxU3VrJIJc7ujxtHWs1w", "language": "de", "description": "Euronews Deutsch - European and international news from a European perspective.", "category": "News", "sections": ["news", "world politics", "european news", "international news"] },
+      { "imp": 1, "country": "Germany", "title": "WELT Video TV", "youtubeUrl": "https://www.youtube.com/WELTVideoTV", "channelId": "UCZMsvbAhhRblVGXmEXW8TSA", "language": "de", "description": "WELT Video TV - German news and current affairs.", "category": "News", "sections": ["news", "german politics", "current affairs"] },
+      { "imp": 1, "country": "Germany", "title": "ZDF Heute", "youtubeUrl": "https://www.youtube.com/@ZDFheute", "channelId": "UCeqKIgPQfNInOswGRWt48kQ", "language": "de", "description": "ZDF Heute - German public broadcaster's news channel.", "category": "News", "sections": ["news", "german politics", "public broadcasting"] },
+      { "imp": 1, "country": "Germany", "title": "Tagesschau", "youtubeUrl": "https://www.youtube.com/@tagesschau", "channelId": "UC5NOEUbkLheQcaaRldYW5GA", "language": "de", "description": "Tagesschau - Germany's most trusted news program.", "category": "News", "sections": ["news", "german politics", "trusted news"] }
+    ],
+    "Latvia (LV)": [
+      { "imp": 1, "country": "Latvia", "title": "Meduza Pro", "youtubeUrl": "https://www.youtube.com/@MeduzaPro", "channelId": "UC-30BJyAAObw1irWxu6IPkw", "language": "en", "description": "Meduza Pro - Independent Russian news and analysis.", "category": "News", "sections": ["news", "russian politics", "independent news"] }
+    ],
+    "Lithuania (LT)": [
+      { "imp": 1, "country": "Lithuania", "title": "Navalny Live Channel", "youtubeUrl": "https://www.youtube.com/@NavalnyLiveChannel", "channelId": "UCgxTPTFbIbCWfTR9I2-5SeQ", "language": "en", "description": "Navalny Live Channel - Russian opposition news and analysis.", "category": "News", "sections": ["news", "russian politics", "opposition news"] }
+    ],
+    "Hungary (HU)": [
+      { "imp": 1, "country": "Hungary", "title": "Telex", "youtubeUrl": "https://www.youtube.com/@telex", "channelId": "UCM-1sd-cXSuCsfWp8QMY_OQ", "language": "hu", "description": "Telex - Independent Hungarian news portal videos.", "category": "News", "sections": ["news", "world politics", "domestic politics"] },
+    
+      { "imp": 1, "country": "Hungary", "title": "Ultrahang", "youtubeUrl": "https://www.youtube.com/@ultrahangofficial", "channelId": "UChUByu3QDGaVD6iyt0jzngw", "language": "hu", "description": "Ultrahang - Hungarian channel focusing on foreign and security policy analysis, expert discussions, and news.", "category": "Analysis", "sections": ["foreign policy", "security policy", "analysis", "expert discussion", "news"] },
+      { "imp": 1, "country": "Hungary", "title": "Ultrahang Plusz", "youtubeUrl": "https://www.youtube.com/@ultrahangplusz", "channelId": "UC7QvA6M6Z0lK2R2Qd6p7Q7B", "language": "hu", "description": "Ultrahang Plusz - Extra channel with fresh news, summaries, and expert videos (Nógrádi György, Spöttle, Castel, etc.).", "category": "News", "sections": ["news", "summary", "expert opinion", "news mix"] },
+      { "imp": 1, "country": "Hungary", "title": "Ultrahang Hírek", "youtubeUrl": "https://www.youtube.com/@ultrahanghirek", "channelId": "UC7QvA6M6Z0lK2R2Qd6p7Q7C", "language": "hu", "description": "Ultrahang Hírek - Short news, quick summaries.", "category": "News", "sections": ["short news", "quick news"] }
+    ],
+    "Ukraine (UA)": [
+      { "imp": 1, "country": "Ukraine", "title": "TSN", "youtubeUrl": "https://www.youtube.com/@tsn", "channelId": "UCXoJ8kY9zpLBEz-8saaT3ew", "language": "uk", "description": "TSN - Ukrainian news channel.", "category": "News", "sections": ["news", "ukrainian politics", "domestic news"] },
+      { "imp": 1, "country": "Ukraine", "title": "24 Kanal", "youtubeUrl": "https://www.youtube.com/@24Kanal", "channelId": "UCEC4D0DTTJr_EEnEJz15hnQ", "language": "uk", "description": "24 Kanal - Ukrainian 24-hour news channel.", "category": "News", "sections": ["news", "ukrainian politics", "24-hour news"] },
+      { "imp": 1, "country": "Ukraine", "title": "Espreso TV", "youtubeUrl": "https://www.youtube.com/@EspresoTv", "channelId": "UCMEiyV8N2J93GdPNltPYM6w", "language": "uk", "description": "Espreso TV - Ukrainian news and analysis.", "category": "News", "sections": ["news", "ukrainian politics", "analysis"] },
+      { "imp": 1, "country": "Ukraine", "title": "Ukrinform TV", "youtubeUrl": "https://www.youtube.com/c/UkrinformTV", "channelId": "UCaDkCK6iFHPE0lmpaYL-WxQ", "language": "uk", "description": "Ukrinform TV - Ukrainian state news agency.", "category": "News", "sections": ["news", "ukrainian politics", "state news"] },
+      { "imp": 1, "country": "Ukraine", "title": "Hromadske UA", "youtubeUrl": "https://www.youtube.com/@hromadske_ua", "channelId": "UC2oGvjIJwxn1KeZR3JtE-uQ", "language": "uk", "description": "Hromadske UA - Ukrainian public broadcasting.", "category": "News", "sections": ["news", "ukrainian politics", "public broadcasting"] }
+    ],
+    "United Kingdom (GB)": [
+      { "imp": 1, "country": "United Kingdom", "title": "BBC News", "youtubeUrl": "https://www.youtube.com/@BBCNews", "channelId": "UC16niRr50-MSBwiO3YDb3RA", "language": "en", "description": "BBC News - UK and international news.", "category": "News", "sections": ["news", "world politics", "UK politics"] },
+      { "imp": 1, "country": "United Kingdom", "title": "Sky News", "youtubeUrl": "https://www.youtube.com/@SkyNews", "channelId": "UCoMdktPbSTixAyNGwb-UYkQ", "language": "en", "description": "Sky News - UK and international news, top stories.", "category": "News", "sections": ["news", "world politics", "UK politics"] }
+    ]
+  },
+  "North America": {
+    "United States (US)": [
+      { "imp": 1, "country": "United States", "title": "CNN", "youtubeUrl": "https://www.youtube.com/@CNN", "channelId": "UCupvZG-5ko_eiXAupbDfxWw", "language": "en", "description": "CNN - Breaking News, Latest News and Videos.", "category": "News", "sections": ["news", "world politics", "US politics"] },
+      { "imp": 1, "country": "United States", "title": "Fox News", "youtubeUrl": "https://www.youtube.com/@FoxNews", "channelId": "UCXIJgqnII2ZOINSWNOGFThA", "language": "en", "description": "Fox News - US and international news, top stories.", "category": "News", "sections": ["news", "world politics", "US politics"] },
+      { "imp": 1, "country": "United States", "title": "Tucker Carlson", "youtubeUrl": "https://www.youtube.com/@TuckerCarlson", "channelId": "UCGttrUON87gWfU6dMWm1fcA", "language": "en", "description": "This is the official Tucker Carlson YouTube page. Watch exclusive content on TuckerCarlson.com.", "category": "News", "sections": ["news", "US politics", "commentary", "analysis"] },
+      { "imp": 1, "country": "United States", "title": "MSNBC", "youtubeUrl": "https://www.youtube.com/@MSNBC", "channelId": "UCaXkIU1QidjPwiAYu6GcHjg", "language": "en", "description": "MSNBC - Breaking news and analysis from MSNBC.", "category": "News", "sections": ["news", "US politics", "analysis"] },
+      { "imp": 1, "country": "United States", "title": "ABC News", "youtubeUrl": "https://www.youtube.com/@ABCNews", "channelId": "UCBi2mrWuNuyYy4gbM6fU18Q", "language": "en", "description": "ABC News - Breaking news and analysis from ABC News.", "category": "News", "sections": ["news", "US politics", "analysis"] },
+      { "imp": 1, "country": "United States", "title": "CBS News", "youtubeUrl": "https://www.youtube.com/@CBSNews", "channelId": "UCJsm8bZLwK8Fq4t9PadDqAw", "language": "en", "description": "CBS News - Breaking news and analysis from CBS News.", "category": "News", "sections": ["news", "US politics", "analysis"] },
+      { "imp": 1, "country": "United States", "title": "NBC News", "youtubeUrl": "https://www.youtube.com/@NBCNews", "channelId": "UCeY0bbntWzzVIaj2z3QigXg", "language": "en", "description": "NBC News - Breaking news and analysis from NBC News.", "category": "News", "sections": ["news", "US politics", "analysis"] },
+      { "imp": 1, "country": "United States", "title": "PBS NewsHour", "youtubeUrl": "https://www.youtube.com/@PBSNewsHour", "channelId": "UC6ZQ-SuhvMNTjK4uWyp8GyQ", "language": "en", "description": "PBS NewsHour - In-depth analysis of news, politics, economics of the events changing the world.", "category": "News", "sections": ["news", "US politics", "analysis", "economics"] },
+      { "imp": 1, "country": "United States", "title": "Times Now World", "youtubeUrl": "https://www.youtube.com/@TimesNowWorld", "channelId": "UCw8Fc5R0Q5yyS3KrDCPM3xg", "language": "en", "description": "Times Now World - International news and analysis.", "category": "News", "sections": ["news", "world politics", "international news"] }
+    ]
+  },
+  "Oceania": {},
+  "South America": {}
+}
