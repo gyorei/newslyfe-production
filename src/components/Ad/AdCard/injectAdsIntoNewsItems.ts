@@ -38,7 +38,7 @@ export function injectAdsIntoNewsItems(
         title: 'Fedezd fel a világ híreit!',
         description: 'Tudd meg, mi történik most – valós időben.',
         imageUrl: '/ads/default-ad.jpg',
-        advertiser: 'NewsTide Partner',
+        advertiser: 'Newslyfe Partner',
         clickUrl: 'https://example.com/promo',
         slotId: '1234567890', // példa slotId
       });

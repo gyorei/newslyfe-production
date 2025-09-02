@@ -1,6 +1,6 @@
 {
-  "short_name": "Newstide",
-  "name": "Newstide - World News Aggregator",
+  "short_name": "Newslyfe",
+  "name": "Newslyfe - World News Aggregator",
   "description": "Personalized world news reader application.",
   "icons": [
     {
@@ -18,4 +18,4 @@
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
-} 
+}
