@@ -13,12 +13,17 @@
     "sourceMap": true,
     "declaration": false,
     "noEmit": false,
+    "allowJs": true,
     "baseUrl": ".",
     "paths": {
       "@server/*": ["src/backend/server/*"],
       "@license/*": ["src/backend/license/*"]
     }
   },
-  "include": ["src/backend/**/*"],
+  "include": [
+    "src/backend/**/*",
+    "src/backend/**/*.json",
+    "src/backend/**/*.jsonc"
+  ],
   "exclude": ["node_modules", "dist", "src/frontend/**/*"]
 }
