@@ -1,7 +1,7 @@
 {
   "name": "react-tsx-news",
   "version": "1.0.0",
-  "description": "Európai Hírgyűjtő React+TypeScript változat",
+  "description": "World News Aggregator React+TypeScript version",
   "private": true,
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
