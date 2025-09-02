@@ -1075,4 +1075,114 @@ Current password:
   Mentsd el a DNS változtatásokat Namecheap-en! Utána      
   SSH a szerverre! 🚀
   ======================
+  🎉 NGINX KONFIGURÁLT ÉS ÚJRAINDÍTVA!
+
+● ✅ Nginx teszt sikeres és újraindítva!
+
+  KÖVETKEZŐ: PM2 backend indítása      
+
+  1. Ellenőrizzük a build mappát:      
+
+  ls -la build/
+
+  2. Ellenőrizzük a dist mappát (backend):
+
+  ls -la dist/
+
+  3. PM2 indítás:
+
+  pm2 start ecosystem.config.cjs
+
+  Futtasd először:
+
+  ls -la build/
+
+  Nézzük a frontend build eredményét! 👀
+  ====================
+  ● 🔍 A fájl még nincs a várt helyen!    
+  Nézzük meg hol van:
+
+  find dist/ -name "index.js"
+
+  VAGY nézzük a teljes dist struktúrát: 
+
+  ls -la dist/
+
+  Futtasd:
+
+  find dist/ -name "index.js"
+
+  Keressük meg hol van az index.js! 👀  
+
+> [PM2] This PM2 is not UP TO DATE      
+  [PM2] Upgrade to version 6.0.10       
+  [PM2] Spawning PM2 daemon with        
+  pm2_home=/root/.pm2
+  [PM2] PM2 Successfully daemonized     
+  [PM2][WARN] Applications news-backend 
+not
+  running, starting...
+  [PM2][ERROR] Error: Script not found: 
+/var
+  /www/newslyfe/dist/backend/server/index.js
+  root@newslyfe-prod:/var/www/newslyfe# 
+find
+   dist/ -name "index.js"
+  dist/backend/backend/license/index.js 
+  dist/backend/backend/api/routes/index.js
+  dist/backend/backend/api/common/imageExtra
+  ctor/index.js
+  dist/backend/backend/server/index.js  
+  dist/backend/backend/auth/index.js    
+  root@newslyfe-prod:/var/www/newslyfe# 
+
+● 🔧 Megint dupla backend mappa! A      
+  tsconfig még mindig hibás!
+
+● A valódi útvonal:
+  dist/backend/backend/server/index.js  
+
+  Javítsuk az ecosystem.config.cjs-t:   
+
+  sed -i 's|dist/backend/server/index.js|d
+  ist/backend/backend/server/index.js|' 
+  ecosystem.config.cjs
+
+  Ellenőrizzük:
+
+  cat ecosystem.config.cjs | grep script
+  PM2 restart:
+
+  pm2 start ecosystem.config.cjs        
+
+  Futtasd:
+
+  sed -i 's|dist/backend/server/index.js|d
+  ist/backend/backend/server/index.js|' 
+  ecosystem.config.cjs
+
+  ⚡
+  ===================================
+  🎉 FANTASZTIKUS! Frontend Build Sikeres!     
+
+● ✅ Build mappa létrejött!
+  - 338.93 kB index.html ✅
+  - React vendor bundle ✅
+  - Main JS bundle ✅
+
+  Most Nginx konfiguráció:
+
+  cp nginx/nginx.conf
+  /etc/nginx/sites-available/newslyfe
+
+  ln -sf
+  /etc/nginx/sites-available/newslyfe
+  /etc/nginx/sites-enabled/
+
+  rm -f /etc/nginx/sites-enabled/default       
+
+  nginx -t
+
+  Futtasd ezeket sorban a szerveren! ⚡
+  =========================
   

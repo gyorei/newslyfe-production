@@ -31,7 +31,9 @@ export function onStateChange(callback: Subscriber): () => void {
 const PUBLIC_KEY_PEM = import.meta.env.VITE_LICENSE_PUBLIC_KEY;
 
 if (!PUBLIC_KEY_PEM) {
-  throw new Error('FATAL: VITE_LICENSE_PUBLIC_KEY is not defined in the environment variables. The application cannot validate licenses.');
+  console.warn('VITE_LICENSE_PUBLIC_KEY is not defined - Premium features disabled');
+  // Set to free mode when no license key is available
+  state = { status: "free", key: null, payload: null };
 }
 // --- KULCS BETÖLTVE ---
 

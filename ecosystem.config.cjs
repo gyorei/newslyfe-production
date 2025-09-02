@@ -1,7 +1,7 @@
 module.exports = {
     apps: [{
       name: 'news-backend',
-      script: 'dist/backend/server/index.js',
+      script: 'dist/backend/backend/server/index.js',
       interpreter: 'node',
       instances: 1,
       cwd: process.cwd(),
