@@ -856,3 +856,223 @@ Current password:
   =================
 
   
+● 🔍 GitHub-on Backend Mappa Látható, De  
+  Tartalom Hiányzik!
+
+  GitHub-on látszik: backend mappa "3     
+  hours ago"De tartalma nincs frissítve az
+   új commit-tal!
+
+  Windows PowerShell-ben (PS C:\news3>):  
+
+  Ellenőrzés:
+  cd src/backend/
+  ls | head -10
+  git status
+  cd C:\news3
+
+  Kényszerített add:
+  git rm -r --cached src/backend/
+  git add src/backend/ -f
+  git status
+  git commit -m "Re-add backend directory     
+  with all files"
+  git push
+
+  A backend mappa "cached" állapotban van!    
+
+  Futtasd Windows-on:
+  1. git rm -r --cached src/backend/
+  2. git add src/backend/ -f
+  3. git commit -m "Re-add backend 
+  directory with all files"
+  4. git push
+
+  Indítsd el! ⚡
+  ///////////////////////////////
+
+  ==================================
+  🎉 SZUPER! A backend már staging       
+  állapotban van!
+
+  Git status mutatja: 200+ backend       
+  fájl készen áll a commit-ra!
+
+  Most commitold és pushol:
+
+● Bash(git commit -m "Add complete  
+      backend codebase for NewsLyfe 
+      production deployment")       
+  ⎿ [master e38d2ff] Add complete ba
+    ckend codebase for NewsLyfe prod
+    uction deployment
+    … +1062 lines (ctrl+r to expand)
+
+
+
+
+● Bash(git push)
+  ⎿ To https://github.com/gyorei/new     
+    slyfe-production.git
+       37abd4d..e38d2ff  master -> m     
+    aster
+
+
+
+● 🎉 FANTASZTIKUS! 569 fájl, 23,758+ 
+  sor backend kód feltöltve!
+
+  Most a szerveren:
+
+  1. Git pull (letöltjük a friss     
+  backend kódot)
+  2. Build process indítása
+
+  SSH-zz vissza a szerverre és       
+  futtasd:
+
+  cd /var/www/newslyfe
+  git pull
+
+  Ez letölti a teljes backend kódot a    
+   szerverre! 🚀
+   ==============================
+    🎉 FANTASZTIKUS! BUILD SIKERES!
+
+● ✅ WASM build sikeres! Látható:
+  - licenseValidator_bg-DcpSrscq.wasm 160.83 kB ✅ 
+  - build/index.html és build/assets/ létrehozva ✅
+
+  KÖVETKEZŐ: Nginx konfiguráció
+
+  ls -la build/
+
+  Majd másoljuk a nginx konfigot:
+
+  cp nginx/nginx.conf
+  /etc/nginx/sites-available/newslyfe
+  ln -s /etc/nginx/sites-available/newslyfe
+  /etc/nginx/sites-enabled/
+
+  Ellenőrizzük a build mappát:
+
+  ls -la build/
+
+  Milyen fájlok keletkeztek? 👀
+  ===================
+   🚨 IGEN! Domain DNS beállítás KELL!
+
+● 🎯 IGEN! Namecheap DNS beállítás szükséges: 
+
+  1. Bejelentkezés Namecheap-re:
+  - https://www.namecheap.com/myaccount/login/
+
+  2. Domain Management → newslyfe.com → Manage
+
+  3. DNS beállítások:
+  Type: A Record
+  Host: @
+  Value: 91.98.134.222
+  TTL: 1800
+
+  Type: A Record
+  Host: www
+  Value: 91.98.134.222
+  TTL: 1800
+
+  4. Opcionális - API/mail:
+  Type: A Record
+  Host: api
+  Value: 91.98.134.222
+  TTL: 1800
+
+  Szerver IP: 91.98.134.222
+
+  DNS propagáció: 15-30 perc
+
+  Lépések Namecheap-en:
+  1. Login → Domain List
+  2. newslyfe.com → Manage
+  3. Advanced DNS
+  4. Add Records ↑
+
+  Beállítod most? 🌐
+  ==============
+  🎯 TÖKÉLETES! Az Advanced DNS-ben vagy!
+
+  Látom a jelenlegi beállításokat:
+  - ✅ CNAME: www → parkingpage.namecheap.com
+  - ✅ URL Redirect: @ → http://www.newslyfe.com/
+
+  MOST cseréljük ki ezeket:
+
+  1. Töröld a meglévő rekordokat:
+  - Kattints a "Remove" gombokra mindkét rekordnál:        
+    - CNAME Record (www)
+    - URL Redirect Record (@)
+
+  2. Add hozzá az új rekordokat:
+
+  Kattints "Add New Record" és add hozzá:
+
+  Type: A Record
+  Host: @
+  Value: 91.98.134.222
+  TTL: Automatic
+
+  Majd ismét "Add New Record":
+
+  Type: A Record
+  Host: www
+  Value: 91.98.134.222
+  TTL: Automatic
+
+  Kezdd a törlésekkel! Kattints az első "Remove"
+  gombra! 🗑️
+
+> így jó? 
+  Type    
+  Host
+
+  Value
+
+  TTL
+
+  A Record
+
+  91.98.134.222
+
+  Automatic
+
+  Remove
+  A Record    
+  www
+
+  91.98.134.222
+
+  Automatic    
+  @
+
+● 🎉 IGEN! TÖKÉLETES DNS beállítás!
+
+● ✅ DNS rekordok PERFEKT:
+  - @ (newslyfe.com) → 91.98.134.222
+  - www (http://www.newslyfe.com) → 91.98.134.222 
+
+  Most "Save All Changes" vagy "Save"!
+
+  DNS propagáció: 15-30 perc
+
+  Következő: Vissza a szerverre Nginx beállításra:
+
+  ssh root@91.98.134.222
+
+  Nginx konfiguráció másolása:
+
+  cp nginx/nginx.conf
+  /etc/nginx/sites-available/newslyfe
+
+  Mentsd el a DNS változtatásokat Namecheap-en! Utána      
+  SSH a szerverre! 🚀
+  ======================
+  
