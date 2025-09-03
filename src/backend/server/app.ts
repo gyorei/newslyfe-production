@@ -61,6 +61,7 @@ import fs from 'fs';
 // Swagger/OpenAPI integráció
 import swaggerUi from 'swagger-ui-express';
 import swaggerJsDoc from 'swagger-jsdoc';
+import { fileURLToPath } from 'url';
 
 // Az API útvonalak importálása
 import apiRoutes from '../api/routes';
@@ -278,6 +279,8 @@ export async function createApp(): Promise<express.Application> {
   // ==========================================
   // Statikus fájlok kiszolgálása (React build + JSON feedek)
   // ==========================================
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
   app.use(express.static(path.join(__dirname, '../../../../build')));
   app.use('/feeds', express.static(path.join(__dirname, '../../../../public/feeds')));
 

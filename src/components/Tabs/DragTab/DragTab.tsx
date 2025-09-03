@@ -1,5 +1,6 @@
 // src\components\Tabs\DragTab\DragTab.tsx
 import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import styles from '../Tabs.module.css';
@@ -31,6 +32,7 @@ export const DragTab = React.memo(
     onShowNewNews,
     ...restProps
   }: DragTabProps & React.HTMLAttributes<HTMLDivElement>) => {
+    const { t } = useTranslation();
     const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({
       id,
     });
@@ -127,7 +129,7 @@ export const DragTab = React.memo(
         title={title}
         role="tab"
         aria-selected={active}
-        aria-label={`${title} fül`}
+        aria-label={t('dragTab.tabLabel', { title })}
         tabIndex={active ? 0 : -1}
         aria-controls={`tab-panel-${id}`}
         aria-grabbed={isDragging}
@@ -144,17 +146,16 @@ export const DragTab = React.memo(
           onClick={handleCloseClick}
           onPointerDown={(e) => e.stopPropagation()}
           onMouseDown={(e) => e.stopPropagation()}
-          aria-label={`${title} fül bezárása`}
+          aria-label={t('dragTab.closeTabLabel', { title })}
           tabIndex={0}
-          title="Fül bezárása"
+          title={t('dragTab.closeTabTitle')}
         >
           ×
         </button>
 
         {/* Képernyőolvasók számára útmutatás */}
         <span id={dragInstructionsId} className={dragStyles.visuallyHidden}>
-          Húzáshoz használja a Space billentyűt, majd a nyílbillentyűket a mozgatáshoz. Befejezéshez
-          nyomja meg újra a Space billentyűt.
+          {t('dragTab.dragInstructions')}
         </span>
       </div>
     );

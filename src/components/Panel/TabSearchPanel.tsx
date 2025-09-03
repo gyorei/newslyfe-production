@@ -1,6 +1,7 @@
 // TabSearchPanel.tsx - JAVÍTOTT VERZIÓ (Fix lapozó)
 
 import React, { useMemo, useState, useEffect, useRef, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { NewsItem } from '../../types';
 import { useStorage } from '../../hooks/useStorage';
 import { Card } from '../Card/Card';
@@ -32,6 +33,7 @@ export const TabSearchPanel: React.FC<TabSearchPanelProps> = ({
   // ✅ ÚJ: Filter Settings panel megnyitásához
   openRightPanelWithMode,
 }) => {
+  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(50);
   const [maxAgeHours, setMaxAgeHours] = useState(24);
@@ -211,14 +213,14 @@ export const TabSearchPanel: React.FC<TabSearchPanelProps> = ({
                 <button 
                   className={styles.filterSettingsButton} 
                   onClick={() => openRightPanelWithMode?.('settings', 'search')}
-                  title="Filter Settings"
-                  aria-label="Open filter settings"
+                  title={t('tabSearchPanel.filterSettings')}
+                  aria-label={t('tabSearchPanel.openFilterSettings')}
                 >
-                  🔧 Filter
+                  🔧 {t('tabSearchPanel.filter')}
                 </button>
                 {/* ✅ Meglévő: Clear Search gomb */}
               {onClearSearch && (
-                <button className={styles.clearSearchButton} onClick={onClearSearch} title="Keresés törlése" aria-label="Keresés törlése">
+                <button className={styles.clearSearchButton} onClick={onClearSearch} title={t('tabSearchPanel.clearSearch')} aria-label={t('tabSearchPanel.clearSearch')}>
                   ✕
                 </button>
               )}
@@ -233,7 +235,7 @@ export const TabSearchPanel: React.FC<TabSearchPanelProps> = ({
                     <AdSenseLayout
                       key={`ad-${ad.id}`}
                       slotId={ad.slotId || '1234567890'}
-                      badgeLabel="Ad"
+                      badgeLabel={t('tabSearchPanel.ad')}
                       debug={process.env.NODE_ENV !== 'production'}
                     />
                   );

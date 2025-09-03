@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './LocationInfoModal.module.css';
 
 interface LocationInfoModalProps {
@@ -16,6 +17,7 @@ const LocationInfoModal: React.FC<LocationInfoModalProps> = ({
   onClose,
   onDisable,
 }) => {
+  const { t } = useTranslation();
   const [dontShowAgain, setDontShowAgain] = useState(false);
 
   // Close modal on overlay click
@@ -36,24 +38,24 @@ const LocationInfoModal: React.FC<LocationInfoModalProps> = ({
   return (
     <div className={styles.modalOverlay} onClick={handleOverlayClick}>
       <div className={styles.modalContent}>
-        <h2>Location Detection Required for Local News</h2>
+        <h2>{t('locationModal.title')}</h2>
 
         <p className={styles.description}>
-          To personalize local news content, we need your location information.
+          {t('locationModal.description')}
         </p>
 
         <div className={styles.locationInfo}>
           <p>
-            Currently set location: <strong>{currentLocation}</strong>
+            {t('locationModal.currentLocation')}: <strong>{currentLocation}</strong>
           </p>
         </div>
 
-        <p className={styles.optionsInfo}>You can choose from the following options:</p>
+        <p className={styles.optionsInfo}>{t('locationModal.optionsInfo')}</p>
 
         <ul className={styles.optionsList}>
-          <li>Manual country selection</li>
-          <li>GPS-based precise location</li>
-          <li>Browser language detection</li>
+          <li>{t('locationModal.option1')}</li>
+          <li>{t('locationModal.option2')}</li>
+          <li>{t('locationModal.option3')}</li>
         </ul>
 
         {/* "Ne mutasd újra" jelölőnégyzet */}
@@ -64,16 +66,16 @@ const LocationInfoModal: React.FC<LocationInfoModalProps> = ({
               checked={dontShowAgain}
               onChange={(e) => setDontShowAgain(e.target.checked)}
             />
-            Don&apos;t show this message again
+            {t('locationModal.dontShowAgain')}
           </label>
         </div>
 
         <div className={styles.modalButtons}>
           <button className={styles.continueButton} onClick={handleContinue}>
-            Continue with current settings
+            {t('locationModal.continueButton')}
           </button>
           <button className={styles.setupButton} onClick={onSetup}>
-            Configure location settings
+            {t('locationModal.setupButton')}
           </button>
         </div>
 

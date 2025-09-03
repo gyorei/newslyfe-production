@@ -21,8 +21,11 @@ export interface CountryVideoChannels {
 // --- ÚJ: videoData.jsonc betöltése ---
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { parse } from 'jsonc-parser';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const videoDataPath = path.join(__dirname, 'videoData.jsonc');
 const videoDataRaw = fs.readFileSync(videoDataPath, 'utf-8');
 const videoDataJsonc = parse(videoDataRaw);

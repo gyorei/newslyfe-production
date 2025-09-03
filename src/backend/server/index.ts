@@ -24,9 +24,9 @@ import { startCleanupJob } from './jobs/cleanupScheduler';
 export { app, createApp, startServer, db, logger, config };
 
 // Közvetlen indítás esetén elindítjuk a szervert
-// A `require.main === module` nem működik megbízhatóan ES Modulokkal,
-// de mivel a projekt CJS-ként fut a ts-node-dal, itt még maradhat.
-if (require.main === module) {
+// ESM-ben nincs egyszerű main module detekció, ezért mindig indítjuk
+// if (import.meta.main) { // Node.js 20+ feature - még nem elérhető
+{
   startServer().then(() => {
     logger.info('Szerver sikeresen elindult.');
     startCleanupJob(); // Időzített takarító feladat indítása

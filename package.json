@@ -1,6 +1,7 @@
 {
   "name": "react-tsx-news",
   "version": "1.0.0",
+  "type": "module",
   "description": "World News Aggregator React+TypeScript version",
   "private": true,
   "dependencies": {

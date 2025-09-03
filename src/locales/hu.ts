@@ -474,6 +474,61 @@ const hu = {
     ad: {
       badge: "Hirdetés",
     },
+    // TabSearchPanel
+    tabSearchPanel: {
+      filterSettings: "Szűrő beállítások",
+      openFilterSettings: "Szűrő beállítások megnyitása",
+      filter: "Szűrő",
+      clearSearch: "Keresés törlése",
+      ad: "Hirdetés",
+    },
+    // PerformanceWarning
+    performanceWarning: {
+      title: "Teljesítmény figyelmeztetés",
+      message: "Nagy mennyiségű adat betöltése teljesítményproblémákat okozhat, különösen lassabb eszközökön vagy gyengébb internet kapcsolat esetén.",
+      buttonText: "Értem",
+    },
+    // LocationInfoModal
+    locationModal: {
+      title: "Helyadatok szükségesek a helyi hírekhez",
+      description: "A helyi hírtartalom személyre szabásához szükségünk van a helyadataira.",
+      currentLocation: "Jelenleg beállított hely",
+      optionsInfo: "Az alábbi lehetőségek közül választhat:",
+      option1: "Kézi országválasztás",
+      option2: "GPS alapú pontos helymeghatározás",
+      option3: "Böngésző nyelv alapú felismerés",
+      dontShowAgain: "Ne jelenítse meg újra ezt az üzenetet",
+      continueButton: "Folytatás jelenlegi beállításokkal",
+      setupButton: "Helyadatok konfigurálása",
+    },
+    // ArticleTab
+    articleTab: {
+      loadError: "Nem sikerült betölteni a cikket",
+      loading: "Betöltés...",
+      openNewWindow: "Megnyitás új ablakban",
+    },
+    // DragTab
+    dragTab: {
+      tabLabel: "{{title}} fül",
+      closeTabLabel: "{{title}} fül bezárása",
+      closeTabTitle: "Fül bezárása",
+      dragInstructions: "Húzáshoz használja a Space billentyűt, majd a nyílbillentyűket a mozgatáshoz. Befejezéshez nyomja meg újra a Space billentyűt.",
+    },
+    // Home
+    home: {
+      nav: {
+        home: "Főoldal",
+        dashboard: "Irányítópult",
+        bookmarks: "Könyvjelzők",
+        history: "Előzmények",
+        my: "Saját",
+      },
+      search: {
+        placeholder: "Hírek keresése...",
+        settingsTitle: "Keresési beállítások",
+        searching: "🔍 Keresés a világ minden tájáról...",
+      },
+    },
   };
   
   export default hu;

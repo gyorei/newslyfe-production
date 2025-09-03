@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './ArticleTab.module.css';
 
 interface ArticleTabProps {
@@ -8,6 +9,7 @@ interface ArticleTabProps {
 }
 
 export function ArticleTab({ url, title, onClose }: ArticleTabProps) {
+  const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -22,7 +24,7 @@ export function ArticleTab({ url, title, onClose }: ArticleTabProps) {
 
   const handleError = () => {
     setIsLoading(false);
-    setError('Nem sikerült betölteni a cikket');
+    setError(t('articleTab.loadError'));
   };
 
   return (
@@ -38,7 +40,7 @@ export function ArticleTab({ url, title, onClose }: ArticleTabProps) {
         {isLoading && (
           <div className={styles.loading}>
             <div className={styles.spinner}></div>
-            <span>Betöltés...</span>
+            <span>{t('articleTab.loading')}</span>
           </div>
         )}
         
@@ -46,7 +48,7 @@ export function ArticleTab({ url, title, onClose }: ArticleTabProps) {
           <div className={styles.error}>
             <p>{error}</p>
             <button onClick={() => window.open(url, '_blank')}>
-              Megnyitás új ablakban
+              {t('articleTab.openNewWindow')}
             </button>
           </div>
         )}

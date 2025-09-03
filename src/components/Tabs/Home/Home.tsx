@@ -1,6 +1,7 @@
 // src/components/Tabs/Home/Home.tsx
 import * as React from 'react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { apiClient } from '../../../apiclient/apiClient';
 import { NewsItem } from '../../../types';
 import styles from './Home.module.css';
@@ -23,6 +24,7 @@ export interface HomeProps {
  * Intelligensen eldönti, hogy geo- vagy kulcsszavas keresést indítson.
  */
 const Home: React.FC<HomeProps> = ({ isActive, onSearchComplete, openMyPageTab, openRightPanelWithMode }) => { // <-- PROP FOGADÁSA
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [activeButton, setActiveButton] = useState('home');
   const [isSearching, setIsSearching] = useState(false);
@@ -91,25 +93,25 @@ const Home: React.FC<HomeProps> = ({ isActive, onSearchComplete, openMyPageTab, 
           className={`${styles.topButton} ${activeButton === 'home' ? styles.active : ''}`}
           onClick={() => setActiveButton('home')}
         >
-          Home
+          {t('home.nav.home')}
         </button>
         <button
           className={`${styles.topButton} ${activeButton === 'dashboard' ? styles.active : ''}`}
           onClick={() => setActiveButton('dashboard')}
         >
-          Dashboard
+          {t('home.nav.dashboard')}
         </button>
         <button
           className={`${styles.topButton} ${activeButton === 'bookmarks' ? styles.active : ''}`}
           onClick={() => setActiveButton('bookmarks')}
         >
-          Bookmarks
+          {t('home.nav.bookmarks')}
         </button>
         <button
           className={`${styles.topButton} ${activeButton === 'history' ? styles.active : ''}`}
           onClick={() => setActiveButton('history')}
         >
-          History
+          {t('home.nav.history')}
         </button>
         <button
           className={`${styles.topButton} ${activeButton === 'my' ? styles.active : ''}`}
@@ -118,7 +120,7 @@ const Home: React.FC<HomeProps> = ({ isActive, onSearchComplete, openMyPageTab, 
             if (openMyPageTab) openMyPageTab();
           }}
         >
-          My
+          {t('home.nav.my')}
         </button>
       </div>
 
@@ -131,7 +133,7 @@ const Home: React.FC<HomeProps> = ({ isActive, onSearchComplete, openMyPageTab, 
               <input
                 type="text"
                 className={styles.searchInput}
-                placeholder="Search news..."
+                placeholder={t('home.search.placeholder')}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyPress={handleKeyPress}
@@ -139,7 +141,7 @@ const Home: React.FC<HomeProps> = ({ isActive, onSearchComplete, openMyPageTab, 
               <button
                 className={styles.searchOptionsButton}
                 onClick={() => openRightPanelWithMode?.('settings', 'search')}
-                title="Keresési beállítások"
+                title={t('home.search.settingsTitle')}
                 style={{ fontSize: 20, background: 'none', border: 'none', cursor: 'pointer', marginLeft: 8 }}
               >
                 ⚙️
@@ -147,7 +149,7 @@ const Home: React.FC<HomeProps> = ({ isActive, onSearchComplete, openMyPageTab, 
             </div>
             {isSearching && (
               <div className={styles.searchingIndicator}>
-                <p>🔍 Searching the globe...</p>
+                <p>{t('home.search.searching')}</p>
               </div>
             )}
           </div>

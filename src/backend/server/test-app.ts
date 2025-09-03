@@ -5,6 +5,7 @@ import { errorHandler, notFoundHandler } from './middleware/error-handler';
 import { CORS_CONFIG } from './config/environment';
 import fs from 'fs'; // Node.js fájlrendszer modul
 import path from 'path';
+import { fileURLToPath } from 'url';
 
 // Middleware-ek szinkron importálása a tesztekhez
 import helmet from 'helmet';
@@ -33,6 +34,8 @@ export function createTestApp(): express.Application {
   app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
   // Statikus fájlok (ha szükséges a teszthez)
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
   app.use(express.static(path.join(__dirname, '../../../../build')));
 
   // --- LICENC MODUL INICIALIZÁLÁSA ÉS BEKÖTÉSE ---

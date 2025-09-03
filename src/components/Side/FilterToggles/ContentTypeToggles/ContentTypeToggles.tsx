@@ -18,12 +18,12 @@ export const ContentTypeToggles: React.FC<ContentTypeTogglesProps> = ({
   const handleBothClick = () => {
     console.log('[ContentTypeToggles] Both gomb kattintva - Coming Soon');
     // TODO: Implementálás később
-    alert('🚧 Coming Soon - Text and video together feature will be available soon!');
+    alert(t('contentType.comingSoon'));
   };
   
   return (
     <div className={toggleStyles.toggleContainer}>
-      <h4 className={styles.sectionTitle}>Select content type</h4>
+      <h4 className={styles.sectionTitle}>{t('contentType.title')}</h4>
       <div className={toggleStyles.toggleGroup}>
         <button
           className={`${toggleStyles.toggleButton} ${activeContentType === 'text' ? toggleStyles.active : ''}`}
@@ -50,7 +50,7 @@ export const ContentTypeToggles: React.FC<ContentTypeTogglesProps> = ({
         <button
           className={`${toggleStyles.toggleButton} ${toggleStyles['coming-soon']}`}
           onClick={handleBothClick}
-          title="🚧 Coming Soon - Text and video together"
+          title={t('contentType.comingSoonTitle')}
           type="button"
         >
           {t('contentType.both', 'Both')}

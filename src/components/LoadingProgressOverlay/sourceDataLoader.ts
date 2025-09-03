@@ -1,4 +1,4 @@
-import { CountrySourceData, SourceItem, ProcessedSourceData, TerminalAnimationData, TerminalLine } from './sourceData';
+import { CountrySourceData, ProcessedSourceData, TerminalAnimationData, TerminalLine } from './sourceData';
 
 // Importáljuk az európai adatokat (build időben beépül)
 // Megjegyzés: Mostantól sima JSON-t importálunk!
