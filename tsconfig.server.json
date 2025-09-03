@@ -21,7 +21,9 @@
     }
   },
   "include": [
-    "src/backend/**/*"
+    "src/backend/**/*",
+    "src/backend/**/*.json",
+    "src/backend/**/*.jsonc"
   ],
   "exclude": ["node_modules", "dist", "src/frontend/**/*"]
 }
