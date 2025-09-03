@@ -1,5 +1,6 @@
 // src\backend\auth\utils\token.ts
-import jwt, { JsonWebTokenError } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
+const { JsonWebTokenError } = jwt;
 
 // Kritikus: JWT_SECRET csak fejlesztésben legyen default!
 if (!process.env.JWT_SECRET) {

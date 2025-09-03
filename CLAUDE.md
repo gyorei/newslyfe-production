@@ -1254,4 +1254,26 @@ Szép munka, a NewsLyfe éles! 🚀
 
   Futtasd ezeket sorban a szerveren! ⚡
   =====================
-  
+  # Lépj a projekt mappájába
+cd /var/w ww/newslyfe
+
+# 1. Állítsuk le és töröljük a PM2 démont, hogy minden cache törlődjön
+pm2 delete all
+pm2 kill
+
+# 2. Töröljük a régi buildet és a függőségeket
+rm -rf dist/ node_modules/
+
+# 3. MOST JÖN AZ ÚJ LÉPÉS: Töröljük az NPM gyorsítótárát
+# Ez biztosítja, hogy minden csomagot frissen, a nulláról töltsön le
+npm cache clean --force
+
+# 4. Telepítsük a függőségeket teljesen tisztán
+npm install
+
+# 5. Építsük újra a backendet
+npm run build:backend
+
+# 6. Indítsuk el az alkalmazást. A PM2 démon most a nulláról fog elindulni.
+pm2 start ecosystem.config.cjs
+================================

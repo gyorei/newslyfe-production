@@ -193,4 +193,32 @@ earch(pattern: "require.*=|module\.export        s|exports\.|const.*require", pa
 
   FUTTASD A TESZTEKET! 🎯
   ==================================
+  🎉 FANTASZTIKUS! GITHUB-RA     
+  FELTÖLTVE!
+
+  ✅ COMMIT SIKERES:
+  - 21 fájl módosítva
+  - 3420+ sor hozzáadva/módosítva
+
+  - ESM migráció commit
+  message-dzsel
+  - Claude Code signature-rel    
+
+  🚀 KÖVETKEZŐ: SZERVER DEPLOY       
+
+  SZERVER PARANCSOK:
+  ssh root@91.98.134.222
+  cd /var/www/newslyfe
+  git pull
+  pm2 delete all
+  rm -rf dist/ node_modules/
+  npm install
+  npm run build:backend
+  npm run build
+  pm2 start ecosystem.config.js      
+  # ← FONTOS: .js kiterjesztés!      
+  pm2 logs --lines 10
+
+  KEZDD A SZERVER TELEPÍTÉST! 🎯   
+  ==============================
   

@@ -91,12 +91,25 @@ function setupGracefulShutdown(server: Server): void {
 }
 
 // Csak akkor indítsuk a szervert, ha közvetlenül ezt a fájlt hívják meg
-if (require.main === module) {
+// ESM megfelelője a régi "require.main === module" trükknek
+const isMainModule = import.meta.url.startsWith('file:') && process.argv[1] && import.meta.url.endsWith(process.argv[1]);
+
+if (isMainModule) {
   startServer().catch((error) => {
     logger.error('Végzetes hiba a szerver indítása során:', error);
     process.exit(1);
   });
 }
 
+
+/*
+// Csak akkor indítsuk a szervert, ha közvetlenül ezt a fájlt hívják meg
+if (require.main === module) {
+  startServer().catch((error) => {
+    logger.error('Végzetes hiba a szerver indítása során:', error);
+    process.exit(1);
+  });
+}
+*/
 export default { startServer };
 
