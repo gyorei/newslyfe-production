@@ -1,3 +1,4 @@
+// src\backend\server\utils\startupProfiler.ts
 import { isDev } from '../config/environment';
 
 // A mérések tárolására szolgáló típus

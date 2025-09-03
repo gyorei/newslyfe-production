@@ -1,10 +1,10 @@
 // src\backend\server\server.ts
-import { db } from './PostgreSQLManager';
-import { logger } from './logger';
-import { PORT, isProd } from './config/environment';
-import appPromise from './app';
+import { db } from './PostgreSQLManager.js';
+import { logger } from './logger.js';
+import { PORT, isProd } from './config/environment.js';
+import appPromise from './app.js';
 import { Server } from 'http';
-import { startupProfiler } from './utils/startupProfiler'; // PROFILER IMPORT
+import { startupProfiler } from './utils/startupProfiler.js';
 
 /**
  * A HTTP szerver indítása és erőforrások kezelése
