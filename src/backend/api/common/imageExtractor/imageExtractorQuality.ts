@@ -6,8 +6,8 @@
  */
 
 // Importáljuk a szükséges típusokat és segédfüggvényeket
-import { RssItem } from './imageExtractorStrategies';
-import { validateAndCleanImageUrl, isTooSmallImage } from './imageExtractorUtils';
+import { RssItem } from './imageExtractorStrategies.js';
+import { validateAndCleanImageUrl, isTooSmallImage } from './imageExtractorUtils.js';
 
 // ✅ TELJESÍTMÉNY OPTIMALIZÁLÁS: Előre kompilált regex objektumok
 const SIZE_MATCH_REGEX = /[_\-\/](\d+)x(\d+)[_\-\/]/;

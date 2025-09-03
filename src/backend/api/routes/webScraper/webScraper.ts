@@ -1,8 +1,8 @@
 // Web Scraper - PestiSrácok, Blikk, Hetek, Al Jazeera képkinyerés
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import { canMakeRequest } from './rateLimiter';
-import { getCachedImage, setCachedImage } from './webScrapingCache';
+import { canMakeRequest } from './rateLimiter.js';
+import { getCachedImage, setCachedImage } from './webScrapingCache.js';
 
 const REQUEST_TIMEOUT = 8000;
 

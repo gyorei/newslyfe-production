@@ -1,6 +1,6 @@
 // src\backend\license\routes\recoveryRoutes.ts
 import { Router } from 'express';
-import { RecoveryController } from '../controllers/recoveryController';
+import { RecoveryController } from '../controllers/recoveryController.js';
 
 export function createRecoveryRoutes(controller: RecoveryController): Router {
   const router = Router();

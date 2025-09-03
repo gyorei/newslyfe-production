@@ -6,8 +6,8 @@
  * mivel szorosan támaszkodik annak db objektumára.
  */
 
- import { db } from '../PostgreSQLManager';
- import { logger } from '../logger';
+ import { db } from '../PostgreSQLManager.js';
+ import { logger } from '../logger.js';
  
  /**
   * Adatforrás szolgáltatás

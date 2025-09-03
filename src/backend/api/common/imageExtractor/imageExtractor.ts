@@ -54,14 +54,14 @@ import {
   decodeHtmlEntities,
   detectLogoGlobally,
   robustHtmlCleaner
-} from './imageExtractorUtils';
+} from './imageExtractorUtils.js';
 
 // Batch feldolgozás importálása
 import { 
   extractImagesFromItemsBatch, 
   generateImageExtractionStats,
   extractImagesFromItems 
-} from './imageExtractorBatch';
+} from './imageExtractorBatch.js';
 
 /**
  * ✅ KÖZÖS MAGFÜGGVÉNY - Képkinyerési logika egyszerűsítése

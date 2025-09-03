@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import { getCachedApNewsMedia, setCachedApNewsMedia } from './webScrapingCache'; // Feltételezve, hogy a cache fájl ugyanabban a könyvtárban van
+import { getCachedApNewsMedia, setCachedApNewsMedia } from './webScrapingCache.js'; // Feltételezve, hogy a cache fájl ugyanabban a könyvtárban van
 
 // --- Konstansok ---
 const APNEWS_DOMAIN = 'apnews.com';

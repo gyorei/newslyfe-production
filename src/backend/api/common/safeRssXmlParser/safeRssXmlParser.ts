@@ -7,7 +7,7 @@ import { parse as parseContentType } from 'content-type'; // JAVÍTVA
 import { Buffer } from 'buffer'; // Biztosítjuk, hogy a Node.js Buffer típusa legyen használva
 // @ts-ignore // strip-bom-buffer-nek nincs hivatalos @types csomagja, de működik JS-ként
 import stripBomBuffer from 'strip-bom-buffer';
-import { logger } from '../../../server/logger'; // Ellenőrizd a logger helyes elérési útját
+import { logger } from '../../../server/logger.js'; // Ellenőrizd a logger helyes elérési útját
 
 interface RssSourceInfo {
   feedUrl: string;

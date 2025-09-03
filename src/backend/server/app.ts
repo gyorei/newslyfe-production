@@ -49,10 +49,10 @@ A tényleges sebezhetőségek a route-okban és a middleware-ekben lehetnek, de 
 
 import express, { Request, Response, NextFunction, RequestHandler } from 'express';
 import cors from 'cors';
-import { errorHandler, notFoundHandler } from './middleware/error-handler'; // Javított útvonal
-import { CORS_CONFIG } from './config/environment';
-import { logger } from './logger';
-import { startupProfiler } from './utils/startupProfiler'; // PROFILER IMPORT
+import { errorHandler, notFoundHandler } from './middleware/error-handler.js';
+import { CORS_CONFIG } from './config/environment.js';
+import { logger } from './logger.js';
+import { startupProfiler } from './utils/startupProfiler.js';
 // Import SessionOptions for proper typing
 import { SessionOptions } from 'express-session';
 import path from 'path';
@@ -64,17 +64,16 @@ import swaggerJsDoc from 'swagger-jsdoc';
 import { fileURLToPath } from 'url';
 
 // Az API útvonalak importálása
-import apiRoutes from '../api/routes';
+import apiRoutes from '../api/routes/index.js';
 // ==========================================
 // Keresési modul importálása (különálló modul)
 // ==========================================
-import searchRouter from '../search/Search';
-import authRouter from '../auth/routes/auth.routes';
-import { createAdminRoutes } from '../license/routes/adminRoutes';
-import { createRecoveryRoutes } from '../license/routes/recoveryRoutes';
-import { KeyService } from '../license/services/keyService';
-import { RecoveryController } from '../license/controllers/recoveryController';
-
+import searchRouter from '../search/Search.js';
+import authRouter from '../auth/routes/auth.routes.js';
+import { createAdminRoutes } from '../license/routes/adminRoutes.js';
+import { createRecoveryRoutes } from '../license/routes/recoveryRoutes.js';
+import { KeyService } from '../license/services/keyService.js';
+import { RecoveryController } from '../license/controllers/recoveryController.js';
 // Middleware típusok definiálása a biztonságosabb típusozás érdekében
 type HelmetMiddleware = (options?: Record<string, unknown>) => RequestHandler;
 type CompressionMiddleware = (options?: Record<string, unknown>) => RequestHandler;

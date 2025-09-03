@@ -1,6 +1,6 @@
 // src\backend\common\db\newsStorage.ts
-import { db } from '../../server/PostgreSQLManager';
-import { logger } from '../../server/logger';
+import { db } from '../../server/PostgreSQLManager.js';
+import { logger } from '../../server/logger.js';
 import format from 'pg-format'; // ÚJ IMPORT
 
 export interface NewsItemForDb {

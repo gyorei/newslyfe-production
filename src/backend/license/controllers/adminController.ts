@@ -1,6 +1,6 @@
 // src\backend\license\controllers\adminController.ts
 import { Request, Response } from 'express';
-import { KeyService } from '../services/keyService';
+import { KeyService } from '../services/keyService.js';
 
 /**
  * @swagger

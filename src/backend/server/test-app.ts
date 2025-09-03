@@ -1,8 +1,7 @@
-// src/backend/server/test-app.ts
 import express from 'express';
 import cors from 'cors';
-import { errorHandler, notFoundHandler } from './middleware/error-handler';
-import { CORS_CONFIG } from './config/environment';
+import { errorHandler, notFoundHandler } from './middleware/error-handler.js';
+import { CORS_CONFIG } from './config/environment.js';
 import fs from 'fs'; // Node.js fájlrendszer modul
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,12 +12,11 @@ import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 
 // Licenc modul komponenseinek importálása
-import { createAdminRoutes } from '../license/routes/adminRoutes';
-import { createRecoveryRoutes } from '../license/routes/recoveryRoutes';
-import { KeyService } from '../license/services/keyService';
-import { RecoveryController } from '../license/controllers/recoveryController';
-import { logger } from './logger';
-
+import { createAdminRoutes } from '../license/routes/adminRoutes.js';
+import { createRecoveryRoutes } from '../license/routes/recoveryRoutes.js';
+import { KeyService } from '../license/services/keyService.js';
+import { RecoveryController } from '../license/controllers/recoveryController.js';
+import { logger } from './logger.js';
 /**
  * Létrehoz egy Express alkalmazást KIFEJEZETTEN a tesztelési környezethez.
  * Nem tartalmaz dinamikus, aszinkron importokat, így determinisztikusan működik.

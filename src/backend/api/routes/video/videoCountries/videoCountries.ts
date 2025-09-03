@@ -1,5 +1,5 @@
 import express from 'express';
-import { getVideoChannelsByLetter } from '../../videoData/videoData';
+import { getVideoChannelsByLetter } from '../../videoData/videoData.js';
 
 const router = express.Router();
 

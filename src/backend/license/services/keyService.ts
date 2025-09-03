@@ -1,7 +1,7 @@
 // src/backend/license/services/keyService.ts
 
-import { CryptoService, createKeyHash } from './cryptoService';
-import { License } from '../models/licenseModel';
+import { CryptoService, createKeyHash } from './cryptoService.js';
+import { License } from '../models/licenseModel.js';
 import crypto from 'crypto';
 
 export class KeyService {

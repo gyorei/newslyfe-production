@@ -1,9 +1,9 @@
 // src\backend\auth\routes\auth.routes.ts
 import { Router } from 'express';
-import { register, login, getProfile, verifyEmail } from '../controllers/auth.controller';
-import { authMiddleware } from '../middleware/auth.middleware';
-import passport from '../passport-setup';
-import { issueJwtForUser } from '../passport-setup';
+import { register, login, getProfile, verifyEmail } from '../controllers/auth.controller.js';
+import { authMiddleware } from '../middleware/auth.middleware.js';
+import passport from '../passport-setup.js';
+import { issueJwtForUser } from '../passport-setup.js';
 
 const router = Router();
 

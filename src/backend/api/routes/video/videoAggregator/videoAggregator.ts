@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { XMLParser } from 'fast-xml-parser';
-import { videoData } from '../../videoData/videoData';
+import { videoData } from '../../videoData/videoData.js';
 
 /**
  * YouTube RSS Entry Interface

@@ -1,8 +1,8 @@
 // src\backend\license\routes\adminRoutes.ts
 import { Router } from 'express';
-import { AdminController } from '../controllers/adminController';
-import { KeyService } from '../services/keyService';
-import { adminAuthMiddleware } from '../middlewares/authMiddleware';
+import { AdminController } from '../controllers/adminController.js';
+import { KeyService } from '../services/keyService.js';
+import { adminAuthMiddleware } from '../middlewares/authMiddleware.js';
 
 export function createAdminRoutes(keyService: KeyService): Router {
   const router = Router();

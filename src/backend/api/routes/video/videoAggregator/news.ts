@@ -8,9 +8,8 @@ import express from 'express';
 // ========================================
 // 🎥 VIDEO AGGREGATOR IMPORT - JAVÍTOTT ÚTVONAL!
 // ========================================
-import { videoAggregator, getAllChannelConfigs, getChannelConfigsByCountry } from './videoAggregator';
-import { videoData } from '../../videoData/videoData';
-
+import { videoAggregator, getAllChannelConfigs, getChannelConfigsByCountry } from './videoAggregator.js';
+import { videoData } from '../../videoData/videoData.js';
 const router = express.Router();
 
 // ========================================

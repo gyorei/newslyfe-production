@@ -5,17 +5,15 @@
  * alkalmazáshoz való csatlakoztatásukat. Minden új API modult itt kell
  * regisztrálni a megfelelő előtaggal.
  */
-
 import express from 'express';
-import LocalApi from './Local/Local';
-import CountryApi from './Country/Country'; // Új import
-import ContinentApi from './Continent/Continent'; // Kontinens API importálása
+import LocalApi from './Local/Local.js';
+import CountryApi from './Country/Country.js'; // Új import
+import ContinentApi from './Continent/Continent.js'; // Kontinens API importálása
 // ========================================
 // 🎥 VIDEO API IMPORT - ÚJ VIDEÓ ROUTE!
 // ========================================
-import VideoApi from './video/videoAggregator/news'; // Video API importálása
-import VideoCountriesApi from './video/videoCountries/videoCountries'; // ÚJ: videós országok route import
-
+import VideoApi from './video/videoAggregator/news.js'; // Video API importálása
+import VideoCountriesApi from './video/videoCountries/videoCountries.js'; // ÚJ: videós országok route import
 // További route-ok importálása a jövőben:
 // import SourceApi from './Source/SourceApi';
 

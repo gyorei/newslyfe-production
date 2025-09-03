@@ -8,7 +8,7 @@
  * Cél: Local.ts tisztán tartása és specifikus problémakezelés izolálása
  */
 
-import { logger } from '../../../server/logger';
+import { logger } from '../../../server/logger.js';
 
 // ProcessedRssItem interfész - kompatibilitás a Local.ts-szel
 interface ProcessedRssItem {

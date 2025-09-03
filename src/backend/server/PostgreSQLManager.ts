@@ -1,7 +1,7 @@
 // src\backend\server\PostgreSQLManager.ts
 import { Pool, QueryResult, QueryResultRow } from 'pg';
-import { DB_CONFIG, isProd } from './config/environment';
-import { logger } from './logger';
+import { DB_CONFIG, isProd } from './config/environment.js';
+import { logger } from './logger.js';
 
 /**
  * Adatbázis szolgáltatás

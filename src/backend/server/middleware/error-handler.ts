@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { logger } from '../logger';
-import { isProd } from '../config/environment';
+import { logger } from '../logger.js';
+import { isProd } from '../config/environment.js';
 
 // Alkalmazás-specifikus hibaosztály definíciója
 export class AppError extends Error {

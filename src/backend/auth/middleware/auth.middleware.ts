@@ -1,6 +1,6 @@
 // src\backend\auth\middleware\auth.middleware.ts
 import { Request, Response, NextFunction } from 'express';
-import { verifyToken, AppJwtPayload } from '../utils/token';
+import { verifyToken, AppJwtPayload } from '../utils/token.js';
 
 /**
  * Middleware: Ellenőrzi a JWT tokent az Authorization headerben.

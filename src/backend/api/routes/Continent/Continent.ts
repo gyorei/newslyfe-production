@@ -38,14 +38,14 @@ NE MÓDOSÍTSUK! - Tökéletesen működik! 🚀
 */
 
 import express from 'express';
-import { logger } from '../../../server/logger';
+import { logger } from '../../../server/logger.js';
 import {
   generateCacheControlHeader,
   generateETag,
   isETagMatching,
   CACHE_TIMES,
 } from '../../utils/cacheUtils';
-import { SourcesService } from '../../../server/data/PostgreSQLDataAccess';
+import { SourcesService } from '../../../server/data/PostgreSQLDataAccess.js';
 import axios from 'axios';
 
 // ÚJ: Egységes időkezelési modulok importálása
@@ -53,11 +53,11 @@ import {
   validateMaxAgeHours,
   calculateCutoffTimestamp,
   filterNewsByAge,
-} from '../../utils/timeUtils';
+} from '../../utils/timeUtils.js';
 
 // ÚJ: Közös modulok importálása
-import { parseXmlWithBomAndErrorLogging, extractRssItems } from '../../common/safeRssXmlParser/safeRssXmlParser';
-import { extractBestImage, extractBestImageUniversal } from '../../common/imageExtractor/imageExtractor';
+import { parseXmlWithBomAndErrorLogging, extractRssItems } from '../../common/safeRssXmlParser/safeRssXmlParser.js';
+import { extractBestImage, extractBestImageUniversal } from '../../common/imageExtractor/imageExtractor.js';
 // import { deduplicateNews } from '../../utils/newsDeduplication';
 
 // Konstansok a duplikált stringek elkerülésére (ESLint/SonarJS javaslatok alapján)

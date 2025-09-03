@@ -1,5 +1,5 @@
 // src\backend\auth\models\user.model.ts
-import { db } from '../../server/PostgreSQLManager';
+import { db } from '../../server/PostgreSQLManager.js';
 
 export interface User {
   id: string;

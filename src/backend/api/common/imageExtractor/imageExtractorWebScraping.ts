@@ -4,14 +4,12 @@
  * Ez a modul felelős a külső web scraping integrációért
  * és a specifikus hírforrásokhoz igazított logikáért.
  */
-
 // ÚJ: Web scraping import - JAVÍTOTT ÚTVONAL
-import { extractImageFromWebPage } from '../../routes/webScraper/webScraper';
+import { extractImageFromWebPage } from '../../routes/webScraper/webScraper.js';
 
 // Importáljuk a szükséges típusokat és segédfüggvényeket
-import { RssItem } from './imageExtractorStrategies';
-import { validateAndCleanImageUrl } from './imageExtractorUtils';
-
+import { RssItem } from './imageExtractorStrategies.js';
+import { validateAndCleanImageUrl } from './imageExtractorUtils.js';
 /**
  * Al Jazeera logo felismerő függvény
  */

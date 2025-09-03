@@ -1,5 +1,5 @@
 // Filepath: src/backend/api/routes/Local/safeRssXmlParser.ts
-
+/*
 import iconv from 'iconv-lite';
 import { Parser as XmlParser } from 'xml2js';
 import chardet from 'chardet';
@@ -13,7 +13,7 @@ interface RssSourceInfo {
   feedUrl: string;
   sourceId: string;
 }
-
+*/
 /**
  * Biztonságosan feldolgoz egy RSS XML stringet, kezeli a BOM-ot és részletes hibalogolást végez.
  *
@@ -22,6 +22,7 @@ interface RssSourceInfo {
  * @param sourceInfo Információk a forrásról (URL, ID) a logoláshoz.
  * @returns Promise, amely a parszolt XML objektumot adja vissza, vagy hibával utasítja el.
  */
+/*
 export async function parseXmlWithBomAndErrorLogging(
   originalBuffer: Buffer,
   httpHeaders: any, // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -124,12 +125,13 @@ export async function parseXmlWithBomAndErrorLogging(
     });
   });
 }
-
+*/
 /**
  * Robusztus RSS item-kinyerő segédfüggvény, amely minden lehetséges szerkezetet lekezel.
  * @param parsedXmlObject A parszolt XML objektum
  * @returns Az itemek tömbje (lehet üres tömb is)
  */
+/*
 export function extractRssItems(parsedXmlObject: any): any[] {
   let items = [];
   if (parsedXmlObject?.rss?.channel?.item) {
@@ -139,3 +141,4 @@ export function extractRssItems(parsedXmlObject: any): any[] {
   }
   return Array.isArray(items) ? items : (items ? [items] : []);
 }
+*/

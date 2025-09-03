@@ -1,8 +1,8 @@
 // src/backend/api/routes/Search/Search.ts
 
 import { Router } from 'express';
-import { db } from '../server/PostgreSQLManager';
-import { logger } from '../server/logger';
+import { db } from '../server/PostgreSQLManager.js';
+import { logger } from '../server/logger.js';
 
 import { SUPPORTED_LANGUAGES, isValidLanguage } from './searchConfig';
 

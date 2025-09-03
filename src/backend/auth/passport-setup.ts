@@ -1,8 +1,8 @@
+
 import passport from 'passport';
 import { Strategy as GoogleStrategy, Profile } from 'passport-google-oauth20';
-import { findUserByEmail, createUser, User } from './models/user.model';
-import { generateToken } from './utils/token';
-
+import { findUserByEmail, createUser, User } from './models/user.model.js';
+import { generateToken } from './utils/token.js';
 // Eltávolítjuk az azonnali process.exit(1) hívást
 // A Google OAuth2 stratégia csak akkor inicializálódik, ha a változók elérhetők
 function initializeGoogleStrategy() {

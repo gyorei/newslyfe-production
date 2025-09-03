@@ -1,5 +1,5 @@
 // src\backend\server\utils\startupProfiler.ts
-import { isDev } from '../config/environment';
+import { isDev } from '../config/environment.js';
 
 // A mérések tárolására szolgáló típus
 type Measurement = {

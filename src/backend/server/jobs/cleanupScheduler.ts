@@ -1,6 +1,6 @@
 import cron from 'node-cron';
-import { db } from '../PostgreSQLManager'; // Helyes útvonal a DB kapcsolathoz
-import { logger } from '../logger'; // Útvonal a loggerhez
+import { db } from '../PostgreSQLManager.js'; // Helyes útvonal a DB kapcsolathoz
+import { logger } from '../logger.js'; // Útvonal a loggerhez
 
 // Ez a változó biztosítja, hogy a job csak egyszer induljon el
 let isJobScheduled = false;

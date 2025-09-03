@@ -6,7 +6,7 @@
  */
 
 import crypto from 'crypto';
-import { isProd } from '../../server/config/environment';
+import { isProd } from '../../server/config/environment.js';
 
 // Cache idő alapértékek különböző tartalomtípusokhoz (másodpercben)
 export const CACHE_TIMES = {

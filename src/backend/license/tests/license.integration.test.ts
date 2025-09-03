@@ -1,10 +1,10 @@
 // src/backend/license/tests/license.integration.test.ts
 import request from 'supertest';
-import { createTestApp } from '../../server/test-app';
-import { sequelize } from '../../license/utils/db';
-import { License } from '../models/licenseModel';
+import { createTestApp } from '../../server/test-app.js';
+import { sequelize } from '../../license/utils/db.js';
+import { License } from '../models/licenseModel.js';
 import crypto from 'crypto';
-import { db } from '../../server/PostgreSQLManager';
+import { db } from '../../server/PostgreSQLManager.js';
 import express from 'express';
 
 // === KONSTANSOK a duplikált stringek elkerülésére ===

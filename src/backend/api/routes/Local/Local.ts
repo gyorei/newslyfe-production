@@ -6,34 +6,33 @@ A szoftver-fejlesztésben fontos alapelv
 a YAGNI (You Aren't Gonna Need It) 
 - ne vezess be komplexitást
  */
-
 import express from 'express';
-import { logger } from '../../../server/logger';
-import { AppError } from '../../../server/middleware/error-handler';
-import { generateETag } from '../../utils/cacheUtils';
-import { isProd } from '../../../server/config/environment';
+import { logger } from '../../../server/logger.js';
+import { AppError } from '../../../server/middleware/error-handler.js';
+import { generateETag } from '../../utils/cacheUtils.js';
+import { isProd } from '../../../server/config/environment.js';
 import axios from 'axios';
-import { SourcesService } from '../../../server/data/PostgreSQLDataAccess';
+import { SourcesService } from '../../../server/data/PostgreSQLDataAccess.js';
 // Importáljuk a konfigurációs fájlt
-import { RSS_CONFIG, CACHE_TIMES } from './config/localConfig';
+import { RSS_CONFIG, CACHE_TIMES } from './config/localConfig.js';
 // SESSION IMPORT TÖRÖLVE - már nem szükséges
-import { parseXmlWithBomAndErrorLogging, extractRssItems } from '../../common/safeRssXmlParser/safeRssXmlParser'; // MÓDOSÍTVA: Új útvonal
+import { parseXmlWithBomAndErrorLogging, extractRssItems } from '../../common/safeRssXmlParser/safeRssXmlParser.js';
 
 // ÚJ: Egységes időkezelési modulok importálása
 import {
   validateMaxAgeHours,
   calculateCutoffTimestamp,
   filterNewsByAge,
-} from '../../utils/timeUtils';
+} from '../../utils/timeUtils.js';
 
 // ÚJ: Import az imageExtractor.ts-ből
-import { extractBestImage, extractBestImageUniversal } from '../../common/imageExtractor/imageExtractor'; // MÓDOSÍTVA: Új útvonal
+import { extractBestImage, extractBestImageUniversal } from '../../common/imageExtractor/imageExtractor.js';
 
 // ÚJ: Import a problémás források szűrőjéből
-import { filterProblematicSources } from '../../common/problematicSourcesFilter';
+import { filterProblematicSources } from '../../common/problematicSourcesFilter.js';
 
 // ÚJ: Import a hírek adatbázisba mentéséhez
-import { saveNewsToDatabase, NewsItemForDb } from '../../../common/db/newsStorage';
+import { saveNewsToDatabase, NewsItemForDb } from '../../../common/db/newsStorage.js';
 
 // Memória cache a hírekhez
 const newsCache = new Map<string, { timestamp: number, data: any }>();

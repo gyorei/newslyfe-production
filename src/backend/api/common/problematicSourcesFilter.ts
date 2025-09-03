@@ -1,4 +1,4 @@
-import { logger } from '../../server/logger';
+import { logger } from '../../server/logger.js';
 
 // ProcessedRssItem interfész - kompatibilitás a Local.ts-szel és Country.ts-szel
 export interface ProcessedRssItem {

@@ -11,7 +11,7 @@ export {
   extractImageWithDetails,
   extractBestImageUniversal,
   extractAllImageCandidates
-} from './imageExtractor';
+} from './imageExtractor.js';
 
 // Stratégia függvények
 export {
@@ -22,7 +22,7 @@ export {
   extractImageFromDescription,
   extractImageFromContentEncoded,
   SYNC_STRATEGIES
-} from './imageExtractorStrategies';
+} from './imageExtractorStrategies.js';
 
 // DOM parser függvények
 export {
@@ -30,7 +30,7 @@ export {
   extractImageFromContentEncodedDOM,
   extractImageFromDescriptionDOM,
   testDOMParser
-} from './imageExtractorDOM';
+} from './imageExtractorDOM.js';
 
 // Minőség elemzés függvények
 export {
@@ -38,7 +38,7 @@ export {
   calculateAttributeBasedConfidence,
   calculateImageQualityMetrics,
   testAttributeConfidence
-} from './imageExtractorQuality';
+} from './imageExtractorQuality.js';
 
 // Dinamikus konfidencia függvények
 export {
@@ -47,7 +47,7 @@ export {
   getFeedProfileStats,
   getCacheStats,
   testDynamicConfidence
-} from './imageExtractorDynamicConfidence';
+} from './imageExtractorDynamicConfidence.js';
 
 // Web scraping függvények
 export {
@@ -57,7 +57,7 @@ export {
   isAlJazeeraLogo,
   getWebScrapingDebugInfo,
   testWebScraping
-} from './imageExtractorWebScraping';
+} from './imageExtractorWebScraping.js';
 
 // Segédfüggvények
 export {
@@ -68,7 +68,7 @@ export {
   detectLogoGlobally,
   robustHtmlCleaner,
   testLogImprovements
-} from './imageExtractorUtils';
+} from './imageExtractorUtils.js';
 
 // Batch feldolgozás függvények
 export {
@@ -79,31 +79,31 @@ export {
   processBatchWithMemoryOptimization,
   generatePerformanceMetrics,
   logBatchProcessingStats
-} from './imageExtractorBatch';
+} from './imageExtractorBatch.js';
 
 // Típusok exportálása a megfelelő modulokból
 export type {
   RssItem,
   ImageExtractionResult,
   ImageCandidate
-} from './imageExtractorStrategies';
+} from './imageExtractorStrategies.js';
 
 export type {
   FeedProfile
-} from './imageExtractorDynamicConfidence';
+} from './imageExtractorDynamicConfidence.js';
 
 export type {
   ImageQualityMetrics
-} from './imageExtractorQuality';
+} from './imageExtractorQuality.js';
 
 export type {
   BatchProcessingConfig,
   BatchProcessingResult
-} from './imageExtractorBatch';
+} from './imageExtractorBatch.js';
 
 export type {
   LogoDetectionResult
-} from './imageExtractorUtils';
+} from './imageExtractorUtils.js';
 
 // Alias exportok a kompatibilitáshoz
 export {
@@ -111,4 +111,4 @@ export {
   extractBestImage as extractImage,
   extractImageWithDetails as extractImageDetailed,
   extractBestImageUniversal as extractImageUniversal
-} from './imageExtractor'; 
+} from './imageExtractor.js'; 

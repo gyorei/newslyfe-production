@@ -8,7 +8,7 @@
  * - Continent (kontinens hírek)
  */
 
-import { TIME_CONFIG } from '../config/timeConfig';
+import { TIME_CONFIG } from '../config/timeConfig.js';
 
 /**
  * Alapvető hírobjektum interfész időszűréshez

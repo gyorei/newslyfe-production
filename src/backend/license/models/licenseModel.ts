@@ -1,6 +1,6 @@
 // src\backend\license\models\licenseModel.ts
 import { DataTypes, Model, Optional } from 'sequelize';
-import { sequelize } from '../utils/db';
+import { sequelize } from '../utils/db.js';
 
 // Attribútumok TypeScript oldalon (camelCase)
 export interface LicenseAttributes {

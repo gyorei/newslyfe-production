@@ -1,12 +1,11 @@
 // src\backend\auth\controllers\auth.controller.ts
 import { Request, Response } from 'express';
 import { z } from 'zod';
-import { findUserByEmail, createUser, findUserById, updateUserVerificationToken, CreateUserInput, findUserByVerificationToken, activateUser } from '../models/user.model';
-import { hashPassword, verifyPassword } from '../utils/hash';
-import { generateToken, AppJwtPayload } from '../utils/token';
-import { generateVerificationToken, getVerificationTokenExpiry, isExpired } from '../utils/tokenService';
-import { emailService } from '../utils/emailService';
-
+import { findUserByEmail, createUser, findUserById, updateUserVerificationToken, CreateUserInput, findUserByVerificationToken, activateUser } from '../models/user.model.js';
+import { hashPassword, verifyPassword } from '../utils/hash.js';
+import { generateToken, AppJwtPayload } from '../utils/token.js';
+import { generateVerificationToken, getVerificationTokenExpiry, isExpired } from '../utils/tokenService.js';
+import { emailService } from '../utils/emailService.js';
 const registerSchema = z.object({
   email: z.string().email({ message: 'Invalid email format.' }),
   password: z.string().min(8, { message: 'Password must be at least 8 characters long.' }),

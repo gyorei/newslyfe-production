@@ -1,7 +1,7 @@
 // src\backend\license\controllers\recoveryController.ts
 import { Request, Response } from 'express';
-import { KeyService } from '../services/keyService';
-import { logger } from '../../server/logger';
+import { KeyService } from '../services/keyService.js';
+import { logger } from '../../server/logger.js';
 
 /**
  * @swagger

@@ -1,6 +1,6 @@
 // src\backend\license\utils\db.ts
 import { Sequelize } from 'sequelize';
-import dbConfig from '../../config/database'; // <-- A KÖZPONTI KONFIG IMPORTÁLÁSA
+import dbConfig from '../../config/database.js'; // <-- A KÖZPONTI KONFIG IMPORTÁLÁSA
 
 // A Sequelize-t a központi konfigurációs objektummal hozzuk létre
 export const sequelize = new Sequelize({

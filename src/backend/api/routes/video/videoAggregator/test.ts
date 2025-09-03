@@ -1,4 +1,4 @@
-import { videoAggregator, YouTubeFeedConfig, getAllChannelConfigs } from './videoAggregator';
+import { videoAggregator, YouTubeFeedConfig, getAllChannelConfigs } from './videoAggregator.js';
 
 /**
  * Test YouTube Video Aggregator

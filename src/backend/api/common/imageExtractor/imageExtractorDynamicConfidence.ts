@@ -6,8 +6,8 @@
  */
 
 // Importáljuk a szükséges típusokat
-import { RssItem } from './imageExtractorStrategies';
-import { SYNC_STRATEGIES } from './imageExtractorStrategies';
+import { RssItem } from './imageExtractorStrategies.js';
+import { SYNC_STRATEGIES } from './imageExtractorStrategies.js';
 
 /**
  * Feed-specifikus profil - Dinamikus konfidencia támogatáshoz
@@ -262,4 +262,4 @@ export function testDynamicConfidence() {
   console.log('Feed profil:', profile);
   
   return true;
-} 
+}

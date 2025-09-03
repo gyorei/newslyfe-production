@@ -8,28 +8,28 @@ A három backend fájl (Local/Continent/Country) tökéletesen konzisztens törz
 
 */
 import { Router } from 'express';
-import { SourcesService } from '../../../server/data/PostgreSQLDataAccess';
-import { logger } from '../../../server/logger';
+import { SourcesService } from '../../../server/data/PostgreSQLDataAccess.js';
+import { logger } from '../../../server/logger.js';
 
 // Egységes időkezelési modulok importálása
 import {
   validateMaxAgeHours,
   calculateCutoffTimestamp,
   filterNewsByAge,
-} from '../../utils/timeUtils';
+} from '../../utils/timeUtils.js';
 
 // Import az imageExtractor.ts-ből
-import { extractBestImage, extractBestImageUniversal } from '../../common/imageExtractor/imageExtractor';
+import { extractBestImage, extractBestImageUniversal } from '../../common/imageExtractor/imageExtractor.js';
 
 // Import a safeRssXmlParser.ts-ből
-import { parseXmlWithBomAndErrorLogging, extractRssItems } from '../../common/safeRssXmlParser/safeRssXmlParser';
+import { parseXmlWithBomAndErrorLogging, extractRssItems } from '../../common/safeRssXmlParser/safeRssXmlParser.js';
 
 // Axios import az RSS lekéréshez
 import axios from 'axios';
 
 // ÚJ IMPORTOK
-import { saveNewsToDatabase, NewsItemForDb } from '../../../common/db/newsStorage';
-import { filterProblematicSources } from '../../common/problematicSourcesFilter';
+import { saveNewsToDatabase, NewsItemForDb } from '../../../common/db/newsStorage.js';
+import { filterProblematicSources } from '../../common/problematicSourcesFilter.js';
 
 // ÁTHELYEZETT INTERFÉSZEK A COUNTRYSERVICE.TS-BŐL
 export interface SourceRow {
