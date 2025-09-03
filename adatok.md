@@ -1,4 +1,5 @@
-ok nézzük át !! PS C:\news3> ssh root@91.98.134.222
+
+PS C:\news3> ssh root@91.98.134.222
 root@91.98.134.222's password: 
 Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-71-generic x86_64)
 
@@ -6,11 +7,11 @@ Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-71-generic x86_64)
  * Management:     https://landscape.canonical.com
  * Support:        https://ubuntu.com/pro
 
- System information as of Wed Sep  3 10:54:58 PM UTC 2025
+ System information as of Wed Sep  3 11:12:03 PM UTC 2025
 
-  System load:  0.0               Processes:             146
+  System load:  0.0               Processes:             148
   Usage of /:   5.4% of 74.79GB   Users logged in:       1
-  Memory usage: 12%               IPv4 address for eth0: 91.98.134.222        
+  Memory usage: 13%               IPv4 address for eth0: 91.98.134.222        
   Swap usage:   0%                IPv6 address for eth0: 2a01:4f8:1c1a:ebfa::1
 
 
@@ -23,94 +24,22 @@ See https://ubuntu.com/esm or run: sudo pro status
 
 
 *** System restart required ***
-Last login: Wed Sep  3 21:09:20 2025 from 31.46.244.100
+Last login: Wed Sep  3 22:54:59 2025 from 31.46.244.100
 root@newslyfe-prod:~# cd /var/www/newslyfe
+root@newslyfe-prod:/var/www/newslyfe#
 root@newslyfe-prod:/var/www/newslyfe# git pull
-npm install
-npm run build:backend
-pm2 start ecosystem.config.cjsremote: Enumerating objects: 163, done.
-remote: Counting objects: 100% (163/163), done.
-remote: Compressing objects: 100% (21/21), done.
-remote: Total 83 (delta 52), reused 83 (delta 52), pack-reused 0 (from 0)       
-Unpacking objects: 100% (83/83), 11.12 KiB | 258.00 KiB/s, done.
+all
+npm run build:backend # Ennek most már a szerveren is hiba nélkül le kell futniapm2 start ecosystem.config.cjsremote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (1/1), done.
+remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 2.06 KiB | 703.00 KiB/s, done.
 From https://github.com/gyorei/newslyfe-production
-   288ee4c..d822554  master     -> origin/master
-Updating 288ee4c..d822554
+   d822554..b5980ac  master     -> origin/master
+Updating d822554..b5980ac
 Fast-forward
- adatok.md                                          | 123 +++++
- .../api/common/ErrorHandler/ErrorHandler.ts        |   0
- .../api/common/imageExtractor/imageExtractor.ts    |   4 +-
- .../imageExtractorDynamicConfidence.ts             |   6 +-
- .../common/imageExtractor/imageExtractorQuality.ts |   4 +-
- .../imageExtractor/imageExtractorWebScraping.ts    |   8 +-
- src/backend/api/common/imageExtractor/index.ts     |  28 +-
- src/backend/api/common/problematicSourcesFilter.ts |   2 +-
- .../r\303\251gisafeRssXmlParser.ts"                |   9 +-
- .../common/safeRssXmlParser/safeRssXmlParser.ts    |   2 +-
- src/backend/api/routes/Continent/Continent.ts      |  10 +-
- src/backend/api/routes/Country/Country.ts          |  14 +-
- ...\261r\303\251s-Implement\303\241l\303\241sa.md" | 132 -----
- src/backend/api/routes/Local/ETag.MD               | 155 ------
- src/backend/api/routes/Local/Local.ts              |  23 +-
- .../backend/api/routes/Local/fejleszt\303\251s.md" | 462 ------------------    
- .../routes/Local/local-jav\303\255t\303\241s.md"   | 440 -----------------     
- .../api/routes/Local/problematicSourcesFilter.ts   |   2 +-
- src/backend/api/routes/index.ts                    |  12 +-
- .../api/routes/video/videoAggregator/news.ts       |   5 +-
- .../api/routes/video/videoAggregator/test.ts       |   2 +-
- .../video/videoAggregator/videoAggregator.ts       |   2 +-
- .../routes/video/videoCountries/videoCountries.ts  |   2 +-
- src/backend/api/routes/webScraper/Jazeera-RSS.md   | 221 ---------
- .../api/routes/webScraper/alJazeeraScraper.ts      |   0
- src/backend/api/routes/webScraper/apNewsScraper.ts |   2 +-
- src/backend/api/routes/webScraper/consol-log.md    | 543 --------------------- 
- src/backend/api/routes/webScraper/html.md          |   7 -
- src/backend/api/routes/webScraper/webScraper.ts    |   4 +-
- .../routes/webScraper/\303\272j-kapar\303\263.md"  | 120 -----
- src/backend/api/terv.md                            |   0
- src/backend/api/utils/cacheUtils.ts                |   2 +-
- src/backend/api/utils/newsDeduplication.ts         |  36 --
- src/backend/api/utils/timeUtils.ts                 |   2 +-
- src/backend/auth/controllers/auth.controller.ts    |  11 +-
- src/backend/auth/index.ts                          |   2 +-
- src/backend/auth/middleware/auth.middleware.ts     |   2 +-
- src/backend/auth/models/user.model.ts              |   2 +-
- src/backend/auth/passport-setup.ts                 |   6 +-
- src/backend/auth/routes/auth.routes.ts             |   8 +-
- src/backend/common/db/newsStorage.ts               |   4 +-
- src/backend/license/controllers/adminController.ts |   2 +-
- .../license/controllers/recoveryController.ts      |   4 +-
- src/backend/license/index.ts                       |  66 ---
- src/backend/license/models/licenseModel.ts         |   2 +-
- src/backend/license/routes/adminRoutes.ts          |   6 +-
- src/backend/license/routes/recoveryRoutes.ts       |   2 +-
- src/backend/license/services/keyService.ts         |   4 +-
- .../license/tests/license.integration.test.ts      |   8 +-
- src/backend/license/utils/db.ts                    |   2 +-
- src/backend/search/Search.ts                       |   4 +-
- src/backend/server/PostgreSQLManager.ts            |   4 +-
- src/backend/server/app.ts                          |  23 +-
- src/backend/server/data/PostgreSQLDataAccess.ts    |   4 +-
- src/backend/server/jobs/cleanupScheduler.ts        |   4 +-
- src/backend/server/middleware/error-handler.ts     |   4 +-
- src/backend/server/test-app.ts                     |  16 +-
- src/backend/server/utils/startupProfiler.ts        |   2 +-
- .../tests/EGYSZER\305\260 MOCK VERZI\303\223.md"   |  98 ----
- 59 files changed, 255 insertions(+), 2419 deletions(-)
- delete mode 100644 src/backend/api/common/ErrorHandler/ErrorHandler.ts
- delete mode 100644 "src/backend/api/routes/Country/Fontoss\303\241gi-Szint-Sz\305\261r\303\251s-Implement\303\241l\303\241sa.md"
- delete mode 100644 src/backend/api/routes/Local/ETag.MD
- delete mode 100644 "src/backend/api/routes/Local/fejleszt\303\251s.md"
- delete mode 100644 "src/backend/api/routes/Local/local-jav\303\255t\303\241s.md"
- delete mode 100644 src/backend/api/routes/webScraper/Jazeera-RSS.md
- delete mode 100644 src/backend/api/routes/webScraper/alJazeeraScraper.ts       
- delete mode 100644 src/backend/api/routes/webScraper/consol-log.md
- delete mode 100644 src/backend/api/routes/webScraper/html.md
- delete mode 100644 "src/backend/api/routes/webScraper/\303\272j-kapar\303\263.md"
- delete mode 100644 src/backend/api/terv.md
- delete mode 100644 src/backend/api/utils/newsDeduplication.ts
- delete mode 100644 src/backend/license/index.ts
- delete mode 100644 "src/backend/tests/EGYSZER\305\260 MOCK VERZI\303\223.md"   
+ adatok.md | 178 ++++++++++++++++++++++++++++++++++++++++++++++---------------- 
+ 1 file changed, 134 insertions(+), 44 deletions(-)
 root@newslyfe-prod:/var/www/newslyfe# pm2 delete all
 [PM2] Applying action deleteProcessId on app [all](ids: [ 0 ])
 [PM2] [news-backend](0) ✓
@@ -142,7 +71,7 @@ npm warn deprecated eslint@8.57.1: This version is no longer supported. Please s
 > husky
 
 
-added 1948 packages, and audited 1949 packages in 24s
+added 1948 packages, and audited 1949 packages in 25s
 
 315 packages are looking for funding
   run `npm fund` for details
@@ -153,7 +82,7 @@ To address all issues (including breaking changes), run:
   npm audit fix --force
 
 Run `npm audit` for details.
-root@newslyfe-prod:/var/www/newslyfe# npm run build:backend
+root@newslyfe-prod:/var/www/newslyfe# npm run build:backend # Ennek most már a szerveren is hiba nélkül le kell futnia
 
 > react-tsx-news@1.0.0 build:backend
 > cross-env NODE_ENV=production tsc -p tsconfig.server.json
@@ -164,14 +93,14 @@ root@newslyfe-prod:/var/www/newslyfe# pm2 start ecosystem.config.cjs
 ┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
 │ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │ 
 ├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤ 
-│ 0  │ news-backend       │ cluster  │ 0    │ online    │ 0%       │ 39.9mb   │ 
+│ 0  │ news-backend       │ cluster  │ 0    │ online    │ 0%       │ 40.3mb   │ 
 └────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘ 
 root@newslyfe-prod:/var/www/newslyfe# # A szerveren, a pm2 start után várj pár másodpercet:
 root@newslyfe-prod:/var/www/newslyfe# pm2 status
 ┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
 │ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │ 
 ├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤ 
-│ 0  │ news-backend       │ cluster  │ 0    │ online    │ 0%       │ 61.7mb   │ 
+│ 0  │ news-backend       │ cluster  │ 0    │ online    │ 0%       │ 68.7mb   │ 
 └────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘ 
 root@newslyfe-prod:/var/www/newslyfe# curl http://localhost:3002/api/health
 curl: (7) Failed to connect to localhost port 3002 after 0 ms: Couldn't connect 
@@ -204,7 +133,17 @@ root@newslyfe-prod:/var/www/newslyfe# pm2 logs news-backend --lines 100
 0|news-bac | Error: Cannot find module '/var/www/newslyfe/dist/backend/server/config/environment' imported from /var/www/newslyfe/dist/backend/server/utils/startupProfiler.js
 0|news-bac |     at finalizeResolution (node:internal/modules/esm/resolve:283:11)
 0|news-bac |     at moduleResolve (node:internal/modules/esm/resolve:952:10)    
-0|news-bac |     at defaultResolve (node:internal/modules/esm/resolve:1188:11)
+0|news-bac |     at defaultResolve (node:internal/modules/esm/resolve:1188:11)  
+0|news-bac |     at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:642:12)
+0|news-bac |     at ModuleLoader.#cachedDefaultResolve (node:internal/modules/esm/loader:591:25)
+0|news-bac |     at ModuleLoader.resolve (node:internal/modules/esm/loader:574:38)
+0|news-bac |     at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:236:38)
+0|news-bac |     at ModuleJob._link (node:internal/modules/esm/module_job:130:49)
+0|news-bac | You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+0|news-bac | Error: Cannot find module '/var/www/newslyfe/dist/backend/search/searchConfig' imported from /var/www/newslyfe/dist/backend/search/Search.js       
+0|news-bac |     at finalizeResolution (node:internal/modules/esm/resolve:283:11)
+0|news-bac |     at moduleResolve (node:internal/modules/esm/resolve:952:10)    
+0|news-bac |     at defaultResolve (node:internal/modules/esm/resolve:1188:11)  
 0|news-bac |     at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:642:12)
 0|news-bac |     at ModuleLoader.#cachedDefaultResolve (node:internal/modules/esm/loader:591:25)
 0|news-bac |     at ModuleLoader.resolve (node:internal/modules/esm/loader:574:38)
