@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "NodeNext",
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "module": "ESNext",
+    "outDir": "./dist/backend",
+    "rootDir": "./src/backend",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "Bundler",
     "sourceMap": true,
     "declaration": false,
     "noEmit": false,
@@ -21,9 +21,7 @@
     }
   },
   "include": [
-    "src/backend/**/*",
-    "src/backend/**/*.json",
-    "src/backend/**/*.jsonc"
+    "src/backend/**/*"
   ],
   "exclude": ["node_modules", "dist", "src/frontend/**/*"]
 }
