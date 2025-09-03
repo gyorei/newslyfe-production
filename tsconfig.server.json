@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ESNext",
+    "module": "NodeNext",
     "outDir": "./dist/backend",
     "rootDir": "./src/backend",
     "strict": true,
@@ -9,7 +9,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "moduleResolution": "Bundler",
+    "moduleResolution": "nodenext",
     "sourceMap": true,
     "declaration": false,
     "noEmit": false,

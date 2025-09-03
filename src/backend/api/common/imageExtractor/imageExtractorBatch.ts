@@ -6,7 +6,7 @@
  * és teljesítmény optimalizációt nagy mennyiségű RSS item esetén.
  */
 
-import { extractImageWithDetails, ImageExtractionResult } from './imageExtractor';
+import { extractImageWithDetails, ImageExtractionResult } from './imageExtractor.js';
 
 // ✅ TELJESÍTMÉNY OPTIMALIZÁLÁS: Konkurrencia korlátozás
 const DEFAULT_CONCURRENCY_LIMIT = 5;

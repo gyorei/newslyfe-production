@@ -228,7 +228,7 @@ function generateUniqueId(): string {
 }
 
 // Adapter: NewsItem → ProcessedRssItem
-function newsItemToProcessedRssItem(item: NewsItem): import('../../common/problematicSourcesFilter').ProcessedRssItem {
+function newsItemToProcessedRssItem(item: NewsItem): import('../../common/problematicSourcesFilter.js').ProcessedRssItem {
   return {
     ...item,
     source: item.sourceName || '',

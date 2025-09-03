@@ -3,8 +3,7 @@
 import { Router } from 'express';
 import { db } from '../server/PostgreSQLManager.js';
 import { logger } from '../server/logger.js';
-
-import { SUPPORTED_LANGUAGES, isValidLanguage } from './searchConfig';
+import { SUPPORTED_LANGUAGES, isValidLanguage } from './searchConfig.js';
 
 const searchRouter = Router();
 const BACKEND_SEARCH_ENABLED = true;

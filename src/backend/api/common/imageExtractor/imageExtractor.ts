@@ -18,19 +18,19 @@ import {
   extractImageFromMediaContent,
   extractImageFromDescription,
   extractImageFromContentEncoded
-} from './imageExtractorStrategies';
+} from './imageExtractorStrategies.js';
 
 import { 
   extractImagesWithDOM,
   extractImageFromContentEncodedDOM,
   extractImageFromDescriptionDOM
-} from './imageExtractorDOM';
+} from './imageExtractorDOM.js';
 
 import { 
   analyzeImageQuality,
   calculateAttributeBasedConfidence,
   calculateImageQualityMetrics
-} from './imageExtractorQuality';
+} from './imageExtractorQuality.js';
 
 import { 
   calculateDynamicConfidence,
@@ -38,14 +38,14 @@ import {
   setFeedConfidenceOverrides,
   getFeedProfileStats,
   getCacheStats
-} from './imageExtractorDynamicConfidence';
+} from './imageExtractorDynamicConfidence.js';
 
 import { 
   extractImageFromWebPageWithFallback,
   extractImageFromNemzetiOnvedelem,
   extractImageFromWebPageUniversal,
   isAlJazeeraLogo
-} from './imageExtractorWebScraping';
+} from './imageExtractorWebScraping.js';
 
 import { 
   validateAndCleanImageUrl,

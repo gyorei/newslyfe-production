@@ -1,4 +1,3 @@
-
 PS C:\news3> ssh root@91.98.134.222
 root@91.98.134.222's password: 
 Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-71-generic x86_64)
@@ -7,11 +6,11 @@ Welcome to Ubuntu 24.04.3 LTS (GNU/Linux 6.8.0-71-generic x86_64)
  * Management:     https://landscape.canonical.com
  * Support:        https://ubuntu.com/pro
 
- System information as of Wed Sep  3 11:12:03 PM UTC 2025
+ System information as of Wed Sep  3 11:21:26 PM UTC 2025
 
-  System load:  0.0               Processes:             148
+  System load:  0.02              Processes:             145
   Usage of /:   5.4% of 74.79GB   Users logged in:       1
-  Memory usage: 13%               IPv4 address for eth0: 91.98.134.222        
+  Memory usage: 12%               IPv4 address for eth0: 91.98.134.222        
   Swap usage:   0%                IPv6 address for eth0: 2a01:4f8:1c1a:ebfa::1
 
 
@@ -24,22 +23,38 @@ See https://ubuntu.com/esm or run: sudo pro status
 
 
 *** System restart required ***
-Last login: Wed Sep  3 22:54:59 2025 from 31.46.244.100
+Last login: Wed Sep  3 23:12:04 2025 from 31.46.244.100
 root@newslyfe-prod:~# cd /var/www/newslyfe
 root@newslyfe-prod:/var/www/newslyfe#
-root@newslyfe-prod:/var/www/newslyfe# git pull
-all
-npm run build:backend # Ennek most már a szerveren is hiba nélkül le kell futniapm2 start ecosystem.config.cjsremote: Enumerating objects: 5, done.
+root@newslyfe-prod:/var/www/newslyfe# # Letölti a legfrissebb állapotot
+root@newslyfe-prod:/var/www/newslyfe# git fetch origin
+ változást és a szerveren lévő mappát
+# PONTOSAN olyanná teszi, mint ami a GitHubon van.
+git reset --hard origin/master
+
+# Tiszta lappal indulunk
+pm2 delete all
+rm -rf dist/ node_modules/
+
+# Telepítés és build a HELYES kóddal
+npm install
+npm run build:backend
+
+# Indítás
+pm2 start ecosystem.config.cjsremote: Enumerating objects: 5, done.
 remote: Counting objects: 100% (5/5), done.
 remote: Compressing objects: 100% (1/1), done.
 remote: Total 3 (delta 2), reused 3 (delta 2), pack-reused 0 (from 0)
-Unpacking objects: 100% (3/3), 2.06 KiB | 703.00 KiB/s, done.
+Unpacking objects: 100% (3/3), 678 bytes | 339.00 KiB/s, done.
 From https://github.com/gyorei/newslyfe-production
-   d822554..b5980ac  master     -> origin/master
-Updating d822554..b5980ac
-Fast-forward
- adatok.md | 178 ++++++++++++++++++++++++++++++++++++++++++++++---------------- 
- 1 file changed, 134 insertions(+), 44 deletions(-)
+   b5980ac..d600f51  master     -> origin/master
+root@newslyfe-prod:/var/www/newslyfe#
+root@newslyfe-prod:/var/www/newslyfe# # Eldobja az ÖSSZES helyi változást és a szerveren lévő mappát
+root@newslyfe-prod:/var/www/newslyfe# # PONTOSAN olyanná teszi, mint ami a GitHubon van.
+root@newslyfe-prod:/var/www/newslyfe# git reset --hard origin/master
+HEAD is now at d600f51 CHORE: Final verification of all ESM imports
+root@newslyfe-prod:/var/www/newslyfe#
+root@newslyfe-prod:/var/www/newslyfe# # Tiszta lappal indulunk
 root@newslyfe-prod:/var/www/newslyfe# pm2 delete all
 [PM2] Applying action deleteProcessId on app [all](ids: [ 0 ])
 [PM2] [news-backend](0) ✓
@@ -47,6 +62,8 @@ root@newslyfe-prod:/var/www/newslyfe# pm2 delete all
 │ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │ 
 └────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘ 
 root@newslyfe-prod:/var/www/newslyfe# rm -rf dist/ node_modules/
+root@newslyfe-prod:/var/www/newslyfe# 
+root@newslyfe-prod:/var/www/newslyfe# # Telepítés és build a HELYES kóddal
 root@newslyfe-prod:/var/www/newslyfe# npm install
 npm warn deprecated @types/helmet@4.0.0: This is a stub types definition. helmet provides its own type definitions, so you do not need this installed.
 npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
@@ -71,7 +88,7 @@ npm warn deprecated eslint@8.57.1: This version is no longer supported. Please s
 > husky
 
 
-added 1948 packages, and audited 1949 packages in 25s
+added 1948 packages, and audited 1949 packages in 23s
 
 315 packages are looking for funding
   run `npm fund` for details
@@ -82,25 +99,26 @@ To address all issues (including breaking changes), run:
   npm audit fix --force
 
 Run `npm audit` for details.
-root@newslyfe-prod:/var/www/newslyfe# npm run build:backend # Ennek most már a szerveren is hiba nélkül le kell futnia
+root@newslyfe-prod:/var/www/newslyfe# npm run build:backend
 
 > react-tsx-news@1.0.0 build:backend
 > cross-env NODE_ENV=production tsc -p tsconfig.server.json
 
+root@newslyfe-prod:/var/www/newslyfe#
+root@newslyfe-prod:/var/www/newslyfe# # Indítás
 root@newslyfe-prod:/var/www/newslyfe# pm2 start ecosystem.config.cjs
 [PM2][WARN] Applications news-backend not running, starting...
 [PM2] App [news-backend] launched (1 instances)
 ┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
 │ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │ 
 ├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤ 
-│ 0  │ news-backend       │ cluster  │ 0    │ online    │ 0%       │ 40.3mb   │ 
+│ 0  │ news-backend       │ cluster  │ 0    │ online    │ 0%       │ 39.9mb   │ 
 └────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘ 
-root@newslyfe-prod:/var/www/newslyfe# # A szerveren, a pm2 start után várj pár másodpercet:
 root@newslyfe-prod:/var/www/newslyfe# pm2 status
-┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
+alth┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
 │ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │ 
 ├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤ 
-│ 0  │ news-backend       │ cluster  │ 0    │ online    │ 0%       │ 68.7mb   │ 
+│ 0  │ news-backend       │ cluster  │ 0    │ online    │ 0%       │ 66.8mb   │ 
 └────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘ 
 root@newslyfe-prod:/var/www/newslyfe# curl http://localhost:3002/api/health
 curl: (7) Failed to connect to localhost port 3002 after 0 ms: Couldn't connect 
@@ -131,6 +149,16 @@ root@newslyfe-prod:/var/www/newslyfe# pm2 logs news-backend --lines 100
 0|news-bac |     at ModuleJob._link (node:internal/modules/esm/module_job:130:49)
 0|news-bac | You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
 0|news-bac | Error: Cannot find module '/var/www/newslyfe/dist/backend/server/config/environment' imported from /var/www/newslyfe/dist/backend/server/utils/startupProfiler.js
+0|news-bac |     at finalizeResolution (node:internal/modules/esm/resolve:283:11)
+0|news-bac |     at moduleResolve (node:internal/modules/esm/resolve:952:10)    
+0|news-bac |     at defaultResolve (node:internal/modules/esm/resolve:1188:11)  
+0|news-bac |     at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:642:12)
+0|news-bac |     at ModuleLoader.#cachedDefaultResolve (node:internal/modules/esm/loader:591:25)
+0|news-bac |     at ModuleLoader.resolve (node:internal/modules/esm/loader:574:38)
+0|news-bac |     at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:236:38)
+0|news-bac |     at ModuleJob._link (node:internal/modules/esm/module_job:130:49)
+0|news-bac | You have triggered an unhandledRejection, you may have forgotten to catch a Promise rejection:
+0|news-bac | Error: Cannot find module '/var/www/newslyfe/dist/backend/search/searchConfig' imported from /var/www/newslyfe/dist/backend/search/Search.js       
 0|news-bac |     at finalizeResolution (node:internal/modules/esm/resolve:283:11)
 0|news-bac |     at moduleResolve (node:internal/modules/esm/resolve:952:10)    
 0|news-bac |     at defaultResolve (node:internal/modules/esm/resolve:1188:11)  

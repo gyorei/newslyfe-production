@@ -44,7 +44,7 @@ import {
   generateETag,
   isETagMatching,
   CACHE_TIMES,
-} from '../../utils/cacheUtils';
+} from '../../utils/cacheUtils.js';
 import { SourcesService } from '../../../server/data/PostgreSQLDataAccess.js';
 import axios from 'axios';
 

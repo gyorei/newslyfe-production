@@ -9,8 +9,8 @@
 import * as cheerio from 'cheerio';
 
 // Importáljuk a szükséges típusokat és segédfüggvényeket
-import { RssItem } from './imageExtractorStrategies';
-import { validateAndCleanImageUrl, decodeHtmlEntities } from './imageExtractorUtils';
+import { RssItem } from './imageExtractorStrategies.js';
+import { validateAndCleanImageUrl, decodeHtmlEntities } from './imageExtractorUtils.js';
 
 /**
  * Robusztus HTML tisztítás és DOM parser

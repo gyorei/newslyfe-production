@@ -32,7 +32,7 @@ router.get('/google/callback',
       return res.redirect(`${frontendUrl}/login-failure`);
     }
     // Explicit konverzió a saját User típusra
-    const user = req.user as import('../models/user.model').User;
+    const user = req.user as import('../models/user.model.js').User;
     const token = issueJwtForUser(user);
     const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
     res.redirect(`${frontendUrl}/login-success?token=${token}`);
