@@ -5,7 +5,7 @@
 // ===================================================================
 // A környezeti változókat a 'dotenv-cli' tölti be a package.json scriptben.
 
-import { startupProfiler } from './utils/startupProfiler';
+import { startupProfiler } from './utils/startupProfiler.js';
 startupProfiler.init();
 startupProfiler.start('Total Startup Time');
 
@@ -13,12 +13,14 @@ startupProfiler.start('Total Startup Time');
 //  ALKALMAZÁS IMPORTÁLÁSA ÉS INDÍTÁSA
 // ===================================================================
 // Most, hogy a process.env be van állítva, az importok már helyesen fognak működni.
-import app, { createApp } from './app';
-import { startServer } from './server';
-import { db } from './PostgreSQLManager';
-import { logger } from './logger';
-import * as config from './config/environment';
-import { startCleanupJob } from './jobs/cleanupScheduler';
+
+
+import app, { createApp } from './app.js';
+import { startServer } from './server.js';
+import { db } from './PostgreSQLManager.js';
+import { logger } from './logger.js';
+import * as config from './config/environment.js';
+import { startCleanupJob } from './jobs/cleanupScheduler.js';
 
 // Exportáljuk a szükséges komponenseket
 export { app, createApp, startServer, db, logger, config };
