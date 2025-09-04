@@ -28,27 +28,11 @@ export const useTheme = () => {
   const [currentTheme, setCurrentTheme] = useState<Theme>('light');
   const [isInitialized, setIsInitialized] = useState(false);
 
-  // Téma váltás függvény
+  // Téma váltás függvény (architektúrálisan helyes megoldás)
   const changeTheme = useCallback((newTheme: Theme) => {
     if (newTheme === currentTheme) return;
 
-    const appElement = document.getElementById('app-container');
-    if (!appElement) return;
-
-    // Régi téma osztályok eltávolítása
-    appElement.classList.remove('dark');
-    appElement.removeAttribute('data-theme');
-
-    // Új téma alkalmazása
-    if (newTheme === 'dark') {
-      appElement.classList.add('dark');
-    } else if (newTheme === 'pro-blue') {
-      appElement.classList.add('dark');
-      appElement.setAttribute('data-theme', 'pro-blue');
-    }
-    // 'light' esetén nincs extra osztály
-
-    // Állapot frissítése
+    // Állapot frissítése - a DOM manipulációt a komponens végzi
     setCurrentTheme(newTheme);
     
     // localStorage mentés

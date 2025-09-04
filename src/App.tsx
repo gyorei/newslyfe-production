@@ -21,7 +21,7 @@ import { initializePremiumManager } from './components/Utility/Premium/premiumMa
 import { useStorage } from './hooks/useStorage';
 import { AppProviders } from './providers/AppProviders';
 import { useAppSettings } from './hooks/app/useAppSettings'; // ✅ JAVÍTOTT import útvonal
-import { useTheme } from './hooks/app/useTheme'; // ✅ ÚJ: useTheme hook
+import { useTheme, Theme } from './hooks/app/useTheme'; // ✅ ÚJ: useTheme hook
 import { useAppPanels } from './hooks/app/useAppPanels';
 import { useAppStorage } from './hooks/app/useAppStorage';
 import { useAppTabs } from './hooks/app/useAppTabs';
@@ -34,6 +34,15 @@ import { ServerStatus } from './components/ServerStatus/ServerStatus';
 // 🎥 AD SENSE SCRIPT LOADING - GOOGLE SZABÁLYOK!
 // ========================================
 import { loadAdSenseScript } from './components/Ad/adConfig';
+
+// Helper függvények a téma CSS osztályokhoz
+const getThemeClassName = (theme: Theme): string => {
+  return theme === 'light' ? '' : 'dark';
+};
+
+const getThemeDataAttributes = (theme: Theme) => {
+  return theme === 'pro-blue' ? { 'data-theme': 'pro-blue' } : {};
+};
 
 function App() {
   // 1. MINDEN HOOK A KOMPONENS TETEJÉN!
@@ -222,7 +231,8 @@ function App() {
         <ServerStatus />
         <div
           id="app-container"
-          className={`app ${theme} ${showScrollbars ? '' : 'hide-scrollbars'}`}
+          className={`app ${getThemeClassName(currentTheme)} ${showScrollbars ? '' : 'hide-scrollbars'}`}
+          {...getThemeDataAttributes(currentTheme)}
         >
           <AppProviders>
             {/* ✅ Stabilizált Header props */}
