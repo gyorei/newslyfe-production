@@ -202,7 +202,7 @@ export const AdSenseLayout: React.FC<AdSenseLayoutProps> = ({
         {/* ========================================
          * 💼 AD SENSE UNIT - GOOGLE SZABÁLYOK!
          * ======================================== */}
-        {isVisible && shouldShowAdSense && import.meta.env.VITE_ADSENSE_ENABLED !== 'false' ? (
+        {isVisible && shouldShowAdSense ? (
           <div className={styles.adSenseContainer}>
             <AdSenseUnit
               slotId={slotId}

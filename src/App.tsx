@@ -51,41 +51,6 @@ function App() {
     const hideStartPage = localStorage.getItem('hideStartPage') === 'true';
     return !hideStartPage;
   });
-
-  // 🛡️ AdSense Error Handler - Megakadályozza a scroll interference-t
-  useEffect(() => {
-    const handleAdSenseError = (event: ErrorEvent) => {
-      // AdSense/Google Ad hibák elfogása
-      if (
-        event.filename?.includes('sodar') || 
-        event.filename?.includes('adtrafficquality') ||
-        event.message?.includes('adtrafficquality') ||
-        event.message?.includes('postMessage')
-      ) {
-        console.warn('🚨 AdSense error caught and suppressed:', event.message);
-        event.preventDefault();
-        event.stopPropagation();
-        return false;
-      }
-    };
-
-    const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
-      // AdSense Promise rejection hibák
-      if (event.reason?.toString().includes('adtrafficquality')) {
-        console.warn('🚨 AdSense promise rejection caught and suppressed');
-        event.preventDefault();
-        return false;
-      }
-    };
-
-    window.addEventListener('error', handleAdSenseError, true);
-    window.addEventListener('unhandledrejection', handleUnhandledRejection, true);
-
-    return () => {
-      window.removeEventListener('error', handleAdSenseError, true);
-      window.removeEventListener('unhandledrejection', handleUnhandledRejection, true);
-    };
-  }, []);
   const { syncInfo, syncNow, state } = useStorage();
   const { storageInitialized, storageError: _storageError } = useAppStorage();
   const { theme, toggleTheme, showScrollbars, toggleScrollbars } = useAppSettings({ storageInitialized });

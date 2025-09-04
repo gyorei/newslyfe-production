@@ -22,11 +22,6 @@ export const AdSenseUnit: React.FC<AdSenseUnitProps> = ({
   const insRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    // 🚨 TEMPORARILY DISABLED: AdSense causing scroll interference
-    console.warn('⚠️ AdSense temporarily disabled due to scroll blocking issue');
-    return;
-    
-    /* ORIGINAL CODE - RE-ENABLE AFTER FIX:
     if (typeof window === 'undefined') return;
     if (!window.adsbygoogle) window.adsbygoogle = [];
 
@@ -39,7 +34,6 @@ export const AdSenseUnit: React.FC<AdSenseUnitProps> = ({
         console.warn('AdSense load failed', e);
       }
     }
-    */
   }, [slotId, clientId, format, responsive]);
 
   return (
