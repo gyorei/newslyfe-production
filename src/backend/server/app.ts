@@ -122,12 +122,13 @@ let expressSession: SessionMiddleware | null = null;
 })();
 
 // --- LICENC MODUL INICIALIZÁLÁSA ÉS BEKÖTÉSE ---
-const privateKeyPathEnv = process.env.LICENSE_PRIVATE_KEY_PATH;
-if (!privateKeyPathEnv) {
-  logger.error('FATAL ERROR: LICENSE_PRIVATE_KEY_PATH is not defined. Cannot start license service.');
-  process.exit(1); // Azonnali leállás, ha hiányzik a kritikus környezeti változó!
-}
-const privateKeyPath: string = privateKeyPathEnv;
+// TODO: License service temporarily disabled for deployment
+// const privateKeyPathEnv = process.env.LICENSE_PRIVATE_KEY_PATH;
+// if (!privateKeyPathEnv) {
+//   logger.error('FATAL ERROR: LICENSE_PRIVATE_KEY_PATH is not defined. Cannot start license service.');
+//   process.exit(1); // Azonnali leállás, ha hiányzik a kritikus környezeti változó!
+// }
+// const privateKeyPath: string = privateKeyPathEnv;
 
 async function initLicenseModules(app: express.Application, rateLimit: RateLimitMiddleware | null) {
   try {
@@ -326,7 +327,8 @@ export async function createApp(): Promise<express.Application> {
   app.use('/api/auth', authRouter);
 
   // --- LICENC MODUL ASZINKRON INICIALIZÁLÁSA ---
-  await initLicenseModules(app, rateLimit);
+  // TODO: License service temporarily disabled for deployment
+  // await initLicenseModules(app, rateLimit);
 
   // ==========================================
   // SWAGGER / OPENAPI DOKUMENTÁCIÓ BEÁLLÍTÁSA
