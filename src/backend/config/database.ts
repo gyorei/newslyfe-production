@@ -16,6 +16,15 @@ const environmentConfig = {
   host: process.env.DB_HOST,
   port: Number(process.env.DB_PORT),
   dialect: 'postgres',
+  // TLS biztonsági beállítás produkciós környezethez
+  ...(process.env.NODE_ENV === 'production' && {
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false  // self-signed cert támogatás
+      }
+    }
+  }),
   logging: process.env.NODE_ENV === 'development' ? console.log : false, // Fejlesztéskor logolhatunk
 };
 

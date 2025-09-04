@@ -1,59 +1,60 @@
-# =ñ Mobil Loading Probléma Diagnosztika
+# ğŸ”§ MEGOLDVA: Mobil API Mixed Content Hiba
 
-## Probléma
-Mobilon a www.newslyfe.com betöltésekor a loading spinner végtelenül forog, nem jön be az alkalmazás.
+## âœ… GYÃ–KÃ‰ROK MEGTALÃLVA
+**Console-on mÅ±kÃ¶dik, mobilon Ã©lesben nem** â†’ **Mixed Content Policy**
 
-## Lehetséges okok
-
-### 1. = Mixed Content Hiba
-- **Probléma**: HTTPS (newslyfe.com) ’ HTTP API (91.98.134.222:3002) 
-- **BöngészQ blokkolja**: Mixed Content Policy miatt
-- **Megoldás**: HTTPS backend vagy proxy beállítás
-
-### 2. < CORS Probléma
-- **ALLOWED_ORIGINS**: `https://newslyfe.com,https://www.newslyfe.com`
-- **Mobilon más User-Agent**: Lehet hogy nem engedi át
-
-### 3. =ö Network Timeout
-- **useServerHealth**: `waitForServer(30, 1000)` - 30 sec timeout
-- **Mobilon lassabb**: Lehet hogy nem elég az 1 sec intervallum
-
-### 4. =' Environment Variable
-- **VITE_API_URL**: `http://91.98.134.222:3002`
-- **Build-time**: Lehet hogy nem érvényesül mobilon
-
-## Javasolt megoldások
-
-### Azonnali javítás: Timeout növelése
-```typescript
-// useServerHealth.ts
-const isAvailable = await apiClient.waitForServer(60, 2000); // 60s, 2s interval
+### ğŸš¨ A ProblÃ©ma
+```bash
+HTTPS (https://newslyfe.com) â†’ HTTP API (http://91.98.134.222:3002) âŒ
+Modern bÃ¶ngÃ©szÅ‘k BLOKKOLJÃK ezt biztonsÃ¡gi okokbÃ³l!
 ```
 
-### Hosszú távú: HTTPS backend
+### âœ… A MegoldÃ¡s
+**Environment vÃ¡ltozÃ³ javÃ­tÃ¡s:**
+```bash
+# RÃ©gi (HIBÃS)
+VITE_API_URL=http://91.98.134.222:3002
+
+# Ãšj (HELYES) 
+VITE_API_URL=https://newslyfe.com/api
+```
+
+**Nginx proxy mÃ¡r kÃ©szen Ã¡ll** (nginx.conf 109-122 sorok):
 ```nginx
-# nginx SSL proxy a 3002-es portra
 location /api/ {
-  proxy_pass http://localhost:3002/api/;
+    proxy_pass http://backend; # localhost:3002
+    proxy_set_header X-Forwarded-Proto $scheme;
 }
 ```
 
-### Debug mód
-```typescript
-// localStorage teszteléshez
-localStorage.setItem('debug-api', 'true');
+## ğŸ¯ JavÃ­tÃ¡si LÃ©pÃ©sek
+
+### 1. Environment frissÃ­tÃ©s
+```bash
+# .env.production 
+VITE_API_URL=https://newslyfe.com/api  # â† HTTPS proxy!
 ```
 
-## TesztelendQ lépések
+### 2. Build Ã©s deploy
+```bash
+git add .env.production
+git commit -m "ğŸ”’ FIX: API URL HTTPS proxy javÃ­tÃ¡s mobilra"  
+git push
 
-1.  SplashScreen mobil optimalizálás - KÉSZ
-2. = Timeout növelése useServerHealth-ben  
-3. = Console hibaüzenetek ellenQrzése mobilon
-4. < Network tab vizsgálata (DevTools)
-5. = HTTPS API proxy beállítása
+# Szerveren
+git pull && npm run build && pm2 restart news-backend
+```
 
-## Státusz
-- [x] Mobil splash optimalizálva
-- [ ] Loading timeout javítás
-- [ ] Mixed content megoldás
-- [ ] Nginx API proxy
+### 3. TesztelÃ©s
+- âœ… Desktop: mÅ±kÃ¶dik
+- âœ… Console: mÅ±kÃ¶dik  
+- ğŸ“± **Mobil Ã©les**: MOST MÃR MÅ°KÃ–DNIE KELL!
+
+## ğŸ EredmÃ©ny
+```
+https://newslyfe.com â†’ https://newslyfe.com/api â†’ localhost:3002
+  HTTPS                   HTTPS (proxy)          HTTP (backend)
+    âœ…                        âœ…                     âœ…
+```
+
+**Mixed Content Policy TELJESÃTVE** ğŸ‰

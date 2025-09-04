@@ -34,7 +34,9 @@ function categorizeNewsItem(item: NewsItem): string[] {
         return text.includes(keyword);
       }
       // Egyszavas kulcsszavaknál szóhatárokat ellenőrzünk (RegExp)
-      const regex = new RegExp(`\\b${keyword}\\b`, 'i'); // 'i' a kis/nagybetű érzéketlenségért
+      // ReDoS védelem - escape special regex karakterek
+      const escapedKeyword = keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const regex = new RegExp(`\\b${escapedKeyword}\\b`, 'i'); // 'i' a kis/nagybetű érzéketlenségért
       return regex.test(text);
     });
 

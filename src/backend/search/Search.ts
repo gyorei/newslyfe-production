@@ -69,15 +69,22 @@ searchRouter.get('/', async (req, res) => {
       logger.info(`[Search] Globális keresés indul: "${searchQuery}"`);
       const queryParams = [searchQuery];
       
-      const searchBlocks = Object.entries(SUPPORTED_LANGUAGES).map(([key, { config, vector }]) => `
+      // SQL Injection védelem - whitelist validáció a konfigurációból
+      const validLanguages = Object.keys(SUPPORTED_LANGUAGES);
+      const safeSearchBlocks = validLanguages.map(key => {
+        const langConfig = SUPPORTED_LANGUAGES[key];
+        if (!langConfig) throw new Error(`Invalid language: ${key}`);
+        
+        return `
         (SELECT n.id, n.title, n.url, n.description, n.published_at, n.source_slug, n.country_code, n.image_url,
                 n.source_name, n.continent, n.orszag,  -- ÚJ MEZŐK
                 '${key}' as match_language,
-                ts_rank_cd(n.${vector}, websearch_to_tsquery('${config}', $1)) as relevance
+                ts_rank_cd(n.${langConfig.vector}, websearch_to_tsquery('${langConfig.config}', $1)) as relevance
          FROM public.news n
-         WHERE n.${vector} @@ websearch_to_tsquery('${config}', $1)
+         WHERE n.${langConfig.vector} @@ websearch_to_tsquery('${langConfig.config}', $1)
            AND n.published_at >= NOW() - INTERVAL '24 hours')
-      `).join(' UNION ALL ');
+        `;
+      }).join(' UNION ALL ');
       
       const countQuery = `
         WITH language_counts AS (
@@ -94,7 +101,7 @@ searchRouter.get('/', async (req, res) => {
       `;
       
       const sqlQuery = `
-        SELECT * FROM (${searchBlocks}) as combined_results
+        SELECT * FROM (${safeSearchBlocks}) as combined_results
         ORDER BY relevance DESC, published_at DESC
       `;
 

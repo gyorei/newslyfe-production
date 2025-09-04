@@ -44,7 +44,7 @@ class Logger implements SimpleLogger {
       return;
     }
 
-    console.debug(`[DEBUG] ${message}`, ...meta);
+    console.debug('[DEBUG]', message, ...meta);
   }
 
   /**

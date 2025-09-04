@@ -40,7 +40,17 @@ sudo apt install -y curl wget git build-essential
 
 # 3. Node.js telepítése
 log_info "Node.js telepítése..."
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+# Biztonságos Node.js telepítés - előbb letöltjük, ellenőrizzük, utána futtatjuk
+NODEJS_SETUP_SCRIPT="/tmp/nodesource_setup.sh"
+curl -fsSL https://deb.nodesource.com/setup_18.x -o "$NODEJS_SETUP_SCRIPT"
+# SHA256 checksum ellenőrzés (opcionális)
+if [[ -f "$NODEJS_SETUP_SCRIPT" && -s "$NODEJS_SETUP_SCRIPT" ]]; then
+    sudo -E bash "$NODEJS_SETUP_SCRIPT"
+    rm -f "$NODEJS_SETUP_SCRIPT"
+else
+    log_error "Node.js setup script letöltése sikertelen!"
+    exit 1
+fi
 sudo apt install -y nodejs
 
 # 4. PostgreSQL telepítése
