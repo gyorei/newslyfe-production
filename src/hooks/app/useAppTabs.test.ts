@@ -1,7 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { useAppTabs } from './useAppTabs';
-import type { Tab } from '../../types';
 
 describe('useAppTabs', () => {
   // Mock localStorage

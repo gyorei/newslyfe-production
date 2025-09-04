@@ -8,7 +8,7 @@ import express from 'express';
 // ========================================
 // 🎥 VIDEO AGGREGATOR IMPORT - JAVÍTOTT ÚTVONAL!
 // ========================================
-import { videoAggregator, getAllChannelConfigs, getChannelConfigsByCountry } from './videoAggregator.js';
+import { videoAggregator, getChannelConfigsByCountry } from './videoAggregator.js';
 import { videoData } from '../../videoData/videoData.js';
 const router = express.Router();
 
@@ -87,7 +87,7 @@ router.get('/news', async (req, res) => {
 
     // console.log(`[Video API] 🎥 Konfiguráció: maxVideos=${maxVideos}, maxAgeDays=${maxAgeDays}`);
 
-    let channelConfigs = getChannelConfigsByCountry(country, maxVideos, maxAgeDays);
+    const channelConfigs = getChannelConfigsByCountry(country, maxVideos, maxAgeDays);
 
     // console.log('[Video API] country param:', country);
     // console.log('[Video API] Lekért channelConfigs:', channelConfigs.map(c => ({ name: c.channelName, id: c.channelId, maxVideos: c.maxVideos, maxAgeDays: c.maxAgeDays })));

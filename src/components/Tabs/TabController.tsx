@@ -116,14 +116,13 @@ const TabControllerComponent: React.FC<TabControllerProps> = ({
   }, [singleTabModes, activeTabId]);
 //////////////////////////////////////////////////////////
   const renderDecisions = useMemo(() => {
-    const decisions = {
+    // console.log('[TabController] renderDecisions:', decisions, 'tabMode:', tabMode, 'activeTabId:', activeTabId);
+    return {
       shouldRenderSingleTabMode: currentTabSingleMode.active && currentTabSingleMode.results.length > 0,
       shouldRenderNewTab: isNewTab,
       shouldRenderSearchTab: tabMode === 'search' && !!searchTerm,
       shouldRenderVideoTab: tabMode === 'video',
     };
-    // console.log('[TabController] renderDecisions:', decisions, 'tabMode:', tabMode, 'activeTabId:', activeTabId);
-    return decisions;
   }, [
     currentTabSingleMode.active,
     currentTabSingleMode.results.length,

@@ -57,7 +57,7 @@ import {
 
 // ÚJ: Közös modulok importálása
 import { parseXmlWithBomAndErrorLogging, extractRssItems } from '../../common/safeRssXmlParser/safeRssXmlParser.js';
-import { extractBestImage, extractBestImageUniversal } from '../../common/imageExtractor/imageExtractor.js';
+import { extractBestImageUniversal } from '../../common/imageExtractor/imageExtractor.js';
 // import { deduplicateNews } from '../../utils/newsDeduplication';
 
 // Konstansok a duplikált stringek elkerülésére (ESLint/SonarJS javaslatok alapján)

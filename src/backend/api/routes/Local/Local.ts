@@ -26,7 +26,7 @@ import {
 } from '../../utils/timeUtils.js';
 
 // ÚJ: Import az imageExtractor.ts-ből
-import { extractBestImage, extractBestImageUniversal } from '../../common/imageExtractor/imageExtractor.js';
+import { extractBestImageUniversal } from '../../common/imageExtractor/imageExtractor.js';
 
 // ÚJ: Import a problémás források szűrőjéből
 import { filterProblematicSources } from '../../common/problematicSourcesFilter.js';

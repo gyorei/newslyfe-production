@@ -271,12 +271,10 @@ export const VideoCard: React.FC<VideoCardProps> = ({ video, onToggleMenu, onVid
 const MemoizedVideoCard = React.memo(VideoCard, (prevProps, nextProps) => {
   // Értékalapú összehasonlítás: csak akkor renderel, ha a video id vagy videoId tényleg változik
   const videoIdChanged = (prevProps.video.id || prevProps.video.videoId) !== (nextProps.video.id || nextProps.video.videoId);
-  const propsAreEqual =
-    !videoIdChanged &&
+  return !videoIdChanged &&
     prevProps.modalMode === nextProps.modalMode &&
     prevProps.onVideoClick === nextProps.onVideoClick &&
     prevProps.onToggleMenu === nextProps.onToggleMenu;
-  return propsAreEqual;
 });
 
 export default MemoizedVideoCard;

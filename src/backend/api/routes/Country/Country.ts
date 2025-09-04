@@ -19,7 +19,7 @@ import {
 } from '../../utils/timeUtils.js';
 
 // Import az imageExtractor.ts-ből
-import { extractBestImage, extractBestImageUniversal } from '../../common/imageExtractor/imageExtractor.js';
+import { extractBestImageUniversal } from '../../common/imageExtractor/imageExtractor.js';
 
 // Import a safeRssXmlParser.ts-ből
 import { parseXmlWithBomAndErrorLogging, extractRssItems } from '../../common/safeRssXmlParser/safeRssXmlParser.js';

@@ -56,7 +56,6 @@ import { startupProfiler } from './utils/startupProfiler.js';
 // Import SessionOptions for proper typing
 import { SessionOptions } from 'express-session';
 import path from 'path';
-import fs from 'fs';
 
 // Swagger/OpenAPI integráció
 import swaggerUi from 'swagger-ui-express';
@@ -70,10 +69,6 @@ import apiRoutes from '../api/routes/index.js';
 // ==========================================
 import searchRouter from '../search/Search.js';
 import authRouter from '../auth/routes/auth.routes.js';
-import { createAdminRoutes } from '../license/routes/adminRoutes.js';
-import { createRecoveryRoutes } from '../license/routes/recoveryRoutes.js';
-import { KeyService } from '../license/services/keyService.js';
-import { RecoveryController } from '../license/controllers/recoveryController.js';
 // Middleware típusok definiálása a biztonságosabb típusozás érdekében
 type HelmetMiddleware = (options?: Record<string, unknown>) => RequestHandler;
 type CompressionMiddleware = (options?: Record<string, unknown>) => RequestHandler;

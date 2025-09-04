@@ -21,15 +21,12 @@ import {
 } from './imageExtractorStrategies.js';
 
 import { 
-  extractImagesWithDOM,
-  extractImageFromContentEncodedDOM,
-  extractImageFromDescriptionDOM
+  extractImagesWithDOM
 } from './imageExtractorDOM.js';
 
 import { 
   analyzeImageQuality,
-  calculateAttributeBasedConfidence,
-  calculateImageQualityMetrics
+  calculateAttributeBasedConfidence
 } from './imageExtractorQuality.js';
 
 import { 
@@ -48,12 +45,7 @@ import {
 } from './imageExtractorWebScraping.js';
 
 import { 
-  validateAndCleanImageUrl,
-  isTooSmallImage,
-  cleanCDATA,
-  decodeHtmlEntities,
-  detectLogoGlobally,
-  robustHtmlCleaner
+  validateAndCleanImageUrl
 } from './imageExtractorUtils.js';
 
 // Batch feldolgozás importálása

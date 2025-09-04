@@ -3,7 +3,6 @@
  * API végpont definíciók a News alkalmazáshoz
  */
 
-import type { YouTubeFeedConfig } from '../backend/api/routes/video/videoAggregator/videoAggregator';
 // import { videoChannelsByLetter, type CountryVideoChannels } from '../backend/api/routes/videoData/videoData';
 
 export const endpoints = {
