@@ -1,3 +1,5 @@
+require('dotenv').config({ path: './.env.production' });
+
 module.exports = {
   apps: [{
     name: 'news-backend',
@@ -7,6 +9,12 @@ module.exports = {
     cwd: process.cwd(),
     env: {
       NODE_ENV: 'production',
+      DB_HOST: process.env.DB_HOST,
+      DB_PORT: process.env.DB_PORT,
+      DB_NAME: process.env.DB_NAME,
+      DB_USER: process.env.DB_USER,
+      DB_PASSWORD: process.env.DB_PASSWORD,
+      ALLOWED_ORIGINS: process.env.ALLOWED_ORIGINS,
     },
     max_memory_restart: '300M',
     // Stabilítási beállítások:
