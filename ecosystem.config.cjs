@@ -15,6 +15,7 @@ module.exports = {
       DB_USER: process.env.DB_USER,
       DB_PASSWORD: process.env.DB_PASSWORD,
       ALLOWED_ORIGINS: process.env.ALLOWED_ORIGINS,
+      JWT_SECRET: process.env.JWT_SECRET,
     },
     max_memory_restart: '300M',
     // Stabilítási beállítások:
