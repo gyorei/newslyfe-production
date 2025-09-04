@@ -90,6 +90,22 @@ const en = {
       toggle: 'Expand/Collapse',
     },
   },
+  
+  // Home
+  home: {
+    nav: {
+      home: "Home",
+      dashboard: "Dashboard", 
+      bookmarks: "Bookmarks",
+      history: "History",
+      my: "My",
+    },
+    search: {
+      placeholder: "Search news...",
+      settingsTitle: "Search settings",
+      searching: "🔍 Searching worldwide...",
+    },
+  },
 };
 
 export default en;

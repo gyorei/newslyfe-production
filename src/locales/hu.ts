@@ -518,14 +518,14 @@ const hu = {
     home: {
       nav: {
         home: "Főoldal",
-        dashboard: "Irányítópult",
+        dashboard: "Irányítópult", 
         bookmarks: "Könyvjelzők",
         history: "Előzmények",
         my: "Saját",
       },
       search: {
         placeholder: "Hírek keresése...",
-        settingsTitle: "Keresési beállítások",
+        settingsTitle: "Keresési beállítások", 
         searching: "🔍 Keresés a világ minden tájáról...",
       },
     },
