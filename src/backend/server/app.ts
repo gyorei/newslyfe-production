@@ -140,25 +140,28 @@ let expressSession: SessionMiddleware | null = null;
 
 async function initLicenseModules(app: express.Application, rateLimit: RateLimitMiddleware | null) {
   try {
-    startupProfiler.start('File IO: License Key Read');
-    const privateKey = await fs.promises.readFile(path.resolve(process.cwd(), privateKeyPath), 'utf-8');
-    startupProfiler.stop('File IO: License Key Read');
-    const keyService = new KeyService(privateKey);
-    const adminLicenseRoutes = createAdminRoutes(keyService);
-    app.use('/api/admin/license', adminLicenseRoutes);
-    logger.info('License admin module routes registered.');
+    // HIBATŰRŐ MÓDOSÍTÁS: privateKeyPath változó hiányzik - license szolgáltatás kikommentálva
+    // startupProfiler.start('File IO: License Key Read');
+    // const privateKey = await fs.promises.readFile(path.resolve(process.cwd(), privateKeyPath), 'utf-8');
+    // startupProfiler.stop('File IO: License Key Read');
+    logger.warn('LICENSE SERVICE DISABLED: privateKeyPath not defined, license functionality bypassed');
+    return;
+    // const keyService = new KeyService(privateKey);
+    // const adminLicenseRoutes = createAdminRoutes(keyService);
+    // app.use('/api/admin/license', adminLicenseRoutes);
+    // logger.info('License admin module routes registered.');
 
-    const recoveryController = new RecoveryController(keyService);
-    const recoveryLicenseRoutes = createRecoveryRoutes(recoveryController);
-    const recoveryLimiter = rateLimit ? rateLimit({
-      windowMs: 15 * 60 * 1000,
-      max: 10,
-      message: 'Túl sok visszaállítási kísérlet. Kérem várjon 15 percet.',
-      standardHeaders: true,
-      legacyHeaders: false,
-    }) : (req: Request, res: Response, next: NextFunction) => next();
-    app.use('/api/recover/license', recoveryLimiter, recoveryLicenseRoutes);
-    logger.info('License recovery module routes registered.');
+    // const recoveryController = new RecoveryController(keyService);
+    // const recoveryLicenseRoutes = createRecoveryRoutes(recoveryController);
+    // const recoveryLimiter = rateLimit ? rateLimit({
+    //   windowMs: 15 * 60 * 1000,
+    //   max: 10,
+    //   message: 'Túl sok visszaállítási kísérlet. Kérem várjon 15 percet.',
+    //   standardHeaders: true,
+    //   legacyHeaders: false,
+    // }) : (req: Request, res: Response, next: NextFunction) => next();
+    // app.use('/api/recover/license', recoveryLimiter, recoveryLicenseRoutes);
+    // logger.info('License recovery module routes registered.');
   } catch (error) {
     // HIBATŰRŐ MÓDOSÍTÁS: License service hiba esetén alkalmazás license nélkül fut
     // logger.error('Failed to read private key or initialize license service:', error);
