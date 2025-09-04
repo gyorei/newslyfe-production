@@ -16,6 +16,8 @@ module.exports = {
       DB_PASSWORD: process.env.DB_PASSWORD,
       ALLOWED_ORIGINS: process.env.ALLOWED_ORIGINS,
       JWT_SECRET: process.env.JWT_SECRET,
+      LICENSE_DISABLED: process.env.LICENSE_DISABLED,
+      VITE_LICENSE_PUBLIC_KEY: process.env.VITE_LICENSE_PUBLIC_KEY,
     },
     max_memory_restart: '300M',
     // Stabilítási beállítások:
