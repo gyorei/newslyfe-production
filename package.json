@@ -204,6 +204,7 @@
     "prettier": "^3.5.3",
     "react-devtools": "^6.1.5",
     "sequelize-cli": "^6.6.3",
+    "shx": "^0.4.0",
     "supertest": "^7.1.0",
     "terser": "^5.43.1",
     "ts-jest": "^29.3.2",
