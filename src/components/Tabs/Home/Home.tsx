@@ -29,6 +29,25 @@ const Home: React.FC<HomeProps> = ({ isActive, onSearchComplete, openMyPageTab, 
   const [activeButton, setActiveButton] = useState('home');
   const [isSearching, setIsSearching] = useState(false);
 
+  // 🛡️ Biztonságos input kezelés
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value
+      .replace(/<[^>]*>/g, '') // HTML tagek eltávolítása
+      .replace(/[<>"'&]/g, '') // XSS karakterek
+      .replace(/(javascript|data|vbscript):/gi, '') // Veszélyes URL protokollok
+      .replace(/[;'--]/g, '') // SQL injection karakterek
+      // eslint-disable-next-line no-control-regex
+      .replace(/[\u0000-\u001F\u007F-\u009F]/g, '') // Kontroll karakterek
+      .trim();
+    
+    // DoS védelem - hossz korlát
+    if (value.length > 100) {
+      value = value.substring(0, 100);
+    }
+    
+    setSearchTerm(value);
+  };
+
   if (!isActive) return null;
 
   // A HELYREÁLLÍTOTT, VÉGLEGES handleSearch FÜGGVÉNY
@@ -135,9 +154,11 @@ const Home: React.FC<HomeProps> = ({ isActive, onSearchComplete, openMyPageTab, 
                 className={styles.searchInput}
                 placeholder={t('home.search.placeholder')}
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={handleInputChange}
                 onKeyPress={handleKeyPress}
               />
+              {/* Settings gomb - kikommentezve */}
+              {/* 
               <button
                 className={styles.searchOptionsButton}
                 onClick={() => openRightPanelWithMode?.('settings', 'search')}
@@ -145,6 +166,24 @@ const Home: React.FC<HomeProps> = ({ isActive, onSearchComplete, openMyPageTab, 
                 style={{ fontSize: 20, background: 'none', border: 'none', cursor: 'pointer', marginLeft: 8 }}
               >
                 ⚙️
+              </button>
+              */}
+              
+              {/* Keresés gomb */}
+              <button
+                className={styles.searchButton}
+                onClick={handleSearch}
+                disabled={isSearching || !searchTerm.trim()}
+                title={t('home.search.searchButton', 'Search')}
+                style={{ 
+                  fontSize: 20, 
+                  background: 'none', 
+                  border: 'none', 
+                  marginLeft: 8,
+                  opacity: isSearching || !searchTerm.trim() ? 0.5 : 1
+                }}
+              >
+                {'>'}
               </button>
             </div>
             {isSearching && (

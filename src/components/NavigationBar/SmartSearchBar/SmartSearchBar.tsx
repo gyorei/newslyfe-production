@@ -133,17 +133,59 @@ export const SmartSearchBar: React.FC<SmartSearchBarProps> = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const suggestionsRef = useRef<HTMLDivElement>(null);
 
-  // Közös helper: forrásnév kinyerése URL fallback-el. Ezt mindkét helyen használjuk.
+  // 🛡️ Constants for duplicate strings
+  const UNKNOWN_SOURCE_KEY = 'search.unknownSource';
+  const UNKNOWN_SOURCE_FALLBACK = 'Unknown source';
+  
+  // 🛡️ URL validáció erősítése a keresési eredmények konverziójánál
+  const safeUrl = (url: string | undefined): string => {
+    if (!url) return '';
+    try {
+      const parsedUrl = new URL(url);
+      return ['http:', 'https:'].includes(parsedUrl.protocol) ? url : '';
+    } catch {
+      return '';
+    }
+  };
+  
+  // 🛡️ Secure helper: forrásnév kinyerése sanitized URL fallback-el
   const getSourceName = useCallback((item: { source?: string; url?: string }): string => {
-    if (item.source && item.source.trim()) return item.source.trim();
+    // 🛡️ Sanitize source name
+    if (item.source && item.source.trim()) {
+      const sanitizedSource = item.source
+        .replace(/[<>"'&]/g, '') // Remove XSS characters
+        .replace(/[;'--]/g, '') // Remove SQL injection chars
+        .trim();
+      if (sanitizedSource) return sanitizedSource;
+    }
+    
     if (item.url) {
       try {
-        return new URL(item.url).hostname.replace(/^www\./, '').replace(/\.hu$/, '').replace(/\.com$/, '');
+        // 🛡️ Sanitize URL before parsing
+        const sanitizedUrl = item.url
+          .replace(/[<>"'&]/g, '') // Remove XSS characters
+          .replace(/javascript:/gi, '') // Block javascript URLs
+          .replace(/data:/gi, '') // Block data URLs
+          .replace(/vbscript:/gi, '') // Block vbscript URLs
+          .trim();
+        
+        // ✅ Flexible URL validation - supports relative URLs too
+        if (!sanitizedUrl || (!sanitizedUrl.match(/^https?:\/\//) && !sanitizedUrl.startsWith('/'))) {
+          return t(UNKNOWN_SOURCE_KEY, UNKNOWN_SOURCE_FALLBACK);
+        }
+        
+        // ✅ Handle relative URLs with base URL
+        const hostname = new URL(sanitizedUrl, 'https://example.com').hostname
+          .replace(/[<>"'&]/g, '') // Additional sanitization
+          .replace(/^www\./, ''); // Only remove www prefix
+          
+        return hostname || t(UNKNOWN_SOURCE_KEY, UNKNOWN_SOURCE_FALLBACK);
       } catch {
-        // fallback
+        // URL parsing failed - return safe fallback
+        return t(UNKNOWN_SOURCE_KEY, UNKNOWN_SOURCE_FALLBACK);
       }
     }
-    return t('search.unknownSource', 'Unknown source');
+    return t(UNKNOWN_SOURCE_KEY, UNKNOWN_SOURCE_FALLBACK);
   }, [t]);
 
   // ✅ JAVÍTOTT: searchResults változás figyelése - TÍPUSOS ÉS TISZTA
@@ -174,7 +216,7 @@ export const SmartSearchBar: React.FC<SmartSearchBarProps> = ({
           id: String(it.id),
           title: it.title,
           description: it.description || '',
-          url: it.url || '',
+          url: safeUrl(it.url) || '',
           source: getSourceName(it),
           sourceId: it.source || 'unknown',
           category: 'news',
@@ -195,7 +237,7 @@ export const SmartSearchBar: React.FC<SmartSearchBarProps> = ({
       // ✅ GUARD: csak egyszer fut le ugyanazon keresési eredményre
       setHasSearchTriggered(true);
     }
-  }, [searchResults, lastSearchQuery, onSearch, hasSearchTriggered, FRONTEND_SEARCH_ENABLED]);
+  }, [searchResults, lastSearchQuery, onSearch, hasSearchTriggered, FRONTEND_SEARCH_ENABLED, getSourceName]);
 
   // ✅ ÚJ: Guard reset új kereséskor
   useEffect(() => {
@@ -237,9 +279,26 @@ export const SmartSearchBar: React.FC<SmartSearchBarProps> = ({
     setQuery(value);
   }, [value]);
 
-  // Input változás kezelése
+  // 🛡️ Enhanced secure input változás kezelése
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = e.target.value;
+    let newValue = e.target.value;
+    
+    // 🛡️ Enhanced XSS Protection - comprehensive HTML removal
+    newValue = newValue
+      .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '') // Explicit script removal
+      .replace(/<[^>]*>/g, '') // Remove all HTML tags
+      .replace(/[<>"'&]/g, '') // Remove XSS dangerous characters
+      .replace(/(javascript|data|vbscript):/gi, '') // Block dangerous URLs
+      .replace(/[;'--]/g, '') // Remove SQL injection characters
+      // eslint-disable-next-line no-control-regex
+      .replace(/[\u0000-\u001F\u007F-\u009F]/g, '') // Remove control characters
+      .trim(); // Remove leading/trailing whitespace
+
+    // 🛡️ Length limitation (DoS protection)
+    if (newValue.length > 100) {
+      newValue = newValue.substring(0, 100);
+    }
+
     setQuery(newValue);
     onChange(newValue);
 
@@ -302,7 +361,7 @@ export const SmartSearchBar: React.FC<SmartSearchBarProps> = ({
             id: String(it.id),
             title: it.title,
             description: it.content?.substring(0, 200) + '...',
-            url: it.url || '',
+            url: safeUrl(it.url) || '',
             source: getSourceName({ source: it.source, url: it.url }),
             sourceId: it.source || 'unknown',
             category: 'news',

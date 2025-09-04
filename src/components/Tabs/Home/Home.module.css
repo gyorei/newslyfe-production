@@ -85,6 +85,22 @@
   color: #777777;
 }
 
+/* Keresés gomb */
+.searchButton {
+  color: #b8b8b8; /* Ugyanolyan mint a topButton */
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.searchButton:hover:not(:disabled) {
+  color: #ffffff;
+}
+
+.searchButton:disabled {
+  color: #777777;
+  cursor: not-allowed;
+}
+
 /* Kártya szekció */
 .cardSection {
   display: flex;
@@ -245,6 +261,19 @@
 
 :global(.app.light) .searchInput::placeholder {
   color: #888888;
+}
+
+/* Keresés gomb világos témában */
+:global(.app.light) .searchButton {
+  color: #666666;
+}
+
+:global(.app.light) .searchButton:hover:not(:disabled) {
+  color: #333333;
+}
+
+:global(.app.light) .searchButton:disabled {
+  color: #999999;
 }
 
 @media (max-width: 600px) {
