@@ -25,6 +25,9 @@ export function useServerHealth(): ServerHealth {
     
     try {
       console.log('[useServerHealth] Szerver állapot ellenőrzése...');
+      console.log('[useServerHealth] 📱 User Agent:', navigator.userAgent);
+      console.log('[useServerHealth] 🌐 API URL:', import.meta.env.VITE_API_URL);
+      console.log('[useServerHealth] 📱 Screen size:', window.innerWidth, 'x', window.innerHeight);
       
       // TESZT MÓD: Ha a localStorage-ben van 'test-slow-server', szimuláljuk a lassú indítást
       const testSlowServer = localStorage.getItem('test-slow-server') === 'true';
@@ -34,7 +37,8 @@ export function useServerHealth(): ServerHealth {
         console.log('[useServerHealth] 🧪 TESZT MÓD: Várakozás vége, szerver "kész"');
       }
       
-      const isAvailable = await apiClient.waitForServer(30, 1000);
+      console.log('[useServerHealth] ⏱️ Szerver várakozás indítása (60s timeout, 2s interval)...');
+      const isAvailable = await apiClient.waitForServer(60, 2000); // Mobilra optimalizált: 60s timeout, 2s interval
       
       if (isAvailable) {
         setIsReady(true);
