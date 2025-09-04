@@ -10,6 +10,10 @@
   transition: opacity 0.3s ease;
   display: flex;
   flex-direction: column;
+  /* 🔧 WEB/MOBIL SCROLL JAVÍTÁS */
+  -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
+  overscroll-behavior: contain; /* Scroll chaining megakadályozása */
+  transform: translateZ(0); /* Hardware acceleration trigger */
 }
 
 .tabTransition {
