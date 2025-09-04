@@ -59,7 +59,7 @@ export const VideoAdCard: React.FC<VideoAdCardProps> = ({
       {/* ========================================
        * 🎥 AD SENSE UNIT - GOOGLE SZABÁLYOK!
        * ======================================== */}
-      {shouldShowAdSense ? (
+      {shouldShowAdSense && import.meta.env.VITE_ADSENSE_ENABLED !== 'false' ? (
         <div className={styles.videoAdSenseContainer}>
           <AdSenseUnit
             slotId={slotId}
