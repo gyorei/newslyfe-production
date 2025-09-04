@@ -28,15 +28,15 @@
 }
 
 .scrollContainer::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: rgba(0, 0, 0, 0.05); /* Enyhe háttér - nem transparent! */
 }
 
 .scrollContainer::-webkit-scrollbar-thumb {
- 
-  background: rgba(80, 80, 80, 0.3); /* félig átlátszó */
+  background: rgba(80, 80, 80, 0.4); /* Erősebb szín */
   border-radius: 4px;
-  transition: background 0.2s;
-
+  transition: background 0.2s ease;
+  /* 🔧 STABILITY FIX */
+  min-height: 20px; /* Minimum méret */
 }
 
 
@@ -44,14 +44,15 @@
 
 
 .scrollContainer::-webkit-scrollbar-thumb:hover {
-  background: rgba(80, 80, 80, 0.5);
+  background: rgba(80, 80, 80, 0.7); /* Erősebb hover */
 }
-.scrollContainer::-webkit-scrollbar-track {
-  background: transparent;
+
+.scrollContainer::-webkit-scrollbar-thumb:active {
+  background: rgba(80, 80, 80, 0.9); /* Active state */
 }
 
 /* Firefox támogatás */
 .scrollContainer {
   scrollbar-width: thin;
-  scrollbar-color: rgba(80,80,80,0.3) transparent;
+  scrollbar-color: rgba(80,80,80,0.4) rgba(0,0,0,0.05);
 }
