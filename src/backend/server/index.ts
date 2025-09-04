@@ -1,5 +1,14 @@
 // src/backend/server/index.ts
 
+import dotenv from 'dotenv';
+import path from 'path';
+
+// A környezeti változók betöltése a megfelelő .env fájlból
+const envPath = process.env.NODE_ENV === 'production'
+  ? path.resolve(process.cwd(), '.env.production')
+  : path.resolve(process.cwd(), '.env.development');
+dotenv.config({ path: envPath });
+
 // ===================================================================
 //  PROFILOZÓ ÉS ALKALMAZÁS INDÍTÁSA
 // ===================================================================
