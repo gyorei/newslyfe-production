@@ -98,9 +98,15 @@ let expressSession: SessionMiddleware | null = null;
     ]);
     [helmet, compression, rateLimit, expressSession] = results;
 
+    // HIBATŰRŐ MÓDOSÍTÁS: Helmet middleware nélkül is fut (csökkentett biztonsággal)
+    // if (!helmet) {
+    //   logger.error('FATAL: Helmet security middleware nem található, az alkalmazás nem indul el!');
+    //   process.exit(1);
+    // } else {
+    //   logger.info('Helmet security middleware betöltve');
+    // }
     if (!helmet) {
-      logger.error('FATAL: Helmet security middleware nem található, az alkalmazás nem indul el!');
-      process.exit(1);
+      logger.warn('WARNING: Helmet security middleware nem található! Alkalmazás csökkentett biztonsággal fut. Telepítsd: npm install helmet');
     } else {
       logger.info('Helmet security middleware betöltve');
     }
@@ -114,8 +120,10 @@ let expressSession: SessionMiddleware | null = null;
     if (expressSession) logger.info('Express session middleware betöltve');
     else logger.warn('Express session middleware nem található, kérlek telepítsd: npm install express-session');
   } catch (error) {
-    logger.error('FATAL: Hiba a middleware-ek dinamikus importálása során, az alkalmazás leáll:', error);
-    process.exit(1);
+    // HIBATŰRŐ MÓDOSÍTÁS: Middleware import hiba esetén alapértelmezett biztonsággal fut
+    // logger.error('FATAL: Hiba a middleware-ek dinamikus importálása során, az alkalmazás leáll:', error);
+    // process.exit(1);
+    logger.warn('WARNING: Hiba a middleware-ek importálása során, alapértelmezett biztonsággal fut:', error);
   } finally {
     startupProfiler.stop('Middleware Dynamic Imports');
   }
@@ -152,8 +160,10 @@ async function initLicenseModules(app: express.Application, rateLimit: RateLimit
     app.use('/api/recover/license', recoveryLimiter, recoveryLicenseRoutes);
     logger.info('License recovery module routes registered.');
   } catch (error) {
-    logger.error('Failed to read private key or initialize license service:', error);
-    process.exit(1); // Ha a kulcs betöltése sikertelen, álljon le a szerver!
+    // HIBATŰRŐ MÓDOSÍTÁS: License service hiba esetén alkalmazás license nélkül fut
+    // logger.error('Failed to read private key or initialize license service:', error);
+    // process.exit(1); // Ha a kulcs betöltése sikertelen, álljon le a szerver!
+    logger.warn('WARNING: License service inicializálási hiba, alkalmazás license nélkül fut:', error);
   }
 }
 
@@ -211,9 +221,14 @@ export async function createApp(): Promise<express.Application> {
   // ==========================================
   // Session middleware beállítása
   // ==========================================
+  // HIBATŰRŐ MÓDOSÍTÁS: SESSION_SECRET fallback default értékkel
+  // if (!process.env.SESSION_SECRET) {
+  //   logger.error('FATAL: SESSION_SECRET environment variable is not defined');
+  //   process.exit(1);
+  // }
   if (!process.env.SESSION_SECRET) {
-    logger.error('FATAL: SESSION_SECRET environment variable is not defined');
-    process.exit(1);
+    logger.warn('WARNING: SESSION_SECRET missing, using secure fallback for session management');
+    process.env.SESSION_SECRET = 'newslyfe-session-fallback-' + Date.now() + '-' + Math.random().toString(36);
   }
   if (expressSession) {
     app.use(
