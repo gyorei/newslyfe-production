@@ -149,24 +149,26 @@ export const VideoPanel: React.FC<VideoPanelProps> = ({
         </button> */}
         <div className={styles.videoGrid}>
           {itemsWithVideoAds.map((item, index) => {
-            if (isVideoAdItem(item)) {
-              return (
-                <VideoAdCard
-                  key={getStableKey(item, index)}
-                  title={item.title}
-                  description={item.description}
-                  imageUrl={item.imageUrl}
-                  advertiser={item.advertiser}
-                  clickUrl={item.clickUrl}
-                  badgeLabel={item.badgeLabel}
-                  slotId={item.slotId}
-                  clientId={item.clientId || AD_CLIENT}
-                  format={item.format}
-                  responsive={item.responsive}
-                  debug={process.env.NODE_ENV !== 'production'}
-                />
-              );
-            } else {
+            // ADSENSE TEMPORARILY DISABLED
+            // if (isVideoAdItem(item)) {
+            //   return (
+            //     <VideoAdCard
+            //       key={getStableKey(item, index)}
+            //       title={item.title}
+            //       description={item.description}
+            //       imageUrl={item.imageUrl}
+            //       advertiser={item.advertiser}
+            //       clickUrl={item.clickUrl}
+            //       badgeLabel={item.badgeLabel}
+            //       slotId={item.slotId}
+            //       clientId={item.clientId || AD_CLIENT}
+            //       format={item.format}
+            //       responsive={item.responsive}
+            //       debug={process.env.NODE_ENV !== 'production'}
+            //     />
+            //   );
+            // } else {
+            // Always treat as video since ads are disabled
               const video = item as VideoItem;
               return (
                 <MemoizedVideoCard 
