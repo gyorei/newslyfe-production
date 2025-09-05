@@ -217,7 +217,7 @@ function App() {
     return <SplashScreen />;
   }
   if (!storageInitialized) {
-    return <div>Loading...</div>;
+    return <SplashScreen />;
   }
   const shouldShowStartPage = showStartPageScreen && tabs.length === 0;
   if (shouldShowStartPage) {
