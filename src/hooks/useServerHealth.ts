@@ -62,6 +62,17 @@ export function useServerHealth(): ServerHealth {
 
   useEffect(() => {
     checkServerHealth();
+    
+    // 🚨 MOBILE FALLBACK: Max 10s várakozás, utána force ready
+    const fallbackTimer = setTimeout(() => {
+      if (!isReady) {
+        console.warn('[useServerHealth] 📱 MOBILE FALLBACK: Force ready after 10s timeout');
+        setIsReady(true);
+        setIsChecking(false);
+      }
+    }, 10000); // 10 másodperc
+    
+    return () => clearTimeout(fallbackTimer);
   }, []);
 
   return {
