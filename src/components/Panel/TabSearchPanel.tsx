@@ -264,7 +264,6 @@ export const TabSearchPanel: React.FC<TabSearchPanelProps> = ({
                       }}
                     />
                   );
-                }
               })}
             </div>
 
