@@ -157,6 +157,12 @@ class NewsService {
           // Módosított extractBestImageUniversal hívás (favicon fallback-kal)
           const imageUrl = await extractBestImageUniversal(item, rssUrl);
 
+          // ✅ JAVÍTÁS: biztosítjuk, hogy a kép URL-je HTTPS-sel kezdődjön (Mixed Content hiba ellen)
+          let secureImageUrl = imageUrl;
+          if (secureImageUrl && typeof secureImageUrl === 'string' && secureImageUrl.startsWith('http://')) {
+            secureImageUrl = secureImageUrl.replace('http://', 'https://');
+          }
+
           // Dátum feldolgozása és timestamp generálása
           const pubDateString = item.pubDate || '';
           const parsedDate = new Date(pubDateString);
@@ -170,7 +176,7 @@ class NewsService {
               ? item.description.replace(/<\/?[^>]+(>|$)/g, '').substring(0, 280)
               : 'No description',
             url: item.link || '',
-            imageUrl,
+            imageUrl: secureImageUrl, // <<< ITT HASZNÁLD A JAVÍTOTT VÁLTOZÓT!
             publishDate: displayDate,
             sourceName: source.cim,
             sourceId: source.eredeti_id,
