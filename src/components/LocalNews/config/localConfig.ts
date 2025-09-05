@@ -157,7 +157,7 @@ export const RSS_CONFIG = {
  */
 export const API_ENDPOINTS = {
   // IP alapú helymeghatározás API - frissítve a saját proxy használatára
-  LOCATION_API: 'http://localhost:3002/api/rss/ipapi',
+  LOCATION_API: 'https://localhost:3002/api/rss/ipapi',
 };
 
 /**

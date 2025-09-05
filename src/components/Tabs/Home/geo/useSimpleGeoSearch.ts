@@ -193,7 +193,7 @@ async function executeCountrySearch(
     console.log(`${logPrefix} Ország hírek lekérése: ${countryCode}`);
   }
 
-  const apiUrl = `http://localhost:3002/api/country/${countryCode}/news?limit=${config.maxResults}&importanceLevel=10&maxAgeHours=24`;
+  const apiUrl = `https://localhost:3002/api/country/${countryCode}/news?limit=${config.maxResults}&importanceLevel=10&maxAgeHours=24`;
   const response = await fetch(apiUrl);
 
   if (!response.ok) {
@@ -224,7 +224,7 @@ async function executeContinentSearch(
     console.log(`${logPrefix} Kontinens hírek lekérése: ${continentCode}`);
   }
 
-  const apiUrl = `http://localhost:3002/api/continent/${continentCode}/news?limit=${config.maxResults}&importanceLevel=10&maxAgeHours=24`;
+  const apiUrl = `https://localhost:3002/api/continent/${continentCode}/news?limit=${config.maxResults}&importanceLevel=10&maxAgeHours=24`;
   const response = await fetch(apiUrl);
 
   if (!response.ok) {

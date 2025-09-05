@@ -40,14 +40,14 @@ export const endpoints = {
   postgres: {
     baseUrl: 'http://localhost:3002',
 */
-/*
+
 postgres: {
   baseUrl: import.meta.env.VITE_API_URL || 'https://newslyfe.com/api',
-*/
 
+/*
 postgres: {
   baseUrl: import.meta.env.VITE_API_URL || 'https://api.newsapp.example.com/v1',
-
+*/
   // Kontinens-alapú végpontok - Új struktúra
     continentSources: (continent: string) =>
       `/api/continent/${encodeURIComponent(continent)}/sources`,
