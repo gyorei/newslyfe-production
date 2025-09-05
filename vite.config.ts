@@ -35,6 +35,10 @@ export default defineConfig({
     rollupOptions: {
       input: 'index.html', // Ez adja meg a belépési pontot
       output: {
+        // Cache busting: hash in filename for all assets
+        assetFileNames: 'assets/[name].[hash].[ext]',
+        chunkFileNames: 'assets/[name].[hash].js',
+        entryFileNames: 'assets/[name].[hash].js',
         manualChunks: {
           // Kód-felosztás a fő könyvtárak szerint
           'react-vendor': ['react', 'react-dom'],
