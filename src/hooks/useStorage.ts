@@ -312,7 +312,7 @@ export function useStorage() {
 
   useEffect(() => {
     loadInitialData();
-  }, [loadInitialData]);
+  }, []); // ✅ JAVÍTÁS: Csak egyszer fusson mount-kor
 
   // Általános állapotfrissítő függvény
   const updateState = useCallback(
