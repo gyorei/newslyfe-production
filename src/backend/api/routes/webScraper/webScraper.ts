@@ -3,6 +3,7 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 import { canMakeRequest } from './rateLimiter.js';
 import { getCachedImage, setCachedImage } from './webScrapingCache.js';
+import { validateAndCleanImageUrl } from '../../common/imageExtractor/imageExtractorUtils.js';
 
 const REQUEST_TIMEOUT = 8000;
 
@@ -219,7 +220,8 @@ export async function extractImageFromWebPage(item: { link?: string }): Promise<
       timeout: REQUEST_TIMEOUT,
       headers: { 'User-Agent': 'Mozilla/5.0' },
     });
-    const imageUrl = extractImageFromHtml(res.data, url);
+    const rawImageUrl = extractImageFromHtml(res.data, url);
+    const imageUrl = rawImageUrl ? validateAndCleanImageUrl(rawImageUrl, url) : null;
     setCachedImage(url, imageUrl);
     return imageUrl;
   } catch {

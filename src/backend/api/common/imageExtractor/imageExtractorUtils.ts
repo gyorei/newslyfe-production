@@ -176,7 +176,7 @@ const seenValidationErrorsLimit = 100; // Maximum 100 egyedi hiba cache-ben
 
 export function validateAndCleanImageUrl(url: string, baseUrl?: string): string | null {
   if (!url || url.trim().length === 0) return null;
-  const cleanUrl = url.trim();
+  let cleanUrl = url.trim();
 
   if (isTooSmallImage(cleanUrl)) return null;
 
@@ -195,14 +195,9 @@ export function validateAndCleanImageUrl(url: string, baseUrl?: string): string 
         return cleanUrl; // Logo SVG elfogadása
       }
     }
-    
-    // ✅ LOG SZINT CSÖKKENTÉSE - console.log helyett console.debug
-    // ✅ DUPLIKÁLT LOG ELKERÜLÉSE - Csak új hibákat logoljuk
     if (!seenValidationErrors.has(cleanUrl)) {
       console.debug(`[Validator] Kiszűrve rossz kiterjesztés: ${cleanUrl}`);
       seenValidationErrors.add(cleanUrl);
-      
-      // Cache méret ellenőrzése
       if (seenValidationErrors.size > seenValidationErrorsLimit) {
         const firstError = seenValidationErrors.values().next().value;
         if (firstError) {
@@ -214,6 +209,13 @@ export function validateAndCleanImageUrl(url: string, baseUrl?: string): string 
   }
 
   try {
+    // --- FINOM JAVÍTÁS: http:// → https:// csak publikus képeknél ---
+    if (cleanUrl.startsWith('http://')) {
+      // Ne cseréljük localhost, 127.0.0.1, belső IP, data: stb. esetén
+      if (!/^(http:\/\/(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2[0-9]|3[0-1])\.|data:|file:))/i.test(cleanUrl)) {
+        cleanUrl = 'https://' + cleanUrl.substring(7);
+      }
+    }
     new URL(cleanUrl);
     return cleanUrl;
   } catch {

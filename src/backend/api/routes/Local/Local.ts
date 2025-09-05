@@ -159,6 +159,11 @@ async function fetchAndParseRssFeed(
 
         // Módosított extractBestImageUniversal hívás (favicon fallback-kal)
         const imageUrl = await extractBestImageUniversal(item, feedUrl);
+        // Finom javítás: csak ha string és http://-vel kezdődik
+        const secureImageUrl =
+          typeof imageUrl === 'string' && imageUrl.startsWith('http://')
+            ? imageUrl.replace('http://', 'https://')
+            : imageUrl;
 
         // Dátum feldolgozása és timestamp generálása
         const pubDateString = item.pubDate || '';
@@ -174,7 +179,7 @@ async function fetchAndParseRssFeed(
           description: item.description
             ? item.description.replace(/<\/?[^>]+(>|$)/g, '').substring(0, 280)
             : 'No description',
-          imageUrl,
+          imageUrl: secureImageUrl,
           source: source.cim,
           sourceId: source.eredeti_id,
           date: displayDate,
