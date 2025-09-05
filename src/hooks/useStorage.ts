@@ -217,7 +217,23 @@ const invalidateCache = (preferenceId?: string): void => {
 // ⚡ Típusok pontosítása az error kezelésnél
 export function useStorage() {
   const dataManager = useMemo(() => DataManager.getInstance(), []);
-  const [state, setState] = useState<LocalStorageData | null>(null);
+  const [state, setState] = useState<LocalStorageData | null>(() => {
+    // ✅ JAVÍTÁS: Default state azonnal F5 race condition elkerülésére
+    const defaultState: LocalStorageData = {
+      version: '1.0',
+      timestamp: Date.now(),
+      tabs: {
+        activeId: '',
+        definitions: [],
+      },
+      ui: {
+        panelStates: { left: true, right: false },
+        utilityMode: 'default',
+      },
+      savedArticles: [],
+    };
+    return defaultState;
+  });
   const [deviceId, setDeviceId] = useState<string | null>(null);
   const [syncInfo, setSyncInfo] = useState<SyncInfo | null>(globalStorageManager.currentSyncInfo); // ✅ JAVÍTÁS: Public getter használata
   const [isLoading, setIsLoading] = useState(true);
