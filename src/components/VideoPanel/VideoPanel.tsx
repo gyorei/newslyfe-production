@@ -179,7 +179,6 @@ export const VideoPanel: React.FC<VideoPanelProps> = ({
                   onVideoClick={handleVideoClick}
                 />
               );
-            }
           })}
         </div>
         {/* Modal csak overlayként, nem módosít semmit mást! */}
