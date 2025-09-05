@@ -975,7 +975,6 @@ const TabPanelComponent: React.FC<TabPanelProps> = ({
                           onSourceClick={onSourceClick}
                         />
                       );
-                    }
                   })}
                 </div>
                 {filteredItems.length > 0 && (
