@@ -9,6 +9,7 @@ export const AD_SLOT_DEFAULT = import.meta.env.VITE_AD_SLOT ?? 'XXXXXXXXXX';
 // ========================================
 // 🎥 AD SENSE SCRIPT LOADING - GOOGLE SZABÁLYOK!
 // ========================================
+/* ADSENSE TEMPORARILY DISABLED: Script loading blocked to prevent scroll issues
 export const loadAdSenseScript = (): Promise<void> => {
   return new Promise((resolve, reject) => {
     // Ellenőrizzük, hogy a script már betöltve van-e
@@ -35,6 +36,13 @@ export const loadAdSenseScript = (): Promise<void> => {
     
     document.head.appendChild(script);
   });
+};
+*/
+
+// TEMPORARY STUB: Returns immediately resolved promise
+export const loadAdSenseScript = (): Promise<void> => {
+  console.warn('⚠️ AdSense script loading disabled for scroll fix');
+  return Promise.resolve();
 };
 
 // ========================================

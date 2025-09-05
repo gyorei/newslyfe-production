@@ -1,3 +1,4 @@
+/* ADSENSE TEMPORARILY DISABLED: Script injection blocked to prevent scroll issues
 export function injectScript(src: string): Promise<void> {
   return new Promise((resolve, reject) => {
     // Extra check for any AdSense script
@@ -17,4 +18,11 @@ export function injectScript(src: string): Promise<void> {
     script.onerror = (err) => reject(err);
     document.head.appendChild(script);
   });
+}
+*/
+
+// TEMPORARY STUB: Returns immediately resolved promise
+export function injectScript(src: string): Promise<void> {
+  console.warn('⚠️ AdSense script injection disabled for scroll fix');
+  return Promise.resolve();
 } 
