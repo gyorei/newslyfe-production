@@ -40,7 +40,14 @@ export const AdSenseUnit: React.FC<AdSenseUnitProps> = ({
     <ins
       ref={insRef as any}
       className="adsbygoogle"
-      style={{ display: 'block', minHeight: style?.minHeight ?? 90, ...style }}
+      style={{ 
+        display: 'block', 
+        minHeight: style?.minHeight ?? 250, 
+        minWidth: style?.minWidth ?? 300,
+        width: style?.width ?? '100%',
+        height: style?.height ?? 'auto',
+        ...style 
+      }}
       data-ad-client={clientId || TEST_AD_CLIENT}
       data-ad-slot={slotId}
       data-ad-format={format}
