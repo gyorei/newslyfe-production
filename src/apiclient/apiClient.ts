@@ -141,13 +141,20 @@ export class ApiClient {
     console.log(`[ApiClient] Kérés: ${url}`);
 
     try {
+      // 📱 MOBILE FIX: 30 másodperces timeout hozzáadása
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000);
+      
       const response = await fetch(url, {
         ...options,
+        signal: controller.signal,
         headers: {
           'Content-Type': 'application/json',
           ...options.headers,
         },
       });
+      
+      clearTimeout(timeoutId);
 
       if (!response.ok) {
         throw new Error(`API hiba: ${response.status} ${response.statusText}`);
@@ -160,6 +167,11 @@ export class ApiClient {
       );
       return data as T;
     } catch (error) {
+      // 📱 MOBILE FIX: Specifikus timeout hiba üzenet
+      if (error instanceof Error && error.name === 'AbortError') {
+        console.error(`[ApiClient] 📱 Timeout (30s): ${url}`);
+        throw new Error('Kérés túllépi az időkorlátot. Ellenőrizd a kapcsolatot!');
+      }
       console.error(`[ApiClient] Hiba: ${url}`, error);
       throw error;
     }
