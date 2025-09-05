@@ -36,10 +36,19 @@ export const endpoints = {
   videoCountries: '/api/video-countries',
 
   // PostgreSQL API - Frissítve az új API struktúrához
+  /*
   postgres: {
     baseUrl: 'http://localhost:3002',
+*/
+/*
+postgres: {
+  baseUrl: import.meta.env.VITE_API_URL || 'https://newslyfe.com/api',
+*/
 
-    // Kontinens-alapú végpontok - Új struktúra
+postgres: {
+  baseUrl: import.meta.env.VITE_API_URL || 'https://api.newsapp.example.com/v1',
+
+  // Kontinens-alapú végpontok - Új struktúra
     continentSources: (continent: string) =>
       `/api/continent/${encodeURIComponent(continent)}/sources`,
 
