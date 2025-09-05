@@ -202,6 +202,8 @@ const PremiumPanel: React.FC = () => {
             Import Data
           </button>
           <input
+            id="import-file-input"
+            name="importFile"
             type="file"
             ref={fileInputRef}
             onChange={handleFileSelected}

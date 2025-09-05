@@ -33,12 +33,20 @@ export const StartupSettings: React.FC = () => {
       <div className={styles.settingGroup}>
         <div className={styles.radioGroup}>
           <label>
-            <input type="radio" checked={mode === 'newTab'} onChange={() => setMode('newTab')} />
+            <input
+              id="startup-new-tab"
+              name="startupMode"
+              type="radio"
+              checked={mode === 'newTab'}
+              onChange={() => setMode('newTab')}
+            />
             <span>Open a new tab</span>
           </label>
 
           <label>
             <input
+              id="startup-continue"
+              name="startupMode"
               type="radio"
               checked={mode === 'continue'}
               onChange={() => setMode('continue')}

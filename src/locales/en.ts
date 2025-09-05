@@ -90,6 +90,18 @@ const en = {
       toggle: 'Expand/Collapse',
     },
   },
+
+  contentType: {
+    title: "Content",
+    text: "Text",
+    video: "Video", 
+    both: "Both",
+    textTitle: "Text news only",
+    videoTitle: "Video content only",
+    bothTitle: "Text and video content together",
+    comingSoon: "Coming Soon!",
+    comingSoonTitle: "This feature is coming soon"
+  },
   
   // Home
   home: {

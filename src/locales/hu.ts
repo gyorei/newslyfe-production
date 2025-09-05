@@ -39,7 +39,7 @@ const hu = {
       newNewsTitle: "Új hírek",
     },
     contentType: {
-      title: "Tartalom típus",
+      title: "Tartalom",
       text: "Web Szöveg",
       video: "Videó",
       both: "Mindkettő",
