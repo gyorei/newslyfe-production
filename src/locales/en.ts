@@ -114,9 +114,22 @@ const en = {
     },
     search: {
       placeholder: "Search news...",
-      settingsTitle: "Search settings",
+      settingsTitle: "Search settings", 
       searching: "🔍 Searching worldwide...",
     },
+  },
+
+  locationModal: {
+    title: "Location data needed for local news",
+    description: "We need your location data to personalize local news content.",
+    currentLocation: "Currently set location",
+    optionsInfo: "You can choose from the following options:",
+    option1: "Manual country selection",
+    option2: "GPS-based precise location",
+    option3: "Browser language-based detection",
+    dontShowAgain: "Don't show this message again",
+    continueButton: "Continue with current settings",
+    setupButton: "Configure location data",
   },
 };
 

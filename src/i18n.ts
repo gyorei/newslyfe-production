@@ -9,7 +9,7 @@ const detectLanguage = () => {
   if (typeof window === 'undefined') return 'en';
   const saved = localStorage.getItem('lang');
   if (saved) return saved;
-  const nav = navigator.language || (navigator as any).userLanguage || 'en';
+  const nav = navigator.language || (navigator as { userLanguage?: string }).userLanguage || 'en';
   const code = nav.split('-')[0];
   return ['en', 'hu', 'es', 'de', 'fr'].includes(code) ? code : 'en';
 };
@@ -35,7 +35,10 @@ i18n.on('languageChanged', (lng) => {
       localStorage.setItem('lang', lng);
       document.documentElement.lang = lng;
     }
-  } catch {}
+  } catch (error) {
+    // Silently ignore localStorage errors (e.g., in private mode)
+    console.debug('Could not save language to localStorage:', error);
+  }
 });
 
 export default i18n; 

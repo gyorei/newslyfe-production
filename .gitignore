@@ -1,5 +1,7 @@
 node_modules
 .qodo/
+.claude/
+.a éles net/
 scripts/
 .vscode/
 analysis-results/

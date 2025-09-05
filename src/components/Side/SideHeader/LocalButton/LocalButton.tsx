@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 interface LocalButtonProps {
   onActivateTab?: (tabId: string) => void;
   loadLocalContent?: () => Promise<string | null>;
-  openRightPanelWithMode?: (mode: 'tools' | 'auth' | 'settings' | 'favorites' | 'history') => void;
+  openRightPanelWithMode?: (mode: 'tools' | 'auth' | 'settings' | 'favorites' | 'history', category?: string) => void;
   isLocationLoading?: boolean;
 }
 
@@ -84,9 +84,7 @@ export const LocalButton: React.FC<LocalButtonProps> = ({
   const handleSetup = () => {
     setShowLocationInfoModal(false);
     if (openRightPanelWithMode) {
-      openRightPanelWithMode('settings');
-      // JSON.stringify használata, hogy valid JSON kerüljön a localStorage-ba
-      window.localStorage.setItem('settings_activeCategory', JSON.stringify('location'));
+      openRightPanelWithMode('settings', 'location');
     } else {
       console.log('Navigálás a helyadatok beállításához');
       onActivateTab('settings');
