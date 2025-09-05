@@ -8,7 +8,8 @@ import { HistoryList } from '../History/HistoryList';
 import SavedNews from '../SavedNews/SavedNews';
 import { Settings } from '../Settings';
 import { Legal } from '../Legal';
-import { UtilityAdCard } from '../../Ad';
+// ADSENSE TEMPORARILY DISABLED
+// import { UtilityAdCard } from '../../Ad';
 import PremiumPanel from '../Premium/PremiumPanel';
 import styles from './UtilityPanel.module.css';
 
@@ -149,7 +150,7 @@ export const UtilityPanel: React.FC<UtilityPanelProps> = ({
               <h3>Welcome to News Reader</h3>
               <p>Select a function from the navigation above</p>
 
-              {/* Reklám helye - AdCard komponenssel */}
+              {/* ADSENSE TEMPORARILY DISABLED
               <div className={styles.advertisementContainer}>
                 <h4>Featured content</h4>
                 <div className={styles.adCardsContainer}>
@@ -171,6 +172,7 @@ export const UtilityPanel: React.FC<UtilityPanelProps> = ({
                   />
                 </div>
               </div>
+              */}
             </div>
           </>
         )}

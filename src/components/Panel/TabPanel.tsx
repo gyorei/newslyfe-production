@@ -15,13 +15,15 @@ import { Card } from '../Card/Card';
 import Pagination from '../Pagination/Pagination';
 import { SourceIconBar } from '../SourceIconBar/SourceIconBar';
 import LoadingProgressOverlay from '../LoadingProgressOverlay/LoadingProgressOverlay';
-import AdSenseLayout from '../Ad/AdCard/AdSenseLayout';
+// ADSENSE TEMPORARILY DISABLED
+// import AdSenseLayout from '../Ad/AdCard/AdSenseLayout';
 import panelStyles from '../Panel/Panel.module.css';
 import { useMediaQuery } from 'react-responsive';
 import { settingsBridge, ITEMS_PER_PAGE_PREFERENCE_KEY } from '../Utility/Settings/ContentSettings/ContentSettingsPanelBridge';
 import { timeSettingsBridge, MAX_AGE_HOURS_PREFERENCE_KEY } from '../Utility/Settings/ContentSettings/TimeSettings';
 import { useDebugRender } from '../../utils/debugTools/debugTools';
-import { injectAdsIntoNewsItems, AdCardItem } from '../Ad/AdCard';
+// ADSENSE TEMPORARILY DISABLED
+// import { injectAdsIntoNewsItems, AdCardItem } from '../Ad/AdCard';
 import { ScrollContainer } from '../ScrollContainer/ScrollContainer';
 import TabController from '../Tabs/TabController';
 import { useTabPagination } from '../../hooks/useTabStorage/useTabPagination';
@@ -603,7 +605,9 @@ const TabPanelComponent: React.FC<TabPanelProps> = ({
     return result;
   }, [newsItems, searchResults, maxAgeHours, currentPage, itemsPerPage, mode, dynamicResults, currentFilters]);
 
-  const itemsWithAds = useMemo(() => injectAdsIntoNewsItems(pageItems, 5, 10), [pageItems]);
+  // ADSENSE TEMPORARILY DISABLED
+  // const itemsWithAds = useMemo(() => injectAdsIntoNewsItems(pageItems, 5, 10), [pageItems]);
+  const itemsWithAds = pageItems; // No ads injected
 
   // --- ÚJ: METAADATOK KISZÁMOLÁSA ÉS KÜLDÉSE A BRIDGE-EN ---
   useEffect(() => {
@@ -948,17 +952,19 @@ const TabPanelComponent: React.FC<TabPanelProps> = ({
                 <div className={panelStyles.cardsContainer}>
                   {itemsWithAds.map((item, index) => {
                     // ... (a Card renderelési logika változatlan)
-                    if ((item as AdCardItem).type === 'ad') {
-                      const ad = item as AdCardItem;
-                      return (
-                        <AdSenseLayout
-                          key={`ad-${ad.id}`}
-                          slotId={ad.slotId || '1234567890'}
-                          badgeLabel="Ad"
-                          debug={process.env.NODE_ENV !== 'production'}
-                        />
-                      );
-                    } else {
+                    // ADSENSE TEMPORARILY DISABLED
+                    // if ((item as AdCardItem).type === 'ad') {
+                    //   const ad = item as AdCardItem;
+                    //   return (
+                    //     <AdSenseLayout
+                    //       key={`ad-${ad.id}`}
+                    //       slotId={ad.slotId || '1234567890'}
+                    //       badgeLabel="Ad"
+                    //       debug={process.env.NODE_ENV !== 'production'}
+                    //     />
+                    //   );
+                    // Always treat as news item since ads are disabled
+                    // } else {
                       const news = item as NewsItem;
                       return (
                         <Card

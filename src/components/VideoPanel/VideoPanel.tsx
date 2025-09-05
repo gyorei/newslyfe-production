@@ -2,8 +2,9 @@
 import React from 'react';
 import MemoizedVideoCard from './VideoCard';
 import styles from './VideoPanel.module.css';
-import { VideoAdCard, injectVideoAdsIntoVideoItems, VideoAdItem } from '../Ad/VideoAd';
-import { AD_CLIENT } from '../Ad/adConfig';
+// ADSENSE TEMPORARILY DISABLED
+// import { VideoAdCard, injectVideoAdsIntoVideoItems, VideoAdItem } from '../Ad/VideoAd';
+// import { AD_CLIENT } from '../Ad/adConfig';
 import { VideoItem } from '../../types';
 import { VideoModal } from './VideoModal';
 import { useMediaQuery } from '../../hooks/useMediaQuery';
@@ -41,10 +42,12 @@ export const VideoPanel: React.FC<VideoPanelProps> = ({
   });
 
   // === HOOKOK MINDIG A KOMPONENS ELEJÉN! ===
-  const itemsWithVideoAds = React.useMemo(() =>
-    injectVideoAdsIntoVideoItems(videoItems, 3, 6),
-    [videoItems]
-  );
+  // ADSENSE TEMPORARILY DISABLED
+  // const itemsWithVideoAds = React.useMemo(() =>
+  //   injectVideoAdsIntoVideoItems(videoItems, 3, 6),
+  //   [videoItems]
+  // );
+  const itemsWithVideoAds = videoItems; // No ads injected
 
   // Modal lejátszás mód kapcsoló
   const [modalEnabled] = React.useState(true);
@@ -245,13 +248,15 @@ const areEqual = (prevProps: VideoPanelProps, nextProps: VideoPanelProps) => {
 const MemoizedVideoPanel = React.memo(VideoPanel, areEqual);
 export default MemoizedVideoPanel;
 
+// ADSENSE TEMPORARILY DISABLED
 // Segédfüggvény: VideoAdItem típusguard
-function isVideoAdItem(item: unknown): item is VideoAdItem {
-  return typeof item === 'object' && item !== null && (item as VideoAdItem).type === 'videoAd';
-}
+// function isVideoAdItem(item: unknown): item is VideoAdItem {
+//   return typeof item === 'object' && item !== null && (item as VideoAdItem).type === 'videoAd';
+// }
 
 // Stabil key generálás segédfüggvény
-function getStableKey(item: VideoItem | VideoAdItem, index: number) {
-  if (isVideoAdItem(item)) return `ad-${item.id}-${index}`;
+function getStableKey(item: VideoItem | any, index: number) {
+  // ADSENSE TEMPORARILY DISABLED - always treat as video
+  // if (isVideoAdItem(item)) return `ad-${item.id}-${index}`;
   return `video-${item.id || item.videoId || item.title}-${index}`;
 }

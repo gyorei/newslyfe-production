@@ -6,8 +6,9 @@ import { NewsItem } from '../../types';
 import { useStorage } from '../../hooks/useStorage';
 import { Card } from '../Card/Card';
 import styles from './TabSearchPanel.module.css';
-import { injectAdsIntoNewsItems, AdCardItem } from '../Ad/AdCard';
-import AdSenseLayout from '../Ad/AdCard/AdSenseLayout';
+// ADSENSE TEMPORARILY DISABLED
+// import { injectAdsIntoNewsItems, AdCardItem } from '../Ad/AdCard';
+// import AdSenseLayout from '../Ad/AdCard/AdSenseLayout';
 import { useTabCache } from '../../hooks/useTabStorage/useTabCache';
 import Pagination from '../Pagination/Pagination';
 import { useTabPagination } from '../../hooks/useTabStorage/useTabPagination';
@@ -151,7 +152,9 @@ export const TabSearchPanel: React.FC<TabSearchPanelProps> = ({
     };
   }, [displayResults, maxAgeHours, currentPage, itemsPerPage]);
 
-  const itemsWithAds = useMemo(() => injectAdsIntoNewsItems(pageItems, 5, 10), [pageItems]);
+  // ADSENSE TEMPORARILY DISABLED
+  // const itemsWithAds = useMemo(() => injectAdsIntoNewsItems(pageItems, 5, 10), [pageItems]);
+  const itemsWithAds = pageItems; // No ads injected
 
   const { savePaginationState, loadPaginationState } = useTabPagination(activeTabId);
 
@@ -229,17 +232,19 @@ export const TabSearchPanel: React.FC<TabSearchPanelProps> = ({
             
             <div className={styles.cardsContainer} ref={containerRef}>
               {itemsWithAds.map((item, index) => {
-                if ((item as AdCardItem).type === 'ad') {
-                  const ad = item as AdCardItem;
-                  return (
-                    <AdSenseLayout
-                      key={`ad-${ad.id}`}
-                      slotId={ad.slotId || '1234567890'}
-                      badgeLabel={t('tabSearchPanel.ad')}
-                      debug={process.env.NODE_ENV !== 'production'}
-                    />
-                  );
-                } else {
+                // ADSENSE TEMPORARILY DISABLED
+                // if ((item as AdCardItem).type === 'ad') {
+                //   const ad = item as AdCardItem;
+                //   return (
+                //     <AdSenseLayout
+                //       key={`ad-${ad.id}`}
+                //       slotId={ad.slotId || '1234567890'}
+                //       badgeLabel={t('tabSearchPanel.ad')}
+                //       debug={process.env.NODE_ENV !== 'production'}
+                //     />
+                //   );
+                // } else {
+                // Always treat as news item since ads are disabled
                   const news = item as NewsItem;
                   const resolvedImage =
                     news.imageUrl ||
