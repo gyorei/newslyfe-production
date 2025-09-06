@@ -51,14 +51,6 @@ export const Settings: React.FC<SettingsProps> = ({
         setActiveCategory(rightPanelCategory as any);
       }
     }
-    
-    // GYORS FIX: Ha Settings panel nyílik és localStorage-ban 'location' van, váltunk rá
-    if (rightPanelMode === 'settings' && !rightPanelCategory) {
-      const storedCategory = localStorage.getItem('settings_activeCategory');
-      if (storedCategory === 'location') {
-        setActiveCategory('location');
-      }
-    }
   }, [rightPanelMode, rightPanelCategory, setActiveCategory]);
 
   // Debug log a prop-ok ellenőrzéséhez
