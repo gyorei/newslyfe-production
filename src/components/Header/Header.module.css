@@ -6,13 +6,18 @@
   justify-content: space-between;
   padding: var(--space-sm) var(--space-md);
   padding-left: 10px; /* Explicit felülírás a pontos 10px-re */
-  padding-right: 120px; /* helyet hagy a jobb felső sarokban a windowControls-nak */
+  padding-right: 20px; /* Alapértelmezett kis padding webhez */
   background-color: var(--color-header-bg);
   color: var(--color-header-text);
   transition: all var(--transition-speed) var(--transition-function);
   box-shadow: var(--box-shadow);
   border-bottom: 1px solid var(--color-border);
   -webkit-app-region: drag;
+}
+
+/* Electronban hely az ablak vezérlőknek */
+.header.electron {
+  padding-right: 120px; /* helyet hagy a jobb felső sarokban a windowControls-nak */
 }
 
 /* Mac-en több padding a bal oldalon */
@@ -210,6 +215,16 @@
   /* Mobil nézetben logo elrejtése */
   .headerCenter {
     display: none;
+  }
+
+  /* Electron window control gombok elrejtése mobilon */
+  .windowControls {
+    display: none;
+  }
+  
+  /* Mobilon még kevesebb padding, mert nincs window control */
+  .header {
+    padding-right: 10px;
   }
 }
 

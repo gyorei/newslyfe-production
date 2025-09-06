@@ -28,7 +28,7 @@ import { useAppTabs } from './hooks/app/useAppTabs';
 import { useAppSearch } from './hooks/app/useAppSearch';
 import { UIProvider } from './contexts/UIContext';
 import { AlertProvider } from './components/AlertMessage';
-import { ServerStatus } from './components/ServerStatus/ServerStatus';
+// import { ServerStatus } from './components/ServerStatus/ServerStatus';
 
 // ========================================
 // 🎥 AD SENSE SCRIPT LOADING - GOOGLE SZABÁLYOK!
@@ -228,7 +228,7 @@ function App() {
   return (
     <UIProvider>
       <AlertProvider>
-        <ServerStatus />
+        {/* <ServerStatus /> */}
         <div
           id="app-container"
           className={`app ${getThemeClassName(currentTheme)} ${showScrollbars ? '' : 'hide-scrollbars'}`}

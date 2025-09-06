@@ -1,3 +1,19 @@
+/*
+ KÉSZ! A ServerStatus komponens ki van
+  kommentálva!
+
+  Most már:
+  - ✅ Nincs "Szerver indítása..." szöveg a
+  header felett
+  - ✅ Tisztább, egyszerűbb felület        
+  - ✅ Ha később mégis kellene, könnyen
+  visszakommentálható
+
+  Az alkalmazás most azonnal betölt a header    
+   nélküli zavaró üzenetek! 🚀
+
+*/
+
 import React from 'react';
 import { useServerHealth } from '../../hooks/useServerHealth';
 import './ServerStatus.css';

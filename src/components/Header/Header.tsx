@@ -40,6 +40,9 @@ export const Header: React.FC<HeaderProps> = ({
   // Platform detektálás Mac gombokhoz
   const isMac = (typeof process !== 'undefined' && process.platform === 'darwin') || 
                 navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+  
+  // Electron detektálás
+  const isElectron = !!window.electronAPI;
 
   // Monitor panel állapota
   const [isMonitorOpen, setIsMonitorOpen] = useState(false);
@@ -57,7 +60,7 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <header className={`${styles.header} ${isMac ? styles.macHeader : ''}`}>
+    <header className={`${styles.header} ${isMac ? styles.macHeader : ''} ${isElectron ? styles.electron : ''}`}>
       {/* Bal oldal - Bal panel gomb (Mac gombok után) */}
       <div className={`${styles.headerLeft} ${isMac ? styles.macOffset : ''}`}>
         {onToggleLeftPanel && (
