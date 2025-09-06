@@ -17,6 +17,7 @@
 
 
 import React, { useState, useMemo, useCallback, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import SearchTab from './SearchTab/SearchTab';
 import { TabPanel } from '../Panel/TabPanel';
 import { Tab, NewsItem } from '../../types'; // A 'Tab' típus importálása
@@ -68,6 +69,7 @@ const TabControllerComponent: React.FC<TabControllerProps> = ({
   videoError = null,
   onSourceClick,
 }) => {
+  const { t } = useTranslation();
   useDebugRender('TabController');
 
   const activeTabIdRef = useRef(activeTabId);
@@ -162,7 +164,7 @@ const TabControllerComponent: React.FC<TabControllerProps> = ({
   const singleTabPanelProps = useMemo(() => ({
     tab: {
       id: `search-${activeTabId}`,
-      title: `🔍 ${currentTabSingleMode.query}`,
+      title: `${t('search.searchPrefix')} ${currentTabSingleMode.query}`,
       active: true,
       mode: 'search',
       filters: { searchTerm: currentTabSingleMode.query },

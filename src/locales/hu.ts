@@ -528,7 +528,15 @@ const hu = {
     // Tabs accessibility
     tabs: {
       ariaLabel: "Alkalmazás fülek",
-      tablist: "Fülek"
+      tablist: "Fülek",
+      selectTab: "{{title}} fül kiválasztása",
+      closeTab: "{{title}} fül bezárása",
+      closeSymbol: "×"
+    },
+    
+    // Search prefix for tab titles
+    search: {
+      searchPrefix: "🔍"
     },
     // ArticleTab
     articleTab: {

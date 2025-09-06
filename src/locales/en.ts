@@ -129,7 +129,15 @@ const en = {
   // Tabs accessibility
   tabs: {
     ariaLabel: "Application tabs",
-    tablist: "Tabs"
+    tablist: "Tabs",
+    selectTab: "Select {{title}} tab",
+    closeTab: "Close {{title}} tab",
+    closeSymbol: "×"
+  },
+  
+  // Search prefix for tab titles
+  search: {
+    searchPrefix: "🔍"
   },
   
   // Home
