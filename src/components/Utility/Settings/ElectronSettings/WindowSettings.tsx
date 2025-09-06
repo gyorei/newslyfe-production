@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './WindowSettings.module.css';
 
 type WindowStyle = 'classic' | 'modern' | 'dark' | 'compact';
@@ -6,31 +7,24 @@ type WindowStyle = 'classic' | 'modern' | 'dark' | 'compact';
 const WINDOW_STYLE_OPTIONS = [
   {
     value: 'classic' as WindowStyle,
-    label: 'Classic',
-    description: 'Traditional window with frame and title bar',
-    icon: '🪟'
+    key: 'classic'
   },
   {
     value: 'modern' as WindowStyle,
-    label: 'Modern',
-    description: 'Clean design with native close button',
-    icon: '✨'
+    key: 'modern'
   },
   {
     value: 'dark' as WindowStyle,
-    label: 'Dark Theme',
-    description: 'Dark background with light frame',
-    icon: '🌙'
+    key: 'dark'
   },
   {
     value: 'compact' as WindowStyle,
-    label: 'Compact',
-    description: 'Smaller window with simple design',
-    icon: '📱'
+    key: 'compact'
   }
 ];
 
 export function WindowSettings() {
+  const { t } = useTranslation();
   const [currentStyle, setCurrentStyle] = useState<WindowStyle>('modern');
   const [isLoading, setIsLoading] = useState(true);
 
@@ -45,7 +39,7 @@ export function WindowSettings() {
         setCurrentStyle(style);
       }
     } catch (error) {
-      console.error('Error loading window style:', error);
+      console.error(t('windowSettings.errors.loadError'), error);
     } finally {
       setIsLoading(false);
     }
@@ -58,19 +52,19 @@ export function WindowSettings() {
         setCurrentStyle(style);
       }
     } catch (error) {
-      console.error('Error saving window style:', error);
+      console.error(t('windowSettings.errors.saveError'), error);
     }
   };
 
   if (isLoading) {
-    return <div className={styles.loading}>Loading...</div>;
+    return <div className={styles.loading}>{t('windowSettings.loading')}</div>;
   }
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h3>Window Style</h3>
-        <p>Choose the appearance of article windows</p>
+        <h3>{t('windowSettings.title')}</h3>
+        <p>{t('windowSettings.description')}</p>
       </div>
 
       <div className={styles.options}>
@@ -82,10 +76,10 @@ export function WindowSettings() {
             }`}
             onClick={() => handleStyleChange(option.value)}
           >
-            <div className={styles.optionIcon}>{option.icon}</div>
+            <div className={styles.optionIcon}>{t(`windowSettings.styles.${option.key}.icon`)}</div>
             <div className={styles.optionContent}>
-              <h4>{option.label}</h4>
-              <p>{option.description}</p>
+              <h4>{t(`windowSettings.styles.${option.key}.label`)}</h4>
+              <p>{t(`windowSettings.styles.${option.key}.description`)}</p>
             </div>
             {currentStyle === option.value && (
               <div className={styles.checkmark}>✓</div>

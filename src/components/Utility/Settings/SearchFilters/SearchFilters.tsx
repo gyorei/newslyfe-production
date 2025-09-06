@@ -8,6 +8,7 @@
  */
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './SearchFilters.module.css';
 import { useSearchFilters } from '../../../../hooks/useSearchFilters';
 import { CountryTagFilter, CountryTagOption } from './CountryFilter/CountryTagFilter';
@@ -18,6 +19,7 @@ interface SearchFiltersProps {
 }
 
 export const SearchFilters: React.FC<SearchFiltersProps> = ({ activeTabId }) => {
+  const { t } = useTranslation();
   const { filters, updateFilters } = useSearchFilters();
   const [countryOptions, setCountryOptions] = useState<CountryTagOption[]>([]);
   const [allAvailableCountries, setAllAvailableCountries] = useState<CountryTagOption[]>([]); // ÚJ: minden elérhető ország
@@ -90,7 +92,7 @@ export const SearchFilters: React.FC<SearchFiltersProps> = ({ activeTabId }) => 
   return (
    
 <div className={styles.container}>
-  <h2>Filter by country</h2>
+  <h2>{t('searchFilters.title')}</h2>
   <div className={styles.filterButtons}>
     <button
       className={styles.filterButton}
@@ -99,7 +101,7 @@ export const SearchFilters: React.FC<SearchFiltersProps> = ({ activeTabId }) => 
         console.log('[SearchFilters] Deselect All kattintva, countries: []');
       }}
     >
-      Deselect All
+      {t('searchFilters.deselectAll')}
     </button>
     <button
       className={styles.filterButton}
@@ -109,7 +111,7 @@ export const SearchFilters: React.FC<SearchFiltersProps> = ({ activeTabId }) => 
         console.log('[SearchFilters] Select All kattintva, countries:', allCodes);
       }}
     >
-      Select All
+      {t('searchFilters.selectAll')}
     </button>
 
 

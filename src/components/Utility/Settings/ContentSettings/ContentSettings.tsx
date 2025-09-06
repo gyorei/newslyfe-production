@@ -9,6 +9,7 @@
 // nem törlünk ki semmit csak kommentáljuk ki ami nem kell!!! ha van ilyen!!
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './ContentSettings.module.css';
 import PerformanceWarning from '../../../PerformanceWarning/PerformanceWarning';
 import { useStorage } from '../../../../hooks/useStorage';
@@ -20,12 +21,9 @@ import { TimeSettings } from './TimeSettings';
 const HORIZONTAL_SCROLLER_PREFERENCE_KEY = 'user_showHorizontalScroller';
 const LOCAL_STORAGE_SHOW_PREVIEWS_KEY = 'showArticlePreviews';
 const LOCAL_STORAGE_HIDE_WARNING_KEY = 'hidePerformanceWarning';
-// Hibaüzenetek konstansai
-const ERROR_SETTINGS_SAVE = 'Hiba a beállítások mentésekor:';
-const ERROR_SETTINGS_LOAD = 'Hiba a beállítások betöltésekor:';
-const ERROR_USER_SETTINGS_LOAD = 'Hiba a felhasználói beállítások betöltésekor:';
 
 export const ContentSettings: React.FC = () => {
+  const { t } = useTranslation();
   // Hírek számának beállítása localStorage-ban tárolva
   const [newsLimit, setNewsLimit] = useState<number>(50);
   // Cikkek előnézeteinek megjelenítése (képek, leírások a hírlistában)
@@ -117,13 +115,13 @@ export const ContentSettings: React.FC = () => {
             setContainerNewsCount(Number(savedContainerNewsCount));
           }
         } catch (error) {
-          console.error(ERROR_USER_SETTINGS_LOAD, error);
+          console.error('Hiba a felhasználói beállítások betöltésekor:', error);
         }
       };
 
       loadUserPreferences();
     } catch (error) {
-      console.error(ERROR_SETTINGS_LOAD, error);
+      console.error('Hiba a beállítások betöltésekor:', error);
     }
   }, [getUserPreference, limitOptions, saveUserPreference]); // saveUserPreference hozzáadva
 
@@ -153,7 +151,7 @@ export const ContentSettings: React.FC = () => {
 
       console.log(`[ContentSettings] Oldalankénti hírek száma beállítva: ${newLimit}`);
     } catch (error) {
-      console.error(ERROR_SETTINGS_SAVE, error);
+      console.error('Hiba a beállítások mentésekor:', error);
     }
   };
 
@@ -171,7 +169,7 @@ export const ContentSettings: React.FC = () => {
       });
       console.log(`[ContentSettings] Kiemelt hírsáv megjelenítése: ${newValue}`);
     } catch (error) {
-      console.error(ERROR_SETTINGS_SAVE, error);
+      console.error('Hiba a beállítások mentésekor:', error);
     }
   };
 
@@ -182,7 +180,7 @@ export const ContentSettings: React.FC = () => {
       localStorage.setItem(LOCAL_STORAGE_SHOW_PREVIEWS_KEY, newValue.toString());
       console.log(`[ContentSettings] Cikkek előnézeteinek megjelenítése: ${newValue}`);
     } catch (error) {
-      console.error(ERROR_SETTINGS_SAVE, error);
+      console.error('Hiba a beállítások mentésekor:', error);
     }
   };
 
@@ -195,11 +193,11 @@ export const ContentSettings: React.FC = () => {
       const parsedValue = parseInt(inputValue, 10);
 
       if (isNaN(parsedValue) || parsedValue <= 0) {
-        setValidationMessage('Az értéknek pozitív számnak kell lennie');
+        setValidationMessage(t('contentSettings.validation.positiveNumber'));
       } else if (parsedValue < 5) {
-        setValidationMessage('Az érték minimum 5 lehet');
+        setValidationMessage(t('contentSettings.validation.minimum'));
       } else if (parsedValue > 2000) {
-        setValidationMessage('Az érték maximum 2000 lehet');
+        setValidationMessage(t('contentSettings.validation.maximum'));
       } else {
         // Érvényes érték esetén töröljük a validációs üzenetet
         setValidationMessage(null);
@@ -240,19 +238,19 @@ export const ContentSettings: React.FC = () => {
 
         console.log(`[ContentSettings] Egyedi oldalankénti hírlimit beállítva: ${parsedValue}`);
       } catch (error) {
-        console.error(ERROR_SETTINGS_SAVE, error);
+        console.error('Hiba a beállítások mentésekor:', error);
       }
     } else {
       // Ha érvénytelen érték, beállítjuk a megfelelő validációs üzenetet
       if (isNaN(parsedValue) || parsedValue <= 0) {
-        setValidationMessage('Az értéknek pozitív számnak kell lennie');
+        setValidationMessage(t('contentSettings.validation.positiveNumber'));
       } else if (parsedValue < 5) {
-        setValidationMessage('Az érték minimum 5 lehet');
+        setValidationMessage(t('contentSettings.validation.minimum'));
       } else if (parsedValue > 2000) {
-        setValidationMessage('Az érték maximum 2000 lehet');
+        setValidationMessage(t('contentSettings.validation.maximum'));
       }
 
-      console.error('Érvénytelen egyedi érték');
+      console.error(t('contentSettings.validation.invalidCustom'));
     }
   };
 
@@ -283,32 +281,32 @@ export const ContentSettings: React.FC = () => {
 
   return (
     <div>
-      <h3>Content Settings</h3> {/* ALREADY ENGLISH ✅ */}
+      <h3>{t('contentSettings.title')}</h3>
       <div className={styles.settingGroup}>
-        <label>Display mode:</label>
+        <label>{t('contentSettings.displayMode.label')}</label>
         <select className={styles.select}>
           <option value="grid" style={darkOptionStyle}>
-            Grid view
+            {t('contentSettings.displayMode.grid')}
           </option>
           <option value="list" style={darkOptionStyle}>
-            List view
+            {t('contentSettings.displayMode.list')}
           </option>
           <option value="compact" style={darkOptionStyle}>
-            Compact view
+            {t('contentSettings.displayMode.compact')}
           </option>
         </select>
       </div>
       <div className={styles.settingGroup}>
-        <label>Sort news by:</label>
+        <label>{t('contentSettings.sortBy.label')}</label>
         <select className={styles.select}>
           <option value="newest" style={darkOptionStyle}>
-            Newest first
+            {t('contentSettings.sortBy.newest')}
           </option>
           <option value="popular" style={darkOptionStyle}>
-            Most popular
+            {t('contentSettings.sortBy.popular')}
           </option>
           <option value="relevance" style={darkOptionStyle}>
-            By relevance
+            {t('contentSettings.sortBy.relevance')}
           </option>
         </select>
       </div>
@@ -316,7 +314,7 @@ export const ContentSettings: React.FC = () => {
          NEWS COUNT PER PAGE SETTING - ENGLISH LABELS
          ===================================================== */}
       <div className={styles.settingGroup}>
-        <label>News count per page:</label> {/* ENGLISH */}
+        <label>{t('contentSettings.newsCount.label')}</label>
         <div className={styles.limitButtons}>
           {limitOptions.map((limit) => (
             <button
@@ -331,7 +329,7 @@ export const ContentSettings: React.FC = () => {
             className={`${styles.limitButton} ${isCustom ? styles.active : ''}`}
             onClick={() => setIsCustom(true)}
           >
-            Egyéni
+            {t('contentSettings.newsCount.custom')}
           </button>
         </div>
         {/* Egyéni érték megadása */}
@@ -342,32 +340,31 @@ export const ContentSettings: React.FC = () => {
               className={`${styles.customLimitInput} ${validationMessage ? styles.errorInput : ''}`}
               value={customValue}
               onChange={handleCustomValueChange}
-              placeholder="Enter a value (5-2000)..."
+              placeholder={t('contentSettings.newsCount.customPlaceholder')}
               min="5"
               max="2000"
             />
-            <span className={styles.customValueHint}>Custom setting</span>
+            <span className={styles.customValueHint}>{t('contentSettings.newsCount.customHint')}</span>
             <button
               className={`${styles.applyButton} ${validationMessage || !customValue ? styles.disabledButton : ''}`}
               onClick={handleCustomValueSubmit}
               disabled={!!validationMessage || !customValue}
             >
-              Alkalmaz
+              {t('contentSettings.newsCount.apply')}
             </button>
 
             {validationMessage && <div className={styles.validationError}>{validationMessage}</div>}
           </div>
         )}
         <p className={styles.settingHint}>
-          This setting determines how many news items appear on one page. Lower values load faster,
-          higher values require less page navigation. {/* ENGLISH */}
+          {t('contentSettings.newsCount.hint')}
         </p>
         {/* Teljesítmény figyelmeztetés */}
         <PerformanceWarning
           isVisible={showPerformanceWarning}
           onClose={handleCloseWarning}
-          message="Setting a news limit above 500 may cause performance issues, especially on slower devices or with a weak internet connection."
-          title="Loading a large number of news items"
+          message={t('contentSettings.newsCount.performanceWarning.message')}
+          title={t('contentSettings.newsCount.performanceWarning.title')}
         />
       </div>
       {/* ===================================================== 
@@ -376,21 +373,20 @@ export const ContentSettings: React.FC = () => {
       {/* Cikkek előnézeteinek megjelenítése húzókapcsolóval */}
       <div className={styles.settingGroup}>
         <label className={styles.switchLabel}>
-          Show article previews
+          {t('contentSettings.previews.label')}
           <span className={styles.switch}>
             <input type="checkbox" checked={showPreviews} onChange={handleShowPreviewsChange} />
             <span className={styles.slider}></span>
           </span>
         </label>
         <p className={styles.settingHint}>
-          When enabled, shows images and descriptions in the news list. Turn off for a more compact
-          view.
+          {t('contentSettings.previews.hint')}
         </p>
       </div>
       {/* ÚJ: Kiemelt hírsáv megjelenítése húzókapcsolóval */}
       <div className={styles.settingGroup}>
         <label className={styles.switchLabel}>
-          Featured news bar at top of panels {/* ENGLISH */}
+          {t('contentSettings.featuredBar.label')}
           <span className={styles.switch}>
             <input
               type="checkbox"
@@ -401,13 +397,12 @@ export const ContentSettings: React.FC = () => {
           </span>
         </label>
         <p className={styles.settingHint}>
-          When enabled, a horizontally scrollable bar appears with the first few image-free news
-          items at the top of panels. (Primarily optimized for mobile/tablet view) {/* ENGLISH */}
+          {t('contentSettings.featuredBar.hint')}
         </p>
       </div>
       {/* Képnélküli hírek elrendezése */}
       <div className={styles.settingGroup}>
-        <label>Layout for news without images:</label>
+        <label>{t('contentSettings.noImageLayout.label')}</label>
         <div>
           <label>
             <input
@@ -417,7 +412,7 @@ export const ContentSettings: React.FC = () => {
               checked={noImageLayout === 'card'}
               onChange={handleNoImageLayoutChange}
             />
-            Card format
+            {t('contentSettings.noImageLayout.card')}
           </label>
           <label style={{ marginLeft: '1em' }}>
             <input
@@ -427,15 +422,15 @@ export const ContentSettings: React.FC = () => {
               checked={noImageLayout === 'horizontal'}
               onChange={handleNoImageLayoutChange}
             />
-            Horizontal scroll
+            {t('contentSettings.noImageLayout.horizontal')}
           </label>
         </div>
-        <p className={styles.settingHint}>Select how news without images should be displayed.</p>
+        <p className={styles.settingHint}>{t('contentSettings.noImageLayout.hint')}</p>
       </div>
       {/* Konténerenkénti hír darabszám csak horizontálisnál */}
       {noImageLayout === 'horizontal' && (
         <div className={styles.settingGroup}>
-          <label>News per container:</label>
+          <label>{t('contentSettings.newsPerContainer.label')}</label>
           <select
             className={styles.select}
             value={containerNewsCount}
@@ -448,8 +443,7 @@ export const ContentSettings: React.FC = () => {
             ))}
           </select>
           <p className={styles.settingHint}>
-            Only active when horizontal scroll is selected. Determines how many news items appear in
-            a row.
+            {t('contentSettings.newsPerContainer.hint')}
           </p>
         </div>
       )}

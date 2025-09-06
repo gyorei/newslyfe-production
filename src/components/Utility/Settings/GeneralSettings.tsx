@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './Settings.module.css';
 
 export const GeneralSettings: React.FC = () => {
+  const { t } = useTranslation();
   // Location Modal állapota
   const [locationModalEnabled, setLocationModalEnabled] = useState(() => {
     return localStorage.getItem('newsx_location_modal_disabled') !== 'true';
@@ -33,18 +35,18 @@ export const GeneralSettings: React.FC = () => {
 
   return (
     <div>
-      <h3>General Settings</h3>
+      <h3>{t('generalSettings.title')}</h3>
       <div className={styles.settingGroup}>
-        <label>Startup Screen:</label>
+        <label>{t('generalSettings.startupScreen')}</label>
         <select className={styles.select}>
-          <option value="home">Home</option>
-          <option value="favorites">Favorites</option>
-          <option value="latest">Latest News</option>
+          <option value="home">{t('generalSettings.home')}</option>
+          <option value="favorites">{t('generalSettings.favorites')}</option>
+          <option value="latest">{t('generalSettings.latestNews')}</option>
         </select>
       </div>
       <div className={styles.settingGroup}>
         <label className={styles.switchLabel}>
-          Notifications:
+          {t('generalSettings.notifications')}:
           <label className={styles.switch}>
             <input type="checkbox" defaultChecked />
             <span className={styles.slider}></span>
@@ -53,10 +55,10 @@ export const GeneralSettings: React.FC = () => {
       </div>
 
       <div className={styles.settingGroup}>
-        <h4>Notifications & Prompts</h4>
+        <h4>{t('generalSettings.notificationsPrompts')}</h4>
 
         <label className={styles.switchLabel}>
-          Show location prompt for local news:
+          {t('generalSettings.locationPrompt')}:
           <label className={styles.switch}>
             <input
               type="checkbox"
@@ -67,7 +69,7 @@ export const GeneralSettings: React.FC = () => {
           </label>
         </label>
         <p className={styles.settingDescription}>
-          Enable or disable the location prompt when clicking on Local news
+          {t('generalSettings.locationPromptDesc')}
         </p>
       </div>
     </div>

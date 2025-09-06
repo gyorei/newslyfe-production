@@ -1,5 +1,6 @@
 // src\components\Utility\Settings\Settings.tsx
 import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './Settings.module.css';
 import { GeneralSettings } from './GeneralSettings';
 import { AppearanceSettings } from './AppearanceSettings/AppearanceSettings';
@@ -36,6 +37,7 @@ export const Settings: React.FC<SettingsProps> = ({
   rightPanelMode,
   rightPanelCategory,
 }) => { // <-- PROP FOGADÁSA
+  const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useLocalStorage<
     'startup' | 'general' | 'appearance' | 'content' | 'location' | 'language' | 'electron' | 'search' // 'search' hozzáadva
   >('settings_activeCategory', 'general');
@@ -85,50 +87,50 @@ export const Settings: React.FC<SettingsProps> = ({
           className={`${styles.categoryButton} ${activeCategory === 'startup' ? styles.active : ''}`}
           onClick={() => setActiveCategory('startup')}
         >
-          On startup
+          {t('settingsTabs.startup')}
         </button>
         <button
           className={`${styles.categoryButton} ${activeCategory === 'general' ? styles.active : ''}`}
           onClick={() => setActiveCategory('general')}
         >
-          General
+          {t('settingsTabs.general')}
         </button>
         <button
           className={`${styles.categoryButton} ${activeCategory === 'appearance' ? styles.active : ''}`}
           onClick={() => setActiveCategory('appearance')}
         >
-          Appearance
+          {t('settingsTabs.appearance')}
         </button>
         <button
           className={`${styles.categoryButton} ${activeCategory === 'content' ? styles.active : ''}`}
           onClick={() => setActiveCategory('content')}
         >
-          Content
+          {t('settingsTabs.content')}
         </button>
         <button
           className={`${styles.categoryButton} ${activeCategory === 'location' ? styles.active : ''}`}
           onClick={() => setActiveCategory('location')}
         >
-          Location
+          {t('settingsTabs.location')}
         </button>
         <button
           className={`${styles.categoryButton} ${activeCategory === 'language' ? styles.active : ''}`}
           onClick={() => setActiveCategory('language')}
         >
-          Language
+          {t('settingsTabs.language')}
         </button>
         <button
           className={`${styles.categoryButton} ${activeCategory === 'electron' ? styles.active : ''}`}
           onClick={() => setActiveCategory('electron')}
         >
-          Desktop App
+          {t('settingsTabs.desktop')}
         </button>
         {/* ÚJ: Search kategória gomb */}
         <button
           className={`${styles.categoryButton} ${activeCategory === 'search' ? styles.active : ''}`}
           onClick={() => setActiveCategory('search')}
         >
-          Search
+          {t('settingsTabs.search')}
         </button>
       </div>
 

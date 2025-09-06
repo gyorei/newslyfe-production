@@ -4,6 +4,7 @@
 //  , amíg nincs rá valódi igény.
 
 import React, { useState, useEffect, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './LocationSettings.module.css';
 import { locationProvider } from '../../../LocalNews/location/LocationProvider';
 // Importáljuk a continents.ts-ből a szükséges adatokat és függvényeket
@@ -25,6 +26,7 @@ type OptionType = {
 };
 
 export const LocationSettings: React.FC = () => {
+  const { t } = useTranslation();
   // Kiválasztott helymeghatározási mód
   const [locationType, setLocationType] = useState<'manual' | 'geo' | 'browser'>('manual');
 
@@ -117,7 +119,7 @@ export const LocationSettings: React.FC = () => {
         case 'manual': {
           // Ellenőrizzük, hogy van-e kiválasztott ország
           if (!country) {
-            alert('Please select a country!');
+            alert(t('locationSettings.alerts.selectCountry'));
             setIsSaving(false);
             return;
           }
@@ -125,7 +127,7 @@ export const LocationSettings: React.FC = () => {
           // A findCountryByCode függvényt használjuk a kód alapján
           const countryObj = findCountryByCode(country);
           if (!countryObj) {
-            throw new Error('Unknown country code');
+            throw new Error(t('locationSettings.alerts.unknownCountry'));
           }
 
           console.log(
@@ -140,7 +142,7 @@ export const LocationSettings: React.FC = () => {
           );
 
           if (!success) {
-            throw new Error('Failed to set location');
+            throw new Error(t('locationSettings.alerts.failedSetLocation'));
           }
 
           console.log(`[LocationSettings] Manuális hely sikeresen beállítva`); // DEBUG
@@ -156,7 +158,7 @@ export const LocationSettings: React.FC = () => {
           const success = await locationProvider.setGeoLocation(highAccuracy);
 
           if (!success) {
-            throw new Error('Failed to set GPS location');
+            throw new Error(t('locationSettings.alerts.failedGPS'));
           }
 
           console.log(`[LocationSettings] GPS helymeghatározás sikeres`); // DEBUG
@@ -170,7 +172,7 @@ export const LocationSettings: React.FC = () => {
           const success = await locationProvider.setBrowserLanguageLocation();
 
           if (!success) {
-            throw new Error('Failed to set browser language based location');
+            throw new Error(t('locationSettings.alerts.failedBrowser'));
           }
 
           console.log(`[LocationSettings] Böngésző alapú helymeghatározás sikeres`); // DEBUG
@@ -292,11 +294,11 @@ export const LocationSettings: React.FC = () => {
 
   return (
     <div>
-      <h3>Location Settings</h3>
+      <h3>{t('locationSettings.title')}</h3>
 
       {/* 1. Helymeghatározás mód választó */}
       <div className={styles.settingGroup}>
-        <h4>Location Method</h4>
+        <h4>{t('locationSettings.locationMethod.title')}</h4>
         <div className={styles.radioGroup}>
           <label>
             <input
@@ -306,7 +308,7 @@ export const LocationSettings: React.FC = () => {
               checked={locationType === 'manual'}
               onChange={() => setLocationType('manual')}
             />
-            <span>Manual Selection</span>
+            <span>{t('locationSettings.locationMethod.manual')}</span>
           </label>
 
           <label>
@@ -317,7 +319,7 @@ export const LocationSettings: React.FC = () => {
               checked={locationType === 'geo'}
               onChange={() => setLocationType('geo')}
             />
-            <span>GPS Based Location</span>
+            <span>{t('locationSettings.locationMethod.gps')}</span>
           </label>
 
           <label>
@@ -328,7 +330,7 @@ export const LocationSettings: React.FC = () => {
               checked={locationType === 'browser'}
               onChange={() => setLocationType('browser')}
             />
-            <span>Browser Language</span>
+            <span>{t('locationSettings.locationMethod.browser')}</span>
           </label>
         </div>
       </div>
@@ -336,7 +338,7 @@ export const LocationSettings: React.FC = () => {
       {/* 2. Kontinens választó React-Select-tel */}
       {locationType === 'manual' && (
         <div className={styles.settingGroup}>
-          <h4>Select Continent</h4>
+          <h4>{t('locationSettings.continentSelector.title')}</h4>
           <Select<OptionType>
             className={styles.reactSelect}
             options={continentOptions}
@@ -347,7 +349,7 @@ export const LocationSettings: React.FC = () => {
               setCountry(''); // Reset ország kiválasztás új kontinens esetén
             }}
             styles={selectStyles}
-            placeholder="Select continent"
+            placeholder={t('locationSettings.continentSelector.placeholder')}
           />
         </div>
       )}
@@ -355,7 +357,7 @@ export const LocationSettings: React.FC = () => {
       {/* 3. Országválasztó React-Select-tel - KISEBB MAGASSÁGGAL */}
       {locationType === 'manual' && selectedContinent && (
         <div className={styles.settingGroup}>
-          <h4>Select Country</h4>
+          <h4>{t('locationSettings.countrySelector.title')}</h4>
           <Select<OptionType>
             className={styles.reactSelect}
             options={countryOptions}
@@ -365,7 +367,7 @@ export const LocationSettings: React.FC = () => {
               setCountry(value);
             }}
             styles={selectStyles}
-            placeholder="Select country"
+            placeholder={t('locationSettings.countrySelector.placeholder')}
             // A legördülő menü maximális magassága - ezt változtathatod
             maxMenuHeight={150}
           />
@@ -390,9 +392,9 @@ export const LocationSettings: React.FC = () => {
       {/* GPS beállítások */}
       {locationType === 'geo' && (
         <div className={styles.settingGroup}>
-          <h4>GPS Settings</h4>
+          <h4>{t('locationSettings.gpsSettings.title')}</h4>
           <label className={styles.switchLabel}>
-            High accuracy location:
+            {t('locationSettings.gpsSettings.highAccuracy')}
             <label className={styles.switch}>
               <input
                 type="checkbox"
@@ -403,16 +405,16 @@ export const LocationSettings: React.FC = () => {
             </label>
           </label>
           <p className={styles.hint}>
-            Note: You need to enable location access in your browser for precise location detection.
+            {t('locationSettings.gpsSettings.note')}
           </p>
         </div>
       )}
 
       {/* Adattárolási beállítások */}
       <div className={styles.settingGroup}>
-        <h4>Location Data Storage</h4>
+        <h4>{t('locationSettings.dataStorage.title')}</h4>
         <label className={styles.switchLabel}>
-          Remember location data after browser close:
+          {t('locationSettings.dataStorage.rememberData')}
           <label className={styles.switch}>
             <input
               type="checkbox"
@@ -427,7 +429,7 @@ export const LocationSettings: React.FC = () => {
       {/* Korábbi helyek listája - CSAK akkor jelenik meg, ha manuális módot használunk */}
       {locationHistory.length > 0 && locationType === 'manual' && (
         <div className={styles.settingGroup}>
-          <h4>Previous Locations</h4>
+          <h4>{t('locationSettings.previousLocations.title')}</h4>
           <div className={styles.historyList}>
             {locationHistory.map((location, index) => (
               <div key={index} className={styles.historyItem}>
@@ -436,24 +438,24 @@ export const LocationSettings: React.FC = () => {
                   {location.city ? `, ${location.city}` : ''}
                 </span>
                 <button onClick={() => selectHistoryItem(location)} className={styles.button}>
-                  Use
+                  {t('locationSettings.previousLocations.useButton')}
                 </button>
               </div>
             ))}
           </div>
           <button onClick={clearHistory} className={styles.button}>
-            Clear History
+            {t('locationSettings.previousLocations.clearHistory')}
           </button>
         </div>
       )}
 
       {/* Mentés gomb és állapot */}
       <div className={styles.actions}>
-        {saveStatus === 'success' && <span className={styles.saveSuccess}>Settings saved!</span>}
-        {saveStatus === 'error' && <span className={styles.saveError}>Error saving settings!</span>}
+        {saveStatus === 'success' && <span className={styles.saveSuccess}>{t('locationSettings.actions.success')}</span>}
+        {saveStatus === 'error' && <span className={styles.saveError}>{t('locationSettings.actions.error')}</span>}
 
         <button onClick={handleSave} className={styles.saveButton} disabled={isSaving}>
-          {isSaving ? 'Saving...' : 'Save Settings'}
+          {isSaving ? t('locationSettings.actions.saving') : t('locationSettings.actions.save')}
         </button>
       </div>
     </div>

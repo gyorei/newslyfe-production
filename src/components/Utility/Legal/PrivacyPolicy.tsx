@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './Legal.module.css';
 
 // ========================================
@@ -7,80 +8,78 @@ import styles from './Legal.module.css';
 // Adatvédelmi tájékoztató Google AdSense szabályoknak megfelelően
 
 export const PrivacyPolicy: React.FC = () => {
+  const { t } = useTranslation();
+  
   return (
     <div className={styles.privacyPolicy}>
-      <h2>Adatvédelmi Tájékoztató</h2>
+      <h2>{t('privacy.title')}</h2>
       
       <section>
-        <h3>1. Bevezetés</h3>
+        <h3>{t('privacy.sections.introduction.title')}</h3>
         <p>
-          Ez az adatvédelmi tájékoztató leírja, hogyan gyűjtjük, használjuk és védjük az Ön személyes adatait 
-          az Európai Hírgyűjtő alkalmazás használata során.
+          {t('privacy.sections.introduction.description')}
         </p>
       </section>
 
       <section>
-        <h3>2. Adatgyűjtés</h3>
-        <p>Az alábbi adatokat gyűjtjük:</p>
+        <h3>{t('privacy.sections.dataCollection.title')}</h3>
+        <p>{t('privacy.sections.dataCollection.description')}</p>
         <ul>
-          <li><strong>Használati adatok:</strong> Mely híreket olvassa, milyen forrásokat választ</li>
-          <li><strong>Technikai adatok:</strong> Böngésző típusa, IP cím, eszköz információ</li>
-          <li><strong>Preferenciák:</strong> Nyelvi beállítások, témaválasztások</li>
+          <li><strong>{t('privacy.sections.dataCollection.types.usage.title')}</strong> {t('privacy.sections.dataCollection.types.usage.description')}</li>
+          <li><strong>{t('privacy.sections.dataCollection.types.technical.title')}</strong> {t('privacy.sections.dataCollection.types.technical.description')}</li>
+          <li><strong>{t('privacy.sections.dataCollection.types.preferences.title')}</strong> {t('privacy.sections.dataCollection.types.preferences.description')}</li>
         </ul>
       </section>
 
       <section>
-        <h3>3. Google AdSense</h3>
+        <h3>{t('privacy.sections.googleAdsense.title')}</h3>
         <p>
-          <strong>Reklámok:</strong> Az alkalmazás Google AdSense reklámokat használ. A Google és partnerei 
-          cookie-kat és hasonló technológiákat használhatnak a személyre szabott reklámok megjelenítéséhez.
+          <strong>{t('privacy.sections.googleAdsense.ads.title')}</strong> {t('privacy.sections.googleAdsense.ads.description')}
         </p>
         <p>
-          <strong>Adatmegosztás:</strong> A Google AdSense használata miatt bizonyos adatok megoszthatók 
-          a Google-lal a reklámok személyre szabásához.
+          <strong>{t('privacy.sections.googleAdsense.dataSharing.title')}</strong> {t('privacy.sections.googleAdsense.dataSharing.description')}
         </p>
       </section>
 
       <section>
-        <h3>4. Cookie-k és Hasonló Technológiák</h3>
+        <h3>{t('privacy.sections.cookies.title')}</h3>
         <p>
-          Az alkalmazás cookie-kat és hasonló technológiákat használ a felhasználói élmény javítása érdekében:
+          {t('privacy.sections.cookies.description')}
         </p>
         <ul>
-          <li><strong>Szükséges cookie-k:</strong> Az alkalmazás működéséhez szükséges</li>
-          <li><strong>Analitikai cookie-k:</strong> Használati statisztikák készítéséhez</li>
-          <li><strong>Reklám cookie-k:</strong> Google AdSense által használt</li>
+          <li><strong>{t('privacy.sections.cookies.types.necessary.title')}</strong> {t('privacy.sections.cookies.types.necessary.description')}</li>
+          <li><strong>{t('privacy.sections.cookies.types.analytics.title')}</strong> {t('privacy.sections.cookies.types.analytics.description')}</li>
+          <li><strong>{t('privacy.sections.cookies.types.advertising.title')}</strong> {t('privacy.sections.cookies.types.advertising.description')}</li>
         </ul>
       </section>
 
       <section>
-        <h3>5. Adatok Megőrzése</h3>
+        <h3>{t('privacy.sections.dataRetention.title')}</h3>
         <p>
-          Az Ön adatait csak annyi ideig őrizzük meg, amíg az szükséges az alkalmazás működéséhez 
-          vagy amíg Ön nem kéri törlésüket.
+          {t('privacy.sections.dataRetention.description')}
         </p>
       </section>
 
       <section>
-        <h3>6. Jogai</h3>
-        <p>Önnek joga van:</p>
+        <h3>{t('privacy.sections.rights.title')}</h3>
+        <p>{t('privacy.sections.rights.description')}</p>
         <ul>
-          <li>Hozzáférni az Ön adataihoz</li>
-          <li>Kérni az adatok helyesbítését</li>
-          <li>Kérni az adatok törlését</li>
-          <li>Korlátozni az adatfeldolgozást</li>
-          <li>Adathordozhatóságra</li>
+          <li>{t('privacy.sections.rights.list.access')}</li>
+          <li>{t('privacy.sections.rights.list.rectification')}</li>
+          <li>{t('privacy.sections.rights.list.erasure')}</li>
+          <li>{t('privacy.sections.rights.list.restriction')}</li>
+          <li>{t('privacy.sections.rights.list.portability')}</li>
         </ul>
       </section>
 
       <section>
-        <h3>7. Kapcsolat</h3>
+        <h3>{t('privacy.sections.contact.title')}</h3>
         <p>
-          Ha kérdése van az adatvédelmi tájékoztatóval kapcsolatban, keressen minket:
+          {t('privacy.sections.contact.description')}
         </p>
         <p>
-          <strong>Email:</strong> privacy@europeannewsaggregator.com<br />
-          <strong>Utolsó frissítés:</strong> {new Date().toLocaleDateString('hu-HU')}
+          <strong>{t('privacy.sections.contact.email.label')}</strong> {t('privacy.sections.contact.email.address')}<br />
+          <strong>{t('privacy.sections.contact.lastUpdated')}</strong> {new Date().toLocaleDateString()}
         </p>
       </section>
     </div>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './Legal.module.css';
 import { PrivacyPolicy } from './PrivacyPolicy';
 import { TermsOfService } from './TermsOfService';
@@ -9,6 +10,7 @@ import { TermsOfService } from './TermsOfService';
 // Adatvédelmi tájékoztató és szolgáltatási feltételek
 
 export const Legal: React.FC = () => {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<'privacy' | 'terms'>('privacy');
 
   return (
@@ -20,16 +22,16 @@ export const Legal: React.FC = () => {
         <button 
           className={`${styles.tab} ${activeTab === 'privacy' ? styles.active : ''}`}
           onClick={() => setActiveTab('privacy')}
-          aria-label="Adatvédelmi Tájékoztató"
+          aria-label={t('legal.privacyPolicy')}
         >
-          📋 Adatvédelmi Tájékoztató
+          📋 {t('legal.privacyPolicy')}
         </button>
         <button 
           className={`${styles.tab} ${activeTab === 'terms' ? styles.active : ''}`}
           onClick={() => setActiveTab('terms')}
-          aria-label="Szolgáltatási Feltételek"
+          aria-label={t('legal.termsOfService')}
         >
-          📄 Szolgáltatási Feltételek
+          📄 {t('legal.termsOfService')}
         </button>
       </div>
       

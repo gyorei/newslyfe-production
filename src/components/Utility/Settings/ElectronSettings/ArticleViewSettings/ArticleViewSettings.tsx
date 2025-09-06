@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './ArticleViewSettings.module.css';
 
 // ✅ Cikk megjelenítési módok típusa
@@ -8,22 +9,19 @@ type ArticleViewMode = 'window' | 'embedded' | 'tab';
 const VIEW_MODE_OPTIONS = [
   {
     value: 'embedded' as ArticleViewMode,
-    label: 'Embedded View',
-    description: 'The article appears in place of the news cards',
+    key: 'embedded',
     icon: '��',
     recommended: true
   },
   {
     value: 'tab' as ArticleViewMode,
-    label: 'New Tab',
-    description: 'The article opens in a new tab within the application',
+    key: 'tab',
     icon: '��',
     recommended: false
   },
   {
     value: 'window' as ArticleViewMode,
-    label: 'Separate Window',
-    description: 'The article opens in a new Electron window',
+    key: 'window',
     icon: '��',
     recommended: false
   }
@@ -34,6 +32,7 @@ interface ArticleViewSettingsProps {
 }
 
 export function ArticleViewSettings({ className }: ArticleViewSettingsProps) {
+  const { t } = useTranslation();
   const [currentMode, setCurrentMode] = useState<ArticleViewMode>('embedded');
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -60,7 +59,7 @@ export function ArticleViewSettings({ className }: ArticleViewSettingsProps) {
         }
       }
     } catch (error) {
-      console.error('Hiba a beállítások betöltésekor:', error);
+      console.error(t('articleViewSettings.messages.loadError'), error);
     } finally {
       setIsLoading(false);
     }
@@ -85,7 +84,7 @@ export function ArticleViewSettings({ className }: ArticleViewSettingsProps) {
       showSuccessMessage();
       
     } catch (error) {
-      console.error('Hiba a beállítások mentésekor:', error);
+      console.error(t('articleViewSettings.messages.saveError'), error);
       showErrorMessage();
     } finally {
       setIsSaving(false);
@@ -102,12 +101,12 @@ export function ArticleViewSettings({ className }: ArticleViewSettingsProps) {
   // ✅ Visszajelzés üzenetek (egyszerű implementáció)
   const showSuccessMessage = () => {
     // Itt lehet toast notification vagy egyéb UI feedback
-    console.log('Beállítások sikeresen mentve!');
+    console.log(t('articleViewSettings.messages.saveSuccess'));
   };
 
   const showErrorMessage = () => {
     // Itt lehet toast notification vagy egyéb UI feedback
-    console.log('Hiba a beállítások mentésekor!');
+    console.log(t('articleViewSettings.messages.saveError'));
   };
 
   if (isLoading) {
@@ -115,7 +114,7 @@ export function ArticleViewSettings({ className }: ArticleViewSettingsProps) {
       <div className={`${styles.container} ${className}`}>
         <div className={styles.loading}>
           <div className={styles.spinner}></div>
-          <span>Loading settings...</span>
+          <span>{t('articleViewSettings.loading')}</span>
         </div>
       </div>
     );
@@ -124,9 +123,9 @@ export function ArticleViewSettings({ className }: ArticleViewSettingsProps) {
   return (
     <div className={`${styles.container} ${className}`}>
       <div className={styles.header}>
-        <h3 className={styles.title}>Article Display Mode</h3>
+        <h3 className={styles.title}>{t('articleViewSettings.title')}</h3>
         <p className={styles.description}>
-          Choose how you want to display articles when clicking on news cards.
+          {t('articleViewSettings.description')}
         </p>
       </div>
 
@@ -140,15 +139,15 @@ export function ArticleViewSettings({ className }: ArticleViewSettingsProps) {
             onClick={() => handleModeChange(option.value)}
           >
             <div className={styles.optionIcon}>
-              <span className={styles.icon}>{option.icon}</span>
+              <span className={styles.icon}>{t(`articleViewSettings.viewModes.${option.key}.icon`)}</span>
               {option.recommended && (
-                <span className={styles.recommendedBadge}>Recommended</span>
+                <span className={styles.recommendedBadge}>{t('articleViewSettings.recommended')}</span>
               )}
             </div>
             
             <div className={styles.optionContent}>
-              <h4 className={styles.optionTitle}>{option.label}</h4>
-              <p className={styles.optionDescription}>{option.description}</p>
+              <h4 className={styles.optionTitle}>{t(`articleViewSettings.viewModes.${option.key}.label`)}</h4>
+              <p className={styles.optionDescription}>{t(`articleViewSettings.viewModes.${option.key}.description`)}</p>
             </div>
             
             <div className={styles.optionIndicator}>
@@ -163,7 +162,7 @@ export function ArticleViewSettings({ className }: ArticleViewSettingsProps) {
       {isSaving && (
         <div className={styles.savingIndicator}>
           <div className={styles.spinner}></div>
-          <span>Saving...</span>
+          <span>{t('articleViewSettings.saving')}</span>
         </div>
       )}
     </div>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './AppearanceSettings.module.css';
 
 interface AppearanceSettingsProps {
@@ -14,6 +15,7 @@ export const AppearanceSettings: React.FC<AppearanceSettingsProps> = ({
   showScrollbars,
   onToggleScrollbars,
 }) => {
+  const { t } = useTranslation();
   const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newTheme = event.target.value as 'light' | 'dark' | 'pro-blue';
     onThemeChange(newTheme);
@@ -21,36 +23,36 @@ export const AppearanceSettings: React.FC<AppearanceSettingsProps> = ({
 
   return (
   <div>
-    <h3>Appearance Settings</h3>
+    <h3>{t('appearanceSettings.title')}</h3>
       
       {/* Téma választó */}
     <div className={styles.settingGroup}>
-      <label>Theme:</label>
+      <label>{t('appearanceSettings.theme.label')}</label>
         <select 
           className={styles.select} 
           value={currentTheme}
           onChange={handleThemeChange}
         >
-          <option value="light">☀️ Light</option>
-          <option value="dark">🌙 Dark</option>
-          <option value="pro-blue">🟦 Pro Blue</option>
+          <option value="light">{t('appearanceSettings.theme.light')}</option>
+          <option value="dark">{t('appearanceSettings.theme.dark')}</option>
+          <option value="pro-blue">{t('appearanceSettings.theme.proBlue')}</option>
       </select>
     </div>
 
       {/* Font méret */}
     <div className={styles.settingGroup}>
-      <label>Font Size:</label>
+      <label>{t('appearanceSettings.fontSize.label')}</label>
       <select className={styles.select}>
-        <option value="small">Small</option>
-        <option value="medium">Medium</option>
-        <option value="large">Large</option>
+        <option value="small">{t('appearanceSettings.fontSize.small')}</option>
+        <option value="medium">{t('appearanceSettings.fontSize.medium')}</option>
+        <option value="large">{t('appearanceSettings.fontSize.large')}</option>
       </select>
     </div>
 
       {/* Görgetősáv kapcsoló */}
     <div className={styles.settingGroup}>
       <label className={styles.switchLabel}>
-        Show Scrollbars:
+        {t('appearanceSettings.scrollbars.label')}
         <label className={styles.switch}>
             <input 
               type="checkbox" 
@@ -65,13 +67,13 @@ export const AppearanceSettings: React.FC<AppearanceSettingsProps> = ({
       {/* Téma leírások */}
       <div className={styles.themeDescriptions}>
         <div className={styles.themeDescription}>
-          <strong>☀️ Light:</strong> Classic light theme
+          {t('appearanceSettings.themeDescriptions.light')}
         </div>
         <div className={styles.themeDescription}>
-          <strong>🌙 Dark:</strong> Original dark mode
+          {t('appearanceSettings.themeDescriptions.dark')}
         </div>
         <div className={styles.themeDescription}>
-          <strong>🟦 Pro Blue:</strong> Modern blue theme
+          {t('appearanceSettings.themeDescriptions.proBlue')}
         </div>
     </div>
   </div>

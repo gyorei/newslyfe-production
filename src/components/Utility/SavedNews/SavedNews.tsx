@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card } from '../../Card/Card';
 import { getSavedNews, removeSavedNews, SavedNewsItem } from './savedNewsUtils';
 import styles from './SavedNews.module.css';
@@ -8,6 +9,7 @@ import CardMoreMenu from '../../CardMoreMenu/CardMoreMenu';
  * A mentett hírek megjelenítéséért felelős komponens
  */
 const SavedNews: React.FC = () => {
+  const { t } = useTranslation();
   // Állapotok
   const [savedNews, setSavedNews] = useState<SavedNewsItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -88,13 +90,12 @@ const SavedNews: React.FC = () => {
   return (
     <div className={styles.savedNewsContainer}>
       {loading ? (
-        <div className={styles.loadingIndicator}>Loading...</div>
+        <div className={styles.loadingIndicator}>{t('savedNews.loading')}</div>
       ) : savedNews.length === 0 ? (
         <div className={styles.emptyState}>
-          <p>You don&apos;t have any saved news yet</p>
+          <p>{t('savedNews.emptyState.noSaved')}</p>
           <p>
-            Save your favorite articles using the three dots (⋮) menu and selecting &quot;⭐
-            Save&quot; option.
+            {t('savedNews.emptyState.instruction')}
           </p>
         </div>
       ) : (
@@ -104,14 +105,14 @@ const SavedNews: React.FC = () => {
               <Card {...newsItem} onToggleMenu={handleToggleMenu} />
               <div className={styles.savedMeta}>
                 <span className={styles.savedDate}>
-                  Saved: {formatSavedDate(newsItem.timestamp)}
+                  {t('savedNews.savedLabel')} {formatSavedDate(newsItem.timestamp)}
                 </span>
                 <button
                   className={styles.removeButton}
                   onClick={() => handleRemoveSaved(newsItem.id)}
-                  title="Remove from saved"
+                  title={t('savedNews.removeButton')}
                 >
-                  🗑️
+                  {t('savedNews.removeIcon')}
                 </button>
               </div>
 
@@ -123,7 +124,7 @@ const SavedNews: React.FC = () => {
                   onClose={handleCloseMenu}
                   url={newsItem.url}
                   onSave={() => handleRemoveSaved(newsItem.id)}
-                  saveText={'🗑️ Remove from saved'}
+                  saveText={t('savedNews.removeMenuText')}
                 />
               )}
             </div>

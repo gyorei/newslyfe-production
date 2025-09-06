@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './StartupSettings.module.css'; // ✅ Saját CSS modul használata
 import { useLocalStorage } from '../../../../hooks/useLocalStorage';
 
 export const StartupSettings: React.FC = () => {
+  const { t } = useTranslation();
   type Mode = 'newTab' | 'continue' | 'specific';
   const [mode, setMode] = useLocalStorage<Mode>('startup_mode', 'newTab');
   const [pages, setPages] = useLocalStorage<string[]>('startup_pages', []);
@@ -28,7 +30,7 @@ export const StartupSettings: React.FC = () => {
 
   return (
     <div className={styles.startupSettings}>
-      <h3>On Startup</h3>
+      <h3>{t('startupSettings.title')}</h3>
 
       <div className={styles.settingGroup}>
         <div className={styles.radioGroup}>
@@ -40,7 +42,7 @@ export const StartupSettings: React.FC = () => {
               checked={mode === 'newTab'}
               onChange={() => setMode('newTab')}
             />
-            <span>Open a new tab</span>
+            <span>{t('startupSettings.openNewTab')}</span>
           </label>
 
           <label>
@@ -51,7 +53,7 @@ export const StartupSettings: React.FC = () => {
               checked={mode === 'continue'}
               onChange={() => setMode('continue')}
             />
-            <span>Continue where you left off</span>
+            <span>{t('startupSettings.continueSession')}</span>
           </label>
 
           <label>
@@ -60,7 +62,7 @@ export const StartupSettings: React.FC = () => {
               checked={mode === 'specific'}
               onChange={() => setMode('specific')}
             />
-            <span>Open specific pages</span>
+            <span>{t('startupSettings.openSpecificPages')}</span>
           </label>
         </div>
       </div>
@@ -68,10 +70,10 @@ export const StartupSettings: React.FC = () => {
       {mode === 'specific' && (
         <div className={styles.settingGroup}>
           <div className={styles.pagesSection}>
-            <label className={styles.pagesLabel}>Pages (URL):</label>
+            <label className={styles.pagesLabel}>{t('startupSettings.pagesLabel')}</label>
 
             {pages.length === 0 ? (
-              <div className={styles.emptyState}>No pages added yet. Add some URLs below.</div>
+              <div className={styles.emptyState}>{t('startupSettings.emptyState')}</div>
             ) : (
               <ul className={styles.pagesList}>
                 {pages.map((url, i) => (
@@ -81,9 +83,9 @@ export const StartupSettings: React.FC = () => {
                       type="button"
                       onClick={() => removePage(i)}
                       className={styles.removeButton}
-                      title="Remove this page"
+                      title={t('startupSettings.removePageTitle')}
                     >
-                      Remove
+                      {t('startupSettings.removeButton')}
                     </button>
                   </li>
                 ))}
@@ -105,7 +107,7 @@ export const StartupSettings: React.FC = () => {
                 disabled={!input.trim()}
                 className={styles.addButton}
               >
-                Add Page
+                {t('startupSettings.addButton')}
               </button>
             </div>
           </div>

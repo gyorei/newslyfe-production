@@ -1,5 +1,6 @@
 // src\components\Utility\Premium\PremiumPanel.tsx
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   storeLicenseKey,
   clearLicenseKey,
@@ -14,6 +15,7 @@ import {
 import RecoveryPanel from './RecoveryPanel';
 
 const PremiumPanel: React.FC = () => {
+  const { t } = useTranslation();
   const [status, setStatus] = useState<PremiumState>(getPremiumState());
   const [licenseKeyInput, setLicenseKeyInput] = useState('');
   const [isProcessing, setIsProcessing] = useState(false);
@@ -54,7 +56,7 @@ const PremiumPanel: React.FC = () => {
       link.click();
     } catch (error) {
       console.error('Export failed:', error);
-      alert('An error occurred while exporting data.');
+      alert(t('premium.errors.exportFailed'));
     }
   };
 
@@ -69,16 +71,16 @@ const PremiumPanel: React.FC = () => {
     reader.onload = async (e) => {
       const text = e.target?.result;
       if (typeof text !== 'string') {
-        alert('Error: Failed to read the file.');
+        alert(t('premium.errors.readFileFailed'));
         return;
       }
       try {
         const data = JSON.parse(text);
         setIsProcessing(true);
         await importUserData(data);
-        alert('Data imported successfully! You may want to refresh the page to see the changes.');
+        alert(t('premium.dataSettings.importSuccess'));
       } catch (error) {
-        alert('Import error. The file is probably corrupted or in an incorrect format.');
+        alert(t('premium.errors.importFailed'));
         console.error('Import parse/process failed:', error);
       } finally {
         setIsProcessing(false);
@@ -93,24 +95,24 @@ const PremiumPanel: React.FC = () => {
   if (status === 'initializing') {
     return (
       <div style={{ maxWidth: 400, margin: '32px auto', padding: 24, border: '1px solid #eee', borderRadius: 8 }}>
-        <h2>Premium System</h2>
-        <p>Checking premium status...</p>
+        <h2>{t('premium.system')}</h2>
+        <p>{t('premium.checkingStatus')}</p>
       </div>
     );
   }
 
   return (
     <div style={{ maxWidth: 400, margin: '32px auto', padding: 24, border: '1px solid #eee', borderRadius: 8, fontFamily: 'sans-serif' }}>
-      <h2>Prémium Funkciók</h2>
+      <h2>{t('premium.title')}</h2>
       <div style={{ marginBottom: 12 }}>
-        <label htmlFor="license-input">License key:</label>
+        <label htmlFor="license-input">{t('premium.licenseKeyLabel')}</label>
         <input
           id="license-input"
           type="text"
           value={licenseKeyInput}
           onChange={e => setLicenseKeyInput(e.target.value)}
           style={{ width: '100%', padding: 8, marginTop: 4 }}
-          placeholder="e.g. PRO-YYYYMM-XXXXXXXXXXXXXXXX"
+          placeholder={t('premium.placeholder')}
           disabled={isProcessing}
         />
       </div>
@@ -120,34 +122,34 @@ const PremiumPanel: React.FC = () => {
           style={{ flex: 1, padding: '8px 16px' }}
           disabled={isProcessing}
         >
-          {isProcessing ? 'Validating...' : 'Save'}
+          {isProcessing ? t('premium.buttons.validating') : t('premium.buttons.save')}
         </button>
         <button 
           onClick={handleClear} 
           style={{ flex: 1, padding: '8px 16px', background: '#f5f5f5' }}
           disabled={isProcessing}
         >
-          Clear
+          {t('premium.buttons.clear')}
         </button>
       </div>
       <div style={{ marginTop: 16, padding: 12, background: '#f9f9f9', borderRadius: 4 }}>
-        <strong>Status:</strong> 
+        <strong>{t('premium.status.label')}</strong> 
         <span style={{ 
           color: status === 'pro' ? 'green' : status === 'invalid_key' ? 'red' : status === 'expired' ? '#b88600' : 'gray',
           marginLeft: 8
         }}>
           {status === 'pro' 
-            ? '✔️ Premium activated' 
+            ? t('premium.status.pro')
             : status === 'invalid_key' 
-              ? '❌ Invalid license key' 
+              ? t('premium.status.invalidKey')
               : status === 'expired'
-                ? '⚠️ Your license key has expired!'
-                : '◌ Free version'}
+                ? t('premium.status.expired')
+                : t('premium.status.free')}
         </span>
       </div>
       {(status === 'pro' || status === 'expired') && licenseDetails?.exp && (
         <div style={{ marginTop: 10, fontSize: '0.9em', color: '#555' }}>
-          Valid until: {new Date(licenseDetails.exp).toLocaleDateString()}
+          {t('premium.validUntil')} {new Date(licenseDetails.exp).toLocaleDateString()}
         </div>
       )}
       {status === 'invalid_key' && (
@@ -158,7 +160,7 @@ const PremiumPanel: React.FC = () => {
           background: '#fff0f0',
           borderRadius: 4
         }}>
-          The provided key is invalid. Please check your key!
+          {t('premium.errors.invalidKey')}
         </div>
       )}
       {status === 'expired' && (
@@ -169,7 +171,7 @@ const PremiumPanel: React.FC = () => {
           background: '#fffbe6',
           borderRadius: 4
         }}>
-          ⚠️ Your license key has expired. Please purchase a new key for premium features!
+          {t('premium.errors.expired')}
         </div>
       )}
       {status === 'pro' && (
@@ -180,26 +182,26 @@ const PremiumPanel: React.FC = () => {
           background: '#f0fff0',
           borderRadius: 4
         }}>
-          <h3>Premium benefits</h3>
+          <h3>{t('premium.benefits.title')}</h3>
           <ul style={{ paddingLeft: 20, marginTop: 8 }}>
-            <li>Ad-free experience</li>
-            <li>Offline reading</li>
-            <li>Personalized recommendations</li>
-            <li>Early access to new features</li>
+            <li>{t('premium.benefits.adFree')}</li>
+            <li>{t('premium.benefits.offline')}</li>
+            <li>{t('premium.benefits.personalized')}</li>
+            <li>{t('premium.benefits.earlyAccess')}</li>
           </ul>
         </div>
       )}
       <div style={{ marginTop: 24, paddingTop: 16, borderTop: '1px solid #eee' }}>
-        <h4>Data & Settings</h4>
+        <h4>{t('premium.dataSettings.title')}</h4>
         <p style={{ fontSize: '0.9em', color: '#666', margin: '4px 0 12px' }}>
-          Save all your settings and license key to a file, or restore from a previous backup.
+          {t('premium.dataSettings.description')}
         </p>
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={handleExport} style={{ flex: 1, padding: '10px 16px', cursor: 'pointer', background: '#f0f9ff', border: '1px solid #e0f2fe' }} disabled={isProcessing}>
-            Export Data
+            {t('premium.buttons.export')}
           </button>
           <button onClick={handleImportClick} style={{ flex: 1, padding: '10px 16px', cursor: 'pointer', background: '#f0f9ff', border: '1px solid #e0f2fe' }} disabled={isProcessing}>
-            Import Data
+            {t('premium.buttons.import')}
           </button>
           <input
             id="import-file-input"

@@ -1,14 +1,12 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './TimeSettings.module.css';
 import { useStorage } from '../../../../../hooks/useStorage';
 import { timeSettingsBridge, MAX_AGE_HOURS_PREFERENCE_KEY } from './TimeSettingsBridge';
 
-// Error message constants - ENGLISH
-const ERROR_SETTINGS_SAVE = 'Error saving time settings:';
-const ERROR_SETTINGS_LOAD = 'Error loading time settings:';
-
 export const TimeSettings: React.FC = () => {
+  const { t } = useTranslation();
   // Maximum news age in hours (1-24 hours) - REDUCED FROM 168h TO 24h
   const [maxAgeHours, setMaxAgeHours] = useState<number>(24); // Default: 24 hours
   // Custom time input state
@@ -97,8 +95,8 @@ export const TimeSettings: React.FC = () => {
           }
         }
       } catch (error) {
-        console.error(ERROR_SETTINGS_LOAD, error);
-        setValidationMessage('Error occurred while loading settings'); // ENGLISH
+        console.error(t('timeSettings.errors.loadError'), error);
+        setValidationMessage(t('timeSettings.errors.loadingErrorMessage'));
       }
     };
 
@@ -109,10 +107,10 @@ export const TimeSettings: React.FC = () => {
   const validateTimeValue = (value: number): string | null => {
     if (isNaN(value) || value < 1 || value > 24) {
       // CHANGED: max 168 → 24
-      return 'Time value must be between 1 and 24 hours'; // ENGLISH + 24h limit
+      return t('timeSettings.errors.rangeError');
     }
     if (!Number.isInteger(value)) {
-      return 'Time value must be a whole number'; // ENGLISH
+      return t('timeSettings.errors.wholeNumberError');
     }
     return null;
   };
@@ -144,10 +142,10 @@ export const TimeSettings: React.FC = () => {
       // ÚJ: Azonnali értesítés a Panel-nek (mint a hírek számánál)
       timeSettingsBridge.emit(MAX_AGE_HOURS_PREFERENCE_KEY, hours);
 
-      console.log(`[TimeSettings] Maximum news age set to: ${hours} hours`); // ENGLISH
+      console.log(`[TimeSettings] Maximum news age set to: ${hours} hours`);
     } catch (error) {
-      console.error(ERROR_SETTINGS_SAVE, error);
-      setValidationMessage('Error occurred while saving settings'); // ENGLISH
+      console.error(t('timeSettings.errors.saveError'), error);
+      setValidationMessage(t('timeSettings.errors.savingErrorMessage'));
     }
   };
 
@@ -162,7 +160,7 @@ export const TimeSettings: React.FC = () => {
 
       // SOFT LIMIT WARNING: Show warning if >24h but allow input
       if (numValue > 24) {
-        setValidationMessage('Maximum 24 hours can be set'); // SOFT WARNING
+        setValidationMessage(t('timeSettings.errors.maxHoursWarning'));
       }
     }
   };
@@ -173,7 +171,7 @@ export const TimeSettings: React.FC = () => {
 
     // HARD LIMIT: Block saving if >24h
     if (numValue > 24) {
-      setValidationMessage('Maximum 24 hours allowed'); // HARD LIMIT ERROR
+      setValidationMessage(t('timeSettings.errors.maxHoursError'));
       return;
     }
 
@@ -200,10 +198,10 @@ export const TimeSettings: React.FC = () => {
       // ÚJ: Azonnali értesítés a Panel-nek (mint a hírek számánál)
       timeSettingsBridge.emit(MAX_AGE_HOURS_PREFERENCE_KEY, numValue);
 
-      console.log(`[TimeSettings] Custom maximum news age set to: ${numValue} hours`); // ENGLISH
+      console.log(`[TimeSettings] Custom maximum news age set to: ${numValue} hours`);
     } catch (error) {
-      console.error(ERROR_SETTINGS_SAVE, error);
-      setValidationMessage('Error occurred while saving settings'); // ENGLISH
+      console.error(t('timeSettings.errors.saveError'), error);
+      setValidationMessage(t('timeSettings.errors.savingErrorMessage'));
     }
   };
 
@@ -218,10 +216,9 @@ export const TimeSettings: React.FC = () => {
 
   return (
     <div className={styles.timeSettings}>
-      <h3 className={styles.title}>Maximum News Age</h3> {/* ENGLISH */}
+      <h3 className={styles.title}>{t('timeSettings.title')}</h3>
       <p className={styles.description}>
-        Set how old news should be displayed. Older news will be automatically filtered out.{' '}
-        {/* ENGLISH */}
+        {t('timeSettings.description')}
       </p>
       <div className={styles.optionsContainer}>
         {timeOptions.map((option) => (
@@ -242,7 +239,7 @@ export const TimeSettings: React.FC = () => {
           className={`${styles.customTimeToggle} ${isCustomTime ? styles.active : ''}`}
           onClick={toggleCustomTimeMode}
         >
-          Custom Duration {/* ENGLISH */}
+          {t('timeSettings.customDuration')}
         </button>
 
         {isCustomTime && (
@@ -253,25 +250,24 @@ export const TimeSettings: React.FC = () => {
               max="24"
               value={customTimeValue}
               onChange={(e) => handleCustomTimeChange(e.target.value)}
-              placeholder="Number of hours"
+              placeholder={t('timeSettings.placeholder')}
               className={`${styles.timeInput} ${validationMessage ? styles.error : ''}`}
             />
-            <span className={styles.timeUnit}>hours</span>
+            <span className={styles.timeUnit}>{t('timeSettings.hoursUnit')}</span>
             <button
               onClick={applyCustomTime}
               className={styles.applyButton}
               disabled={!customTimeValue || !!validationMessage}
             >
-              Apply
+              {t('timeSettings.apply')}
             </button>
           </div>
         )}
       </div>
       {validationMessage && <div className={styles.validationMessage}>{validationMessage}</div>}
       <div className={styles.currentSetting}>
-        Current setting: <strong>{maxAgeHours} hours</strong> {/* ENGLISH + UPDATED */}
-        {maxAgeHours === 24 && ' (1 day)'} {/* ENGLISH */}
-        {/* REMOVED: 48h, 72h, 168h references */}
+        {t('timeSettings.currentSetting')} <strong>{maxAgeHours} {t('timeSettings.hoursUnit')}</strong>
+        {maxAgeHours === 24 && ` ${t('timeSettings.oneDay')}`}
       </div>
     </div>
   );

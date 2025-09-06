@@ -1,6 +1,7 @@
 // src/components/Utility/Settings/SearchFilters/CountryFilter/CountryFilter.tsx
 import React from 'react';
 import Select, { GroupBase, StylesConfig } from 'react-select';
+import { useTranslation } from 'react-i18next';
 import styles from './CountryFilter.module.css';
 
 export interface CountryOption {
@@ -56,6 +57,7 @@ export const CountryFilter: React.FC<CountryFilterProps> = ({
   onChange,
   isLoading = false,
 }) => {
+  const { t } = useTranslation();
   const selectOptions = options.map(code => ({
     value: code,
     label: `${getFlagEmoji(code)} ${code}`
@@ -76,11 +78,11 @@ export const CountryFilter: React.FC<CountryFilterProps> = ({
           onChange(newSelectedCountries);
         }}
         isLoading={isLoading}
-        placeholder={isLoading ? "Országok betöltése..." : "Válassz egy vagy több országot..."}
+        placeholder={isLoading ? t('countryFilter.placeholder.loading') : t('countryFilter.placeholder.select')}
         styles={customStyles}
         closeMenuOnSelect={false}
         isDisabled={isLoading}
-        noOptionsMessage={() => isLoading ? "Betöltés..." : "Nincs elérhető ország"}
+        noOptionsMessage={() => isLoading ? t('countryFilter.noOptions.loading') : t('countryFilter.noOptions.empty')}
         menuPortalTarget={typeof window !== 'undefined' ? document.body : undefined}
         menuPosition="fixed"
       />
