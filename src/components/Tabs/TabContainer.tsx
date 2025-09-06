@@ -1,6 +1,7 @@
 // src\components\Tabs\TabContainer.tsx
 import * as React from 'react';
 import { useState, useRef, useCallback, useMemo, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { DraggableTabs } from './DraggableTabs';
 import { NewsItem } from '../../types';
 import { useUI } from '../../contexts/UIContext';
@@ -92,6 +93,7 @@ const TabContainerComponent: React.FC<TabContainerProps> = ({
   openRightPanelWithMode,
   onRenameTab,
 }) => {
+  const { t } = useTranslation();
   useDebugRender('TabContainer');
   
   const { handleSearch, handleClearSearch, getTabSearchState, tabSearchState } = useAppSearch();
@@ -273,7 +275,7 @@ const TabContainerComponent: React.FC<TabContainerProps> = ({
 
   return (
     <div className={styles.contentWithTabs}>
-      <div role="tablist" aria-label="Fülek">
+      <div role="tablist" aria-label={t('tabs.tablist')}>
         <DraggableTabs
           tabs={tabs}
           onAddTab={onAddTab}

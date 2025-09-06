@@ -525,6 +525,11 @@ const hu = {
       previous: "Előző",
       next: "Következő"
     },
+    // Tabs accessibility
+    tabs: {
+      ariaLabel: "Alkalmazás fülek",
+      tablist: "Fülek"
+    },
     // ArticleTab
     articleTab: {
       loadError: "Nem sikerült betölteni a cikket",

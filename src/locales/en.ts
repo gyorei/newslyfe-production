@@ -126,6 +126,11 @@ const en = {
     previous: "Previous",
     next: "Next"
   },
+  // Tabs accessibility
+  tabs: {
+    ariaLabel: "Application tabs",
+    tablist: "Tabs"
+  },
   
   // Home
   home: {

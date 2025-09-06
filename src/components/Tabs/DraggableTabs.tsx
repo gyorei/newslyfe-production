@@ -10,6 +10,7 @@
  */
 
 import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 import { DndContext, closestCenter } from '@dnd-kit/core';
 import { restrictToHorizontalAxis, restrictToParentElement } from '@dnd-kit/modifiers';
 import { SortableContext, horizontalListSortingStrategy } from '@dnd-kit/sortable';
@@ -161,6 +162,7 @@ interface DraggableTabsProps {
  */
 export const DraggableTabs: React.FC<DraggableTabsProps> = React.memo(
   ({ tabs, onAddTab, onCloseTab, onActivateTab, onReorderTabs, onShowNewNews }) => {
+    const { t } = useTranslation();
     // Performance mérés
     const perfStartRef = React.useRef<number>(0);
     const lastRenderTimeRef = React.useRef<number>(0);
@@ -253,7 +255,7 @@ export const DraggableTabs: React.FC<DraggableTabsProps> = React.memo(
             ref={tabsContainerRef}
             className={`${styles.tabsList} ${renderStrategy !== 'normal' ? styles.optimized : ''}`}
             role="tablist"
-            aria-label="Alkalmazás fülek"
+            aria-label={t('tabs.ariaLabel')}
           >
             <SortableContext items={tabIds} strategy={horizontalListSortingStrategy}>
               {tabListRenderer}
