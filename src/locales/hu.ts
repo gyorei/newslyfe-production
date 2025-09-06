@@ -588,6 +588,27 @@ const hu = {
       addButton: "Oldal hozzáadása"
     },
     
+    // Video Panel
+    videoPanel: {
+      loading: "Videók betöltése...",
+      retry: "Újrapróbálkozás",
+      noVideos: "Nem található videó.",
+      renderError: "A komponens renderelése sikertelen. Kérjük, próbáld újra."
+    },
+    
+    // Video Card - Time formatting
+    videoCard: {
+      timeAgo: {
+        seconds: "{{count}} másodperce",
+        minutes: "{{count}} perce", 
+        hours: "{{count}} órája",
+        days: "{{count}} napja",
+        weeks: "{{count}} hete",
+        months: "{{count}} hónapja",
+        years: "{{count}} éve"
+      }
+    },
+    
     // Favorites
     favorites: {
       title: "Kedvenc hírek és források",

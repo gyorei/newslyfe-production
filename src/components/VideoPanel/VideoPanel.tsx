@@ -1,5 +1,6 @@
 // src\components\VideoPanel\VideoPanel.tsx
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import MemoizedVideoCard from './VideoCard';
 import styles from './VideoPanel.module.css';
 // ADSENSE TEMPORARILY DISABLED
@@ -32,6 +33,7 @@ export const VideoPanel: React.FC<VideoPanelProps> = ({
   onToggleMenu,
   isActive,
 }) => {
+  const { t } = useTranslation();
   console.log('[VideoPanel] 🎯 VideoPanel FUNCTION CALLED with props:', {
     videoItemsLength: videoItems?.length,
     loading,
@@ -110,7 +112,7 @@ export const VideoPanel: React.FC<VideoPanelProps> = ({
   if (loading && (!videoItems || videoItems.length === 0)) {
     return (
       <div className={styles.loadingContainer}>
-        Loading videos...
+        {t('videoPanel.loading')}
       </div>
     );
   }
@@ -132,14 +134,14 @@ export const VideoPanel: React.FC<VideoPanelProps> = ({
                 onClick={onRetry}
                 className={styles.retryButton}
               >
-                Retry
+                {t('videoPanel.retry')}
               </button>
             )}
           </div>
         )}
         {!loading && !error && videoItems.length === 0 && (
           <div className={styles.emptyContainer}>
-            No videos found.
+            {t('videoPanel.noVideos')}
           </div>
         )}
         {/* Modal kapcsoló UI (példa: fejlesztői gomb) */}
@@ -195,7 +197,7 @@ export const VideoPanel: React.FC<VideoPanelProps> = ({
     console.error('VideoPanel render error:', error);
     return (
       <div className={styles.errorContainer}>
-        Component rendering failed. Please try again.
+        {t('videoPanel.renderError')}
       </div>
     );
   }

@@ -181,6 +181,27 @@ const en = {
     addButton: "Add Page"
   },
   
+  // Video Panel  
+  videoPanel: {
+    loading: "Loading videos...",
+    retry: "Retry",
+    noVideos: "No videos found.",
+    renderError: "Component rendering failed. Please try again."
+  },
+  
+  // Video Card - Time formatting
+  videoCard: {
+    timeAgo: {
+      seconds: "{{count}} second{{count === 1 ? '' : 's'}} ago",
+      minutes: "{{count}} minute{{count === 1 ? '' : 's'}} ago",
+      hours: "{{count}} hour{{count === 1 ? '' : 's'}} ago", 
+      days: "{{count}} day{{count === 1 ? '' : 's'}} ago",
+      weeks: "{{count}} week{{count === 1 ? '' : 's'}} ago",
+      months: "{{count}} month{{count === 1 ? '' : 's'}} ago",
+      years: "{{count}} year{{count === 1 ? '' : 's'}} ago"
+    }
+  },
+  
   // Country names
   country: {
     // Most common countries that appear in search results
