@@ -1,5 +1,6 @@
 // src/components/Side/Search/SearchPagination.tsx
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './Search.module.css';
 
 interface SearchPaginationProps {
@@ -10,6 +11,7 @@ interface SearchPaginationProps {
 }
 
 const SearchPagination: FC<SearchPaginationProps> = ({ total, page, limit, onPageChange }) => {
+  const { t } = useTranslation();
   const totalPages = Math.ceil(total / limit);
 
   if (totalPages <= 1) return null;
@@ -72,7 +74,7 @@ const SearchPagination: FC<SearchPaginationProps> = ({ total, page, limit, onPag
         onClick={() => onPageChange(page - 1)}
         className={styles.paginationArrow}
       >
-        &laquo; Előző
+&laquo; {t('pagination.previous')}
       </button>
 
       <div className={styles.pageNumbers}>{renderPageNumbers()}</div>
@@ -82,7 +84,7 @@ const SearchPagination: FC<SearchPaginationProps> = ({ total, page, limit, onPag
         onClick={() => onPageChange(page + 1)}
         className={styles.paginationArrow}
       >
-        Következő &raquo;
+{t('pagination.next')} &raquo;
       </button>
     </div>
   );

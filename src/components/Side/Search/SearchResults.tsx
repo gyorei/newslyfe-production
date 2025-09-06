@@ -1,5 +1,6 @@
 // src/components/Side/Search/SearchResults.tsx
 import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './Search.module.css';
 import sideStyles from '../Side.module.css';
 import SearchResultItem from './SearchResultItem'; // ÚJ IMPORT
@@ -37,18 +38,19 @@ const SearchResults: React.FC<SearchResultsProps> = ({
   setPage,
   onOpenDetailedView,
 }) => {
+  const { t } = useTranslation();
   return (
     <div>
       {/* Keresési találatok száma és Részletes nézet gomb */}
       <div className={styles.resultsHeader}>
-        <span>{total} találat</span>
+        <span>{t('search.resultsCount', { count: total })}</span>
         {onOpenDetailedView && (
           <button
             className={styles.detailedSearchButton}
             onClick={onOpenDetailedView}
-            title="Részletes nézet megnyitása"
+            title={t('search.openDetailedView')}
           >
-            Részletes nézet
+            {t('search.detailedView')}
           </button>
         )}
       </div>

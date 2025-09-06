@@ -501,6 +501,30 @@ const hu = {
       continueButton: "Folytatás jelenlegi beállításokkal",
       setupButton: "Helyadatok konfigurálása",
     },
+    // SearchTab komponens  
+    searchTab: {
+      resultsTitle: "Keresési eredmények",
+      totalResults: "Összesen: {{count}} találat",
+      searching: "Keresés folyamatban...",
+      noResults: "Nincs találat a keresésre.",
+      openDetailedView: "Részletes nézet megnyitása"
+    },
+    // Search hook hibaüzenetek
+    search: {
+      error: {
+        general: "A keresés során hiba történt",
+        unknown: "Ismeretlen hiba történt"
+      },
+      unknownSource: "Ismeretlen forrás",
+      resultsCount: "{{count}} találat",
+      detailedView: "Részletes nézet",
+      openDetailedView: "Részletes nézet megnyitása"
+    },
+    // Pagination
+    pagination: {
+      previous: "Előző",
+      next: "Következő"
+    },
     // ArticleTab
     articleTab: {
       loadError: "Nem sikerült betölteni a cikket",

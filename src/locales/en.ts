@@ -102,6 +102,30 @@ const en = {
     comingSoon: "Coming Soon!",
     comingSoonTitle: "This feature is coming soon"
   },
+  // SearchTab component
+  searchTab: {
+    resultsTitle: "Search Results",
+    totalResults: "Total: {{count}} results",
+    searching: "Searching...",
+    noResults: "No results found.",
+    openDetailedView: "Open detailed view"
+  },
+  // Search hook error messages
+  search: {
+    error: {
+      general: "An error occurred during search",
+      unknown: "Unknown error occurred"
+    },
+    unknownSource: "Unknown source",
+    resultsCount: "{{count}} results",
+    detailedView: "Detailed view",
+    openDetailedView: "Open detailed view"
+  },
+  // Pagination
+  pagination: {
+    previous: "Previous",
+    next: "Next"
+  },
   
   // Home
   home: {

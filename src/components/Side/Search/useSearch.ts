@@ -1,5 +1,6 @@
 // src/components/Side/Search/useSearch.ts
 import { useState, useEffect, useCallback } from 'react'; // useCallback importálva
+import { useTranslation } from 'react-i18next';
 
 // API-tól kapott nyers adat típusa
 interface ApiSearchResult {
@@ -36,6 +37,7 @@ interface SearchResponse {
 }
 
 export function useSearch() {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
   const [total, setTotal] = useState(0);
@@ -71,7 +73,7 @@ export function useSearch() {
           const errorText = await response.text();
           console.error(`[useSearch] API hiba: ${response.status} ${response.statusText}`);
           console.error(`[useSearch] Error details: ${errorText}`);
-          throw new Error('A keresés során hiba történt');
+          throw new Error(t('search.error.general'));
         }
 
         const data: SearchResponse = await response.json();
@@ -93,15 +95,15 @@ export function useSearch() {
         setPage(pageNum); // Frissítjük az oldalszámot a hook állapotában
       } catch (err) {
         console.error('[useSearch] Keresési hiba:', err);
-        setError(err instanceof Error ? err.message : 'Ismeretlen hiba történt');
+        setError(err instanceof Error ? err.message : t('search.error.unknown'));
         setResults([]);
         setTotal(0);
       } finally {
         setLoading(false);
       }
     },
-    [limit],
-  ); // limit a függőség, a set... függvények stabilak
+    [limit, t],
+  ); // limit és t a függőség, a set... függvények stabilak
 
   // Effekt az URL paraméterek alapján történő kezdeti searchTerm beállításához
   useEffect(() => {

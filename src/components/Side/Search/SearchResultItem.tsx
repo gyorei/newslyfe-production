@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import styles from './Search.module.css';
 import {
   getFaviconUrl,
@@ -24,6 +25,7 @@ interface SearchResultItemProps {
 }
 
 const SearchResultItem: FC<SearchResultItemProps> = ({ result }) => {
+  const { t } = useTranslation();
   // A getTimeAgo függvény eltávolítva - helyette a központi formatRelativeTime függvényt használjuk
 
   // Forrás domain kinyerése URL-ből
@@ -46,7 +48,7 @@ const SearchResultItem: FC<SearchResultItemProps> = ({ result }) => {
       if (domain) return domain.replace(/^www\./, '');
     }
 
-    return 'Ismeretlen forrás';
+    return t('search.unknownSource');
   };
 
   // Forrás információ összeállítása
